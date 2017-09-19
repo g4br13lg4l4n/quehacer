@@ -1,6 +1,8 @@
 <template>
   <div>
-    
+
+    <AppTable></AppTable>
+
     <modal title="Modal title" class="modal-primary" large :show.sync="largeModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
         <h4 class="modal-title">Modal title</h4>
@@ -40,10 +42,13 @@
 <script>
 import modal from 'vue-strap/src/Modal'
 import AppForm from './Forms.vue'
-
+import metodosMixin from '../mixis/metodos.js'
+import AppTable from './Tables.vue'
 export default {
+  mixins: [metodosMixin],
   components: {
     modal,
+    AppTable,
     AppForm
   },
   data () {
@@ -55,10 +60,12 @@ export default {
   },
   methods:{
     editCliente(id){
+      console.log('entra 3')
       this.id = id
       this.largeModal = true
     },
     deleteCliente(id){
+      console.log('entra 3')
       this.id = id
       this.dangerModal = true
     },

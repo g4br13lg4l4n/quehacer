@@ -64,7 +64,9 @@
 import AppModal from './Modal.vue'
 import modal from 'vue-strap/src/Modal'
 import AppForm from './Forms.vue'
+import metodosMixin from '../mixis/metodos.js'
 export default {
+  mixins: [metodosMixin],
   name: 'tables',
   props: ['clientes'],
   components: {
@@ -82,14 +84,6 @@ export default {
     }
   },
   methods:{
-    editCliente(id){
-      this.id = id
-      this.largeModal = true
-    },
-    deleteCliente(id){
-      this.id = id
-      this.dangerModal = true
-    },
     eliminarCliente(id){
       Store.deleteCliente(id)
         .then(res => {

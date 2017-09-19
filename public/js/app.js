@@ -105566,6 +105566,7 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Modal_vue__ = __webpack_require__(627);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_strap_src_Modal__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Forms_vue__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixis_metodos_js__ = __webpack_require__(630);
 //
 //
 //
@@ -105628,11 +105629,13 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
 //
 //
 //
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_3__mixis_metodos_js__["a" /* default */]],
   name: 'tables',
   props: ['clientes'],
   components: {
@@ -105651,14 +105654,6 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
   },
 
   methods: {
-    editCliente: function editCliente(id) {
-      this.id = id;
-      this.largeModal = true;
-    },
-    deleteCliente: function deleteCliente(id) {
-      this.id = id;
-      this.dangerModal = true;
-    },
     eliminarCliente: function eliminarCliente(id) {
       var _this = this;
 
@@ -117818,7 +117813,7 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('modal', {
+  return _c('div', [_c('AppTable'), _vm._v(" "), _c('modal', {
     staticClass: "modal-primary",
     attrs: {
       "title": "Modal title",
@@ -117923,6 +117918,8 @@ if (false) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_strap_src_Modal__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Forms_vue__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixis_metodos_js__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Tables_vue__ = __webpack_require__(63);
 //
 //
 //
@@ -117962,13 +117959,18 @@ if (false) {
 //
 //
 //
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixis_metodos_js__["a" /* default */]],
   components: {
     modal: __WEBPACK_IMPORTED_MODULE_0_vue_strap_src_Modal__["a" /* default */],
+    AppTable: __WEBPACK_IMPORTED_MODULE_3__Tables_vue__["a" /* default */],
     AppForm: __WEBPACK_IMPORTED_MODULE_1__Forms_vue__["a" /* default */]
   },
   data: function data() {
@@ -117981,10 +117983,12 @@ if (false) {
 
   methods: {
     editCliente: function editCliente(id) {
+      console.log('entra 3');
       this.id = id;
       this.largeModal = true;
     },
     deleteCliente: function deleteCliente(id) {
+      console.log('entra 3');
       this.id = id;
       this.dangerModal = true;
     },
@@ -118001,6 +118005,27 @@ if (false) {
     }
   }
 });
+
+/***/ }),
+/* 630 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var metodosMixin = {
+  methods: {
+    editCliente: function editCliente(id) {
+
+      this.$emit('editCliente', this.dangerModal);
+    },
+    deleteCliente: function deleteCliente(id) {
+      console.log('entra 2');
+      this.id = id;
+      this.dangerModal = true;
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (metodosMixin);
 
 /***/ })
 /******/ ]);
