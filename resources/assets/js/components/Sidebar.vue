@@ -3,58 +3,47 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <router-link :to="'/dashboard'" class="nav-link"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></router-link>
+          <router-link :to="{ name: 'Dash' }" class="nav-link"><i class="icon-speedometer"></i> Dashboard</router-link>
         </li>
-        <li class="nav-title">
-          UI Elements
-        </li>
+
+         <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/components'}" disabled>
+          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i>Clientes</div>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <router-link :to="{ name: 'All Clientes' }" class="nav-link" exact><i class="icon-puzzle"></i>Todos</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'Add Cliente' }" class="nav-link" exact><i class="icon-puzzle"></i>Agregar</router-link>
+            </li>
+          </ul>
+        </router-link>
+
         <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/components'}" disabled>
-          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i> Components</div>
+          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i>Publicidad</div>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <router-link :to="'/components/buttons'" class="nav-link" exact><i class="icon-puzzle"></i> Buttons</router-link>
+              <router-link :to="{ name: 'All Publicidad' }" class="nav-link" exact><i class="icon-puzzle"></i>Todos</router-link>
             </li>
             <li class="nav-item">
-              <router-link :to="'/components/social-buttons'" class="nav-link" exact><i class="icon-puzzle"></i> Social Buttons</router-link>
+              <router-link :to="{ name: 'Add Publicidad' }" class="nav-link" exact><i class="icon-puzzle"></i>Agregar</router-link>
             </li>
             <li class="nav-item">
-              <router-link :to="'/components/cards'" class="nav-link" exact><i class="icon-puzzle"></i> Cards</router-link>
+              <router-link :to="{ name: 'Edit Publicidad' }" class="nav-link" exact><i class="icon-puzzle"></i>Editar</router-link>
             </li>
             <li class="nav-item">
-              <router-link :to="'/components/forms'" class="nav-link" exact><i class="icon-puzzle"></i> Forms</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="'/components/modals'" class="nav-link" exact><i class="icon-puzzle"></i> Modals</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="'/components/switches'" class="nav-link" exact><i class="icon-puzzle"></i> Switches</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="'/components/tables'" class="nav-link" exact><i class="icon-puzzle"></i> Tables</router-link>
+              <router-link :to="{ name: 'Delete Publicidad' }" class="nav-link" exact><i class="icon-puzzle"></i>Eliminar</router-link>
             </li>
           </ul>
         </router-link>
-        <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/icons'}" disabled>
-          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-star"></i> Icons</div>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-              <router-link :to="'/icons/font-awesome'" class="nav-link" exact><i class="icon-star"></i> Font Awesome</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :to="'/icons/simple-line-icons'" class="nav-link" exact><i class="icon-star"></i> Simple Line Icons</router-link>
-            </li>
-          </ul>
-        </router-link>
-        <li class="nav-item">
-          <router-link :to="'/widgets'" class="nav-link" exact><i class="icon-calculator"></i> Widgets <span class="badge badge-info">NEW</span></router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="'/charts'" class="nav-link" exact><i class="icon-pie-chart"></i> Charts</router-link>
-        </li>
+
+
+
+
         <li class="divider"></li>
         <li class="nav-title">
           Extras
         </li>
+    <!--
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#" @click="handleClick"><i class="icon-star"></i> Pages</a>
           <ul class="nav-dropdown-items">
@@ -70,8 +59,11 @@
             <li class="nav-item">
               <router-link :to="'/pages/500'" class="nav-link" exact><i class="icon-star"></i> Error 500</router-link>
             </li>
+      
           </ul>
         </li>
+    -->
+
       </ul>
     </nav>
   </div>

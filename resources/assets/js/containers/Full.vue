@@ -4,7 +4,6 @@
     <div class="app-body">
       <Sidebar/>
       <main class="main">
-        <breadcrumb :list="list"/>
         <div class="container-fluid">
           <router-view></router-view>
         </div>
@@ -28,16 +27,27 @@ export default {
     AppHeader,
     Sidebar,
     AppAside,
-    AppFooter,
-    Breadcrumb
+    AppFooter
   },
-  computed: {
-    name () {
-      return this.$route.name
-    },
+  data () {
+    return {
+      getUser: false
+    } 
+  },
+  created () {
+    if(this.$route.params.data){
+      this.getUser = true
+    }
+  },
+  methods: {
+    alerta(){
 
-    list () {
-      return this.$route.matched
+    }
+  },
+  watch: {
+    getUser() {
+       this.datas = this.$route.params.data
+       this.$emit('datas', this.datas)
     }
   }
 }

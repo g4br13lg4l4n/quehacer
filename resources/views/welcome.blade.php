@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel - CoreUI Example</title>
+    <title>Que hacer en Tabasco</title>
     
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
 
 	<script>
 		window.Laravel = {!! json_encode([

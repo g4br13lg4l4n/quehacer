@@ -88,9 +88,12 @@
     "chart.js": "2.6.0",
     "font-awesome": "^4.7.0",
     "simple-line-icons": "^2.4.1",
+    "v-toaster": "^1.0.2",
     "vue": "2.4.2",
     "vue-chartjs": "2.8.2",
     "vue-router": "2.7.0",
-    "vue-strap": "^1.1.37"
+    "vue-strap": "^1.1.37",
+    "vuex": "^2.4.0",
+    "vuex-persistedstate": "^2.0.0"
   }
 }

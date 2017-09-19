@@ -20,7 +20,6 @@ class CreatePublicidadsTable extends Migration
             $table->string('clima');
             $table->string('estacionamiento');
             $table->string('sdomicilio');
-            $table->foreing('cliente_publicidad');
             $table->timestamps();
         });
     }

@@ -28,6 +28,22 @@ import Page500 from '../views/pages/Page500';
 import Login from '../views/pages/Login';
 import Register from '../views/pages/Register';
 
+
+// Clientes
+import Clientes from '../views/clientes/Clientes'
+import AddCliente from '../views/clientes/views/AddCliente'
+import AllClientes from '../views/clientes/views/AllClientes'
+import EditCliente from '../views/clientes/views/EditCliente'
+import DeleteCliente from '../views/clientes/views/DeleteCliente'
+
+// Publicidad
+import Publicidad from '../views/publicidad/Publicidad'
+import AllPublicidad from '../views/publicidad/views/AllPublicidades'
+import AddPublicidad from '../views/publicidad/views/AddPublicidad'
+import EditPublicidad from '../views/publicidad/views/EditPublicidad'
+import DeletePublicidad from '../views/publicidad/views/DeletePublicidad'
+
+
 Vue.use(Router);
 
 export default new Router({
@@ -37,9 +53,87 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/dashboard/',
       name: 'Home',
       component: Full,
+      children: [
+        {
+          path: 'dash',
+          name: 'Dash',
+          component: Dashboard
+        },
+        {
+          path: 'clientes',
+          name: 'Clientes',
+          component: Clientes,
+          children: [
+            {
+              path: 'all-Clientes',
+              name: 'All Clientes',
+              component: AllClientes
+            },
+            {
+              path: 'addCliente',
+              name:'Add Cliente',
+              component: AddCliente
+            }
+          ]
+        },
+        {
+          path: 'publicidad',
+          name: 'Publicidad',
+          component: Publicidad,
+          children:[ 
+            {
+              path: 'all-Publicidad',
+              name: 'All Publicidad',
+              component: AllPublicidad
+            },
+            {
+              path: 'add-Publicidad',
+              name: 'Add Publicidad',
+              component: AddPublicidad
+            },
+            {
+              path: 'edit-Publicidad',
+              name: 'Edit Publicidad',
+              component: EditPublicidad
+            },
+            {
+              path: 'delete-Publicidad',
+              name: 'Delete Publicidad',
+              component: DeletePublicidad
+            },
+          ]
+        },
+
+        {
+          path: 'charts',
+          name: 'Charts',
+          component: Charts
+        },
+        {
+          path: 'widgets',
+          name: 'Widgets',
+          component: Widgets
+        },
+        {
+          path: 'forms',
+          name: 'Forms',
+          component: Forms
+        },
+        {
+          path: 'tables',
+          name: 'Tables',
+          component: Tables
+        }
+      ]
+    },
+    /*
       children: [
         {
           path: 'dashboard',
@@ -123,6 +217,7 @@ export default new Router({
         }
       ]
     },
+    */
     {
       path: '/pages',
       redirect: '/pages/p404',
@@ -140,11 +235,6 @@ export default new Router({
           path: '500',
           name: 'Page500',
           component: Page500
-        },
-        {
-          path: 'login',
-          name: 'Login',
-          component: Login
         },
         {
           path: 'register',
