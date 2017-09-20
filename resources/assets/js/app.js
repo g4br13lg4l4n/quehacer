@@ -10,9 +10,12 @@ import Store from './services/auth'
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
 
-Vue.use(Toaster, {timeout: 5000})
+import EventBus from './components/plugins/event-bus'
 
+Vue.use(Toaster, {timeout: 5000})
 Vue.component('App', require('./App.vue'));
+Vue.use(EventBus)
+
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 window.axios.defaults.headers.common = {

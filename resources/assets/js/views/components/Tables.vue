@@ -32,7 +32,7 @@
                   </td> 
                   <td>
                     <button type="button" class="btn btn-primary" v-on:click="editCliente(cliente.id)">Editar</button>
-                    <button type="button" class="btn btn-danger" v-on:click="deleteCliente(cliente.id)">Eliminar</button>
+                    <button type="button" class="btn btn-danger"  @click="modalDelete(cliente.id)">Eliminar</button>
                   </td>
                 </tr>
  
@@ -64,9 +64,8 @@
 import AppModal from './Modal.vue'
 import modal from 'vue-strap/src/Modal'
 import AppForm from './Forms.vue'
-import metodosMixin from '../mixis/metodos.js'
+
 export default {
-  mixins: [metodosMixin],
   name: 'tables',
   props: ['clientes'],
   components: {
@@ -80,12 +79,19 @@ export default {
       dangerModal: false,
       largeModal: false,
       dangerActive: false,
-      id: ''
+      id: 'hola'
     }
   },
   methods:{
-    eliminarCliente(id){
-      Store.deleteCliente(id)
+    modalDelete(id){
+    //  Store.deleteCliente(id)
+    //  this.id = id
+
+    //  this.$bus.$emit('deleteCliente', id)
+      this.$bus.$emit('set-track', this.id)
+
+
+      /*
         .then(res => {
           this.$toaster.success(res.data.respuesta)
           this.dangerModal = false
@@ -94,6 +100,7 @@ export default {
         .catch(error => {
           this.$toaster.error('Hubo un error al eliminar el cliente')
         })
+      */
     }
   },
   created () {

@@ -1,8 +1,5 @@
 <template>
   <div>
-
-    <AppTable></AppTable>
-
     <modal title="Modal title" class="modal-primary" large :show.sync="largeModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
         <h4 class="modal-title">Modal title</h4>
@@ -32,7 +29,7 @@
               <button type="button" class="btn btn-primary" @click="dangerModal = false">Cancelar</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" class="btn btn-danger" @click="eliminarCliente(id)">Eliminar</button>
+            <button type="button" class="btn btn-danger"  @click="eliminarCliente(id)">Eliminar</button>
           </div>
         </div>
       </footer>
@@ -42,10 +39,8 @@
 <script>
 import modal from 'vue-strap/src/Modal'
 import AppForm from './Forms.vue'
-import metodosMixin from '../mixis/metodos.js'
 import AppTable from './Tables.vue'
 export default {
-  mixins: [metodosMixin],
   components: {
     modal,
     AppTable,
@@ -58,13 +53,31 @@ export default {
       dangerActive: false,
     }
   },
+  created () {
+    /*
+    this.$bus.$on('deleteCliente', (msg) => {
+      console.log('entra')
+    })
+    */
+    /*
+    this.$bus.$on('id-selected', function (id) {
+      console.log(id+'holaaa')
+    })
+    */
+
+    this.$bus.$on('set-track', (id) => {
+      console.log(id)
+    })
+  },
   methods:{
     editCliente(id){
-      console.log('entra 3')
       this.id = id
       this.largeModal = true
     },
     deleteCliente(id){
+
+      
+
       console.log('entra 3')
       this.id = id
       this.dangerModal = true
