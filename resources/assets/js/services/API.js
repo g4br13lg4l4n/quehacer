@@ -4,7 +4,11 @@ const API = {
   admin: {
     addCliente: '/api/user/createClient',
     getClientes:'/api/user/getClientes',
-    deleteCliente: '/api/user/deleteCliente'
+    deleteCliente: '/api/user/deleteCliente',
+    searchCliente: '/api/user/searchCliente',
+    editCliente: '/api/user/editCliente',
+    addPublicidad: '/api/user/createPublicidad',
+    getPublicidad:'/api/user/getPublicidad'
   }
 }
 export default API

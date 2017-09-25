@@ -25,4 +25,12 @@ Route::post('user/createClient', 'ClientesController@store');
 
 Route::get('user/getClientes','ClientesController@index'); 
 
-Route::delete('user/deleteCliente/{id}','ClientesController@destroy');
+Route::delete('user/deleteCliente/{id}','ClientesController@destroy'); 
+
+Route::get('user/searchCliente/{id}','ClientesController@show'); 
+
+Route::put('user/editCliente/{id}','ClientesController@update');
+
+Route::post('user/createPublicidad','PublicidadsController@store');
+
+Route::get('user/getPublicidad', 'PublicidadsController@index');

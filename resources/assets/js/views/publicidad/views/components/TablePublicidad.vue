@@ -10,26 +10,22 @@
             <table class="table table-bordered table-striped table-condensed">
               <thead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>RFC</th>
-                  <th>Correo</th>
+                  <th>Empresa</th>
+                  <th>Categoría</th>
+                  <th>Reseña</th>
                   <th>Teléfono</th>
-                  <th>Responsable</th>
-                  <th>No. Publicaciones</th>
+                  <th>Correo</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
 
                 <tr v-for="cliente in clientes">
-                  <td>{{ cliente.empresa }}</td>
-                  <td>{{ cliente.rfc }}</td>
+                  <td>{{ cliente.cliente_id }}</td>
+                  <td>Categoría a agregar</td>
                   <td>{{ cliente.correo }}</td>
-                  <td>{{ cliente.phone }}</td> 
-                  <td>{{ cliente.responsable }}</td>
-                  <td>
-                    <button type="button" class="btn btn-info"> 0 </button>
-                  </td> 
+                  <td>{{ cliente.telefono }}</td> 
+                  <td>{{ cliente.ubicacion }}</td> 
                   <td>
                     <button type="button" class="btn btn-primary" @click="modalCliente(cliente.id)">Editar</button>
                     <button type="button" class="btn btn-danger"  @click="modalDelete(cliente.id)">Eliminar</button>
@@ -38,41 +34,27 @@
  
               </tbody>
             </table>
-            <nav>
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
-              </ul>
-            </nav>
           </div>
         </div>
       </div><!--/.col-->
     </div><!--/.row-->
-    <AppModal
-    
-    ></AppModal>
+    <AppModalPublicidad></AppModalPublicidad>
       
   </div>
 
 </template>
 
 <script>
-import AppModal from './Modal.vue'
+import AppModalPublicidad from './ModalPublicidad.vue'
 import modal from 'vue-strap/src/Modal'
-import AppForm from './Forms.vue'
+import AppFormPublicidadUpdate from './FormPublicidadUpdate.vue'
 
 export default {
   name: 'tables',
   components: {
+    AppModalPublicidad,
     modal,
-    AppForm,
-    AppModal
+    AppFormPublicidadUpdate
   },
   data () {
     return {
@@ -88,7 +70,7 @@ export default {
     }
   },
   created () {
-    Store.getClientes()
+    Store.getPublicidad()
       .then(res => {
         this.clientes = res.data
       })   

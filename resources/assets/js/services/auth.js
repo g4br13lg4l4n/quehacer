@@ -36,7 +36,6 @@ Store.CreateClient = function (cliente) {
 		direccion: cliente.direccion,
 		establecimiento: cliente.establecimiento
 	}
-
 	return new Promise((resolve, reject) => {
 		axios.post(API.admin.addCliente, data)
 		.then(res => {
@@ -63,15 +62,13 @@ Store.getClientes = function (){
 	})
 }
 
-Store.deleteCliente = function(id) {
-
+Store.searchCliente = function (id){
 	const data = {
 		name: 'authClient',
 		id: id
 	}
-
 	return new Promise( (resolve, reject)=> {
-		axios.delete(API.admin.deleteCliente+ '/'+id+'', data)
+		axios.get(API.admin.searchCliente+ '/'+id+'', data)
 			.then(res =>{
 				resolve(res)
 			})
@@ -82,6 +79,60 @@ Store.deleteCliente = function(id) {
 	})  
 }
 
+Store.editCliente = function (cliente){
+
+	const id = cliente.id
+
+	return new Promise( (resolve, reject)=> {
+		axios.put(API.admin.editCliente+'/'+id+'', cliente)
+			.then(res => {
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	})
+}
+
+Store.deleteCliente = function(id) {
+	const data = {
+		name: 'authClient',
+		id: id
+	}
+	return new Promise( (resolve, reject) => {
+		axios.delete(API.admin.deleteCliente+ '/'+id+'', data)
+			.then(res =>{
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	}) 
+}
+
+Store.CreatePublicidad = function(publicidad){
+	return new Promise((resolve, reject) => {
+		axios.post(API.admin.addPublicidad, publicidad)
+		.then(res => {
+			resolve(res)
+		})
+		.catch(error => {
+			reject(error)
+		})
+	})
+}
+
+Store.getPublicidad = function() {
+	return new Promise((resolve, reject) => {
+		axios.get(API.admin.getPublicidad)
+		.then(res => {
+			resolve(res)
+		})
+		.then(error => {
+			reject(error)
+		})
+	})
+}
 
 export default Store
 

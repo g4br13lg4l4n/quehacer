@@ -1,3 +1,11 @@
 <template>
-  <h1>add publicidad</h1>
+  <AppFormPublicidad></AppFormPublicidad>
 </template>
+<script>
+  import AppFormPublicidad from './components/FormPublicidad.vue'
+  export default {
+    components: {
+      AppFormPublicidad
+    }
+  }
+</script>

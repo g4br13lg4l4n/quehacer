@@ -2,10 +2,68 @@
   <div>
     <modal title="Modal title" class="modal-primary" large :show.sync="largeModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Editar Cliente</h4>
       </div>
       <div slot="modal-body" class="modal-body">
-        <AppForm></AppForm>
+        
+          <div class="card">
+            <div class="card-header">
+              <strong>Editar Clientes</strong>
+            </div>
+            <div class="card-block">
+              <form @submit.prevent="editCliente(cliente)">
+                <div class="form-group">
+                  <label for="empresa">Empresa</label>
+                  <input type="text" class="form-control" v-model="cliente.empresa"  id="empresa" placeholder="Nombre de la empresa o establecimiento">
+                </div>
+
+                <div class="form-group">
+                  <label for="responsable">Responsable</label>
+                  <input type="text" class="form-control" v-model="cliente.responsable" id="responsable" placeholder="Nombre del responsable de la empresa">
+                </div>
+
+                <div class="form-group">
+                  <label for="rfc">RFC</label>
+                  <input type="text" class="form-control" v-model="cliente.rfc" id="rfc" placeholder="RFC">
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" v-model="cliente.phone" id="telefono" placeholder="Teléfono">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="correo">Correo</label>
+                    <input type="text" class="form-control" v-model="cliente.correo" id="correo" placeholder="Correo">
+                  </div>
+                </div><!--/.row-->
+
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="estado">Estado</label>
+                    <input type="text" class="form-control" v-model="cliente.estado" id="estado" placeholder="Estado">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="colonia">Colonia</label>
+                    <input type="text" class="form-control" v-model="cliente.colonia" id="colonia" placeholder="Colonia">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" class="form-control" v-model="cliente.direccion" id="direccion" placeholder="Dirección">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="establecimento">Número</label>
+                    <input type="text" class="form-control" v-model="cliente.establecimiento" id="establecimento" placeholder="No. establecimento">
+                  </div>
+                </div><!--/.row-->
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Guardar</button> 
+                </div>
+              </form><!-- /Form -->
+            </div>
+          </div>
+       
       </div>
       <footer slot="modal-footer">
         <div class="modal-footer">
@@ -50,44 +108,43 @@ export default {
     return {
       dangerModal: false,
       largeModal: false,
-      dangerActive: false,
+      id: '',
+      cliente: []
     }
   },
   created () {
-    /*
-    this.$bus.$on('deleteCliente', (msg) => {
-      console.log('entra')
+    this.$bus.$on('delete-cliente', (id) => {
+      if (id) {
+        this.dangerModal = true
+        this.id = id
+      }
     })
-    */
-    /*
-    this.$bus.$on('id-selected', function (id) {
-      console.log(id+'holaaa')
-    })
-    */
-
-    this.$bus.$on('set-track', (id) => {
-      console.log(id)
+    this.$bus.$on('edit-cliente', (id) => {
+      if (id) {
+        this.largeModal = true 
+        Store.searchCliente(id)
+          .then(res => {
+            this.cliente = res.data
+          })
+      }
     })
   },
   methods:{
-    editCliente(id){
-      this.id = id
-      this.largeModal = true
-    },
-    deleteCliente(id){
+    editCliente(cliente){
+      Store.editCliente(cliente)
+        .then(res =>{
+          this.$toaster.success(res.data.respuesta)
+          this.largeModal = false
+          this.$bus.$emit('update-Table')
+        })
 
-      
-
-      console.log('entra 3')
-      this.id = id
-      this.dangerModal = true
     },
     eliminarCliente(id){
       Store.deleteCliente(id)
         .then(res => {
           this.$toaster.success(res.data.respuesta)
           this.dangerModal = false
-          this.dangerActive = true
+          this.$bus.$emit('update-Table')
         })
         .catch(error => {
           this.$toaster.error('Hubo un error al eliminar el cliente')

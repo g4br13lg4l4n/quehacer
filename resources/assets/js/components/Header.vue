@@ -18,7 +18,7 @@
     </ul>
     <ul class="nav navbar-nav ml-auto mr-3">
        <span slot="button">
-        <span class="hidden-md-down">{{ this.$route.params.data.user.name }}</span>
+        <span class="hidden-md-down">{{ user }}</span>
       </span>
     </ul>
   </navbar>
@@ -36,13 +36,15 @@ export default {
   },
   data () {
     return {
-      datas: { }
+      datas: { },
+      user: ''
     }
   },
   created () {
     this.$on('data', (datas) => {
       this.datas = datas
     })
+    this.user = this.$route.params.data.user.name
   },
   methods: {
     click () {

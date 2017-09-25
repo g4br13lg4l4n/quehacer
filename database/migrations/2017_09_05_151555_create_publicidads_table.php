@@ -10,6 +10,8 @@ class CreatePublicidadsTable extends Migration
     {
         Schema::create('publicidads', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cliente_id')->unsigned();
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->string('resena');
             $table->string('ubicacion');
             $table->string('costo');
@@ -19,7 +21,7 @@ class CreatePublicidadsTable extends Migration
             $table->string('status');
             $table->string('clima');
             $table->string('estacionamiento');
-            $table->string('sdomicilio');
+            $table->string('domicilio');
             $table->timestamps();
         });
     }

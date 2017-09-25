@@ -10,7 +10,7 @@
             <form @submit.prevent="CreateClient(cliente)">
               <div class="form-group">
                 <label for="empresa">Empresa</label>
-                <input type="text" class="form-control" v-model="cliente.empresa" id="empresa" placeholder="Nombre de la empresa o establecimiento">
+                <input type="text" class="form-control" value="" v-model="cliente.empresa" id="empresa" placeholder="Nombre de la empresa o establecimiento">
               </div>
 
               <div class="form-group">
@@ -67,6 +67,7 @@
 <script>
 
 export default {
+  name: 'forms',
   data () {
     return {
       cliente: {
@@ -82,7 +83,6 @@ export default {
       }
     }
   },
-  name: 'forms',
   methods: {
     CreateClient(cliente) {
       if(!this.cliente.empresa && !this.cliente.responsable){ 
@@ -92,6 +92,7 @@ export default {
       Store.CreateClient(this.cliente)
         .then(res => {
           this.$toaster.success(res.data.respuesta)
+          this.cliente = {};
         })
         .catch(error => {
           this.$toaster.error('Hubo un error al ingresar el cliente'+ this.empresa)

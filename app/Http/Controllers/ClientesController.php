@@ -26,9 +26,7 @@ class ClientesController extends Controller
     public function create()
     {
 
-
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -65,7 +63,8 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return response()->json($cliente, 200);
     }
 
     /**
@@ -88,7 +87,22 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Cliente::where('id', $id)
+        ->update([
+            'empresa' => $request->empresa,
+            'colonia' => $request->colonia,
+            'direccion'=> $request->direccion,
+            'establecimiento' =>  $request->establecimiento,
+            'estado' => $request->estado,
+            'rfc' => $request->rfc,
+            'correo' => $request->correo,
+            'phone' => $request->phone,
+            'responsable' => $request->responsable, 
+        ]);
+
+        return response()->json([
+            'respuesta' => 'Se ha actualizado el Cliente '. $request->empresa
+        ]);
     }
 
     /**

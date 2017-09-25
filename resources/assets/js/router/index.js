@@ -33,15 +33,13 @@ import Register from '../views/pages/Register';
 import Clientes from '../views/clientes/Clientes'
 import AddCliente from '../views/clientes/views/AddCliente'
 import AllClientes from '../views/clientes/views/AllClientes'
-import EditCliente from '../views/clientes/views/EditCliente'
-import DeleteCliente from '../views/clientes/views/DeleteCliente'
+
 
 // Publicidad
 import Publicidad from '../views/publicidad/Publicidad'
 import AllPublicidad from '../views/publicidad/views/AllPublicidades'
 import AddPublicidad from '../views/publicidad/views/AddPublicidad'
-import EditPublicidad from '../views/publicidad/views/EditPublicidad'
-import DeletePublicidad from '../views/publicidad/views/DeletePublicidad'
+
 
 
 Vue.use(Router);
@@ -97,127 +95,11 @@ export default new Router({
               path: 'add-Publicidad',
               name: 'Add Publicidad',
               component: AddPublicidad
-            },
-            {
-              path: 'edit-Publicidad',
-              name: 'Edit Publicidad',
-              component: EditPublicidad
-            },
-            {
-              path: 'delete-Publicidad',
-              name: 'Delete Publicidad',
-              component: DeletePublicidad
-            },
-          ]
-        },
-
-        {
-          path: 'charts',
-          name: 'Charts',
-          component: Charts
-        },
-        {
-          path: 'widgets',
-          name: 'Widgets',
-          component: Widgets
-        },
-        {
-          path: 'forms',
-          name: 'Forms',
-          component: Forms
-        },
-        {
-          path: 'tables',
-          name: 'Tables',
-          component: Tables
-        }
-      ]
-    },
-    /*
-      children: [
-        {
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: Dashboard
-        },
-        {
-          path: 'charts',
-          name: 'Charts',
-          component: Charts
-        },
-        {
-          path: 'widgets',
-          name: 'Widgets',
-          component: Widgets
-        },
-        {
-          path: 'components',
-          redirect: '/components/buttons',
-          name: 'Components',
-          component: {
-            render (c) { return c('router-view'); }
-          },
-          children: [
-            {
-              path: 'buttons',
-              name: 'Buttons',
-              component: Buttons
-            },
-            {
-              path: 'social-buttons',
-              name: 'Social Buttons',
-              component: SocialButtons
-            },
-            {
-              path: 'cards',
-              name: 'Cards',
-              component: Cards
-            },
-            {
-              path: 'forms',
-              name: 'Forms',
-              component: Forms
-            },
-            {
-              path: 'modals',
-              name: 'Modals',
-              component: Modals
-            },
-            {
-              path: 'switches',
-              name: 'Switches',
-              component: Switches
-            },
-            {
-              path: 'tables',
-              name: 'Tables',
-              component: Tables
             }
           ]
         },
-        {
-          path: 'icons',
-          redirect: '/icons/font-awesome',
-          name: 'Icons',
-          component: {
-            render (c) { return c('router-view'); }
-          },
-          children: [
-            {
-              path: 'font-awesome',
-              name: 'Font Awesome',
-              component: FontAwesome
-            },
-            {
-              path: 'simple-line-icons',
-              name: 'Simple Line Icons',
-              component: SimpleLineIcons
-            }
-          ]
-        }
       ]
     },
-    */
     {
       path: '/pages',
       redirect: '/pages/p404',
