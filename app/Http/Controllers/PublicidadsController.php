@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Publicidad;
+use App\Cliente;
 class PublicidadsController extends Controller
 {
     public function index()
     {
-        $publicidad = Publicidad::all();
-    //    $cliente = Publicidad::find($publicidad->id)
 
+        $publicidad = Publicidad::all();
         return response()->json($publicidad, 200);
 
     }

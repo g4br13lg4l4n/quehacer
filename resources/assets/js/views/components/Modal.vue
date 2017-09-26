@@ -98,6 +98,7 @@
 import modal from 'vue-strap/src/Modal'
 import AppForm from './Forms.vue'
 import AppTable from './Tables.vue'
+
 export default {
   components: {
     modal,

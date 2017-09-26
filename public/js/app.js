@@ -105667,6 +105667,7 @@ if (false) {(function () {
 
 
 
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: {
     modal: __WEBPACK_IMPORTED_MODULE_0_vue_strap_src_Modal__["a" /* default */],
@@ -116447,28 +116448,30 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
   },
   data: function data() {
     return {
-      clientes: []
+      publicidads: []
     };
   },
 
   methods: {
     modalDelete: function modalDelete(id) {
-      this.$bus.$emit('delete-cliente', id);
+      this.$bus.$emit('delete-publicidad', id);
+      console.log('delete');
     },
-    modalCliente: function modalCliente(id) {
-      this.$bus.$emit('edit-cliente', id);
+    modalPublicidad: function modalPublicidad(id) {
+      this.$bus.$emit('edit-publicidad', id);
+      console.log('edit');
     }
   },
   created: function created() {
     var _this = this;
 
     Store.getPublicidad().then(function (res) {
-      _this.clientes = res.data;
+      _this.publicidads = res.data;
     });
 
     this.$bus.$on('update-Table', function () {
       Store.getClientes().then(function (res) {
-        _this.clientes = res.data;
+        _this.publicidad = res.data;
       });
     });
   }
@@ -116479,11 +116482,12 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d1696618_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_ModalPublicidad_vue__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_node_modules_vue_loader_lib_selector_type_script_index_0_ModalPublicidad_vue__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d1696618_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_ModalPublicidad_vue__ = __webpack_require__(633);
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+
 /* template */
 
 /* styles */
@@ -116493,8 +116497,8 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __vue_script__,
-  __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d1696618_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_ModalPublicidad_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_node_modules_vue_loader_lib_selector_type_script_index_0_ModalPublicidad_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d1696618_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_ModalPublicidad_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
@@ -116569,15 +116573,15 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('table', {
     staticClass: "table table-bordered table-striped table-condensed"
-  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.clientes), function(cliente) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(cliente.cliente_id))]), _vm._v(" "), _c('td', [_vm._v("Categoría a agregar")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.ubicacion))]), _vm._v(" "), _c('td', [_c('button', {
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.publicidads), function(publicidad) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente_id))]), _vm._v(" "), _c('td', [_vm._v("Categoría a agregar")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.ubicacion))]), _vm._v(" "), _c('td', [_c('button', {
       staticClass: "btn btn-primary",
       attrs: {
         "type": "button"
       },
       on: {
         "click": function($event) {
-          _vm.modalCliente(cliente.id)
+          _vm.modalPublicidad(publicidad.id)
         }
       }
     }, [_vm._v("Editar")]), _vm._v(" "), _c('button', {
@@ -116587,7 +116591,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       on: {
         "click": function($event) {
-          _vm.modalDelete(cliente.id)
+          _vm.modalDelete(publicidad.id)
         }
       }
     }, [_vm._v("Eliminar")])])])
@@ -118923,6 +118927,36 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-d1696618", esExports)
   }
 }
+
+/***/ }),
+/* 634 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  created: function created() {
+    var _this = this;
+
+    this.$bus.$on('delete-cliente', function (id) {
+      if (id) {
+        _this.dangerModal = true;
+        _this.id = id;
+      }
+    });
+    this.$bus.$on('edit-cliente', function (id) {
+      if (id) {
+        _this.largeModal = true;
+        Store.searchCliente(id).then(function (res) {
+          _this.cliente = res.data;
+        });
+      }
+    });
+  }
+});
 
 /***/ })
 /******/ ]);

@@ -20,15 +20,15 @@
               </thead>
               <tbody>
 
-                <tr v-for="cliente in clientes">
-                  <td>{{ cliente.cliente_id }}</td>
+                <tr v-for="publicidad in publicidads">
+                  <td>{{ publicidad.cliente_id }}</td>
                   <td>Categoría a agregar</td>
-                  <td>{{ cliente.correo }}</td>
-                  <td>{{ cliente.telefono }}</td> 
-                  <td>{{ cliente.ubicacion }}</td> 
+                  <td>{{ publicidad.correo }}</td>
+                  <td>{{ publicidad.telefono }}</td> 
+                  <td>{{ publicidad.ubicacion }}</td> 
                   <td>
-                    <button type="button" class="btn btn-primary" @click="modalCliente(cliente.id)">Editar</button>
-                    <button type="button" class="btn btn-danger"  @click="modalDelete(cliente.id)">Eliminar</button>
+                    <button type="button" class="btn btn-primary" @click="modalPublicidad(publicidad.id)">Editar</button>
+                    <button type="button" class="btn btn-danger"  @click="modalDelete(publicidad.id)">Eliminar</button>
                   </td>
                 </tr>
  
@@ -58,27 +58,29 @@ export default {
   },
   data () {
     return {
-      clientes: [],
+      publicidads: [],
     }
   },
   methods:{
     modalDelete (id) {
-      this.$bus.$emit('delete-cliente', id)
+      this.$bus.$emit('delete-publicidad', id)
+      console.log('delete')
     },
-    modalCliente(id) {
-      this.$bus.$emit('edit-cliente', id)
+    modalPublicidad(id) {
+      this.$bus.$emit('edit-publicidad', id)
+      console.log('edit')
     }
   },
   created () {
     Store.getPublicidad()
       .then(res => {
-        this.clientes = res.data
+        this.publicidads = res.data
       })   
 
     this.$bus.$on('update-Table', () => {
       Store.getClientes()
       .then(res => {
-        this.clientes = res.data
+        this.publicidad = res.data
       })
     })
   }

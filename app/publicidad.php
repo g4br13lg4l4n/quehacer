@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Cliente;
 class Publicidad extends Model
 {
-    public function cliente()
+    protected $guarded = [];
+
+    public function clientes()
     {
-        return $this->hasOne(Cliente::class);
+    	return $this->belongsTo(Cliente::class);
+    //    return $this->hasMany(Cliente::class);
     }
+
 }
