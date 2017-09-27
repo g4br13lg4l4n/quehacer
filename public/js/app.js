@@ -65771,7 +65771,7 @@ vue_common_default.a.use(v_toaster_default.a, { timeout: 5000 });
 vue_common_default.a.component('App', __webpack_require__(68));
 vue_common_default.a.use(event_bus);
 
-axios_default.a.defaults.baseURL = 'http://localhost:8000/';
+axios_default.a.defaults.baseURL = 'http://165.227.111.118/';
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
