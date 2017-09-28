@@ -9,6 +9,7 @@ const API = {
     editCliente: '/api/user/editCliente',
     addPublicidad: '/api/user/createPublicidad',
     getPublicidad:'/api/user/getPublicidad',
+    addCategoria: '/api/user/createCategoria',
     getCategoria: '/api/user/getCategorias',
   }
 }

@@ -38,8 +38,11 @@ class CategoriasController extends Controller
         $categoria = new Categoria;
 
         $categoria->name = $request->categoria;
-
         $categoria->save();
+
+        return response()->json([
+            'respuesta' => 'Se ah agregado la nueva Categoría',
+        ], 200);
     }
 
     /**

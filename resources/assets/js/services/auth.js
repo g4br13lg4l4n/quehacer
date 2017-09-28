@@ -146,5 +146,18 @@ Store.getCategorias = function () {
 	})
 }
 
+Store.CreateCategoria = function (categoria) {
+	return new Promise ((resolve, reject) => {
+		axios.post(API.admin.addCategoria, categoria)
+		.then(res => {
+			resolve(res)
+		})
+		.catch(error => {
+			reject(error)
+		})
+	})
+}
+
+
 export default Store
 
