@@ -9,10 +9,8 @@ class PublicidadsController extends Controller
 {
     public function index()
     {
-
-        $publicidad = Publicidad::all();
+        $publicidad = Publicidad::with('cliente')->get();
         return response()->json($publicidad, 200);
-
     }
 
     public function store(Request $request)
@@ -37,7 +35,7 @@ class PublicidadsController extends Controller
         $publicidad->estacionamiento = $estacionamiento;
         $publicidad->domicilio = $servicioDomicilio;
 
-        //$publicidad->save();
+        $publicidad->save();
 
         return response()->json([
             'respuesta' => 'Se ah agregado la nueva Publicidad',

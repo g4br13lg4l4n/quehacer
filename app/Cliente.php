@@ -8,8 +8,9 @@ class Cliente extends Model
 {
     protected $guarded = [];
 
-    public function publicidadades()
+    public function publicidads()
     {
-        return $this->belongsTo(Publicidad::class);
+        return $this->hasMany(Publicidad::class);
     }
+
 }

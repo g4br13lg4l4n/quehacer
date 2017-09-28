@@ -40561,7 +40561,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_6_v_to
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('App', __webpack_require__(71));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8__components_plugins_event_bus__["a" /* default */]);
 
-__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://165.227.111.118/';
+__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://localhost:8000/';
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
@@ -105392,7 +105392,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-align: center;\n}\n.with-td-btn{\n  width: 200px;\n}\n", ""]);
 
 // exports
 
@@ -106124,7 +106124,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('table', {
     staticClass: "table table-bordered table-striped table-condensed"
   }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.clientes), function(cliente) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.rfc))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.phone))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.responsable))]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c('td', [_c('button', {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.rfc))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.phone))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.responsable))]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c('td', {
+      staticClass: "with-td-btn"
+    }, [_c('button', {
       staticClass: "btn btn-primary",
       attrs: {
         "type": "button"
@@ -116375,7 +116377,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-align: center;\n}\n.with-td-btn{\n  width: 200px;\n}\n", ""]);
 
 // exports
 
@@ -116623,7 +116625,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('table', {
     staticClass: "table table-bordered table-striped table-condensed"
   }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.publicidads), function(publicidad) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente_id))]), _vm._v(" "), _c('td', [_vm._v("Categoría a agregar")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.ubicacion))]), _vm._v(" "), _c('td', [_c('button', {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v("Categoría a agregar")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.ubicacion))]), _vm._v(" "), _c('td', {
+      staticClass: "with-td-btn"
+    }, [_c('button', {
       staticClass: "btn btn-primary",
       attrs: {
         "type": "button"
@@ -116903,7 +116907,6 @@ if (false) {(function () {
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -116911,6 +116914,7 @@ if (false) {(function () {
   data: function data() {
     return {
       clientes: [],
+      categorias: [],
       publicidad: {
         empresa: '',
         categoria: '',
@@ -116931,6 +116935,9 @@ if (false) {(function () {
 
     Store.getClientes().then(function (res) {
       _this.clientes = res.data;
+    });
+    Store.getCategorias().then(function (res) {
+      _this.categorias = res.data;
     });
   },
 
@@ -117045,7 +117052,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "disabled": "",
       "value": ""
     }
-  }, [_vm._v("Seleccione una categoría")]), _vm._v(" "), _c('option', [_vm._v("Categoría 1")]), _vm._v(" "), _c('option', [_vm._v("Categoría 2")]), _vm._v(" "), _c('option', [_vm._v("Categoría 3")])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Seleccione una categoría")]), _vm._v(" "), _vm._l((_vm.categorias), function(categoria) {
+    return _c('option', {
+      domProps: {
+        "value": categoria.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(categoria.name) + "\n                  ")])
+  })], 2)])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     attrs: {
@@ -117397,7 +117410,8 @@ var API = {
     searchCliente: '/api/user/searchCliente',
     editCliente: '/api/user/editCliente',
     addPublicidad: '/api/user/createPublicidad',
-    getPublicidad: '/api/user/getPublicidad'
+    getPublicidad: '/api/user/getPublicidad',
+    getCategoria: '/api/user/getCategorias'
   }
 };
 /* harmony default export */ __webpack_exports__["a"] = (API);
@@ -117523,6 +117537,18 @@ Store.getPublicidad = function () {
 			resolve(res);
 		}).then(function (error) {
 			reject(error);
+		});
+	});
+};
+
+Store.getCategorias = function () {
+	return new Promise(function (resolve, reject) {
+		axios.get(API.admin.getCategoria).then(function (res) {
+			resolve(res);
+			console.log(res);
+		}).then(function (error) {
+			reject(error);
+			console.log(error);
 		});
 	});
 };

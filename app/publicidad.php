@@ -8,10 +8,9 @@ class Publicidad extends Model
 {
     protected $guarded = [];
 
-    public function clientes()
+    public function cliente()
     {
     	return $this->belongsTo(Cliente::class);
-    //    return $this->hasMany(Cliente::class);
     }
 
 }

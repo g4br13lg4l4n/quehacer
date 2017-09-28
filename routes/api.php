@@ -34,3 +34,7 @@ Route::put('user/editCliente/{id}','ClientesController@update');
 Route::post('user/createPublicidad','PublicidadsController@store');
 
 Route::get('user/getPublicidad', 'PublicidadsController@index');
+
+Route::post('user/createCategoria', 'CategoriasController@store');
+
+Route::get('user/getCategorias', 'CategoriasController@index');

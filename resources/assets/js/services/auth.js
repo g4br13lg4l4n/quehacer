@@ -134,5 +134,19 @@ Store.getPublicidad = function() {
 	})
 }
 
+Store.getCategorias = function () {
+	return new Promise ((resolve, reject) => {
+		axios.get(API.admin.getCategoria)
+		.then(res => {
+			resolve(res)
+			console.log(res)
+		})
+		.then(error => {
+			reject(error)
+			console.log(error)
+		})
+	})
+}
+
 export default Store
 

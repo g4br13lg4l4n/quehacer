@@ -30,7 +30,7 @@
                   <td>
                     <button type="button" class="btn btn-info"> 0 </button>
                   </td> 
-                  <td>
+                  <td class="with-td-btn">
                     <button type="button" class="btn btn-primary" @click="modalCliente(cliente.id)">Editar</button>
                     <button type="button" class="btn btn-danger"  @click="modalDelete(cliente.id)">Eliminar</button>
                   </td>
@@ -105,5 +105,8 @@ export default {
 <style>
   .table-bordered th, .table-bordered td {
     text-align: center;
+  }
+  .with-td-btn{
+    width: 200px;
   }
 </style>

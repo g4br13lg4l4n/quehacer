@@ -12,7 +12,6 @@
 
                 <div class="form-group col-sm-6">
                   <label for="Empresa">Empresa</label>
-      
                   <select class="form-control" id="Empresa" v-model="publicidad.empresa">
                     <option disabled value="">Seleccione una empresa</option>
                     <option v-for="cliente in clientes" v-bind:value="cliente.id">
@@ -22,12 +21,12 @@
 
                 </div>
                 <div class="form-group col-sm-6">
-                <label for="Categoria">Categoría</label>
+                <label for="Categoria">Categoría</label>  
                   <select class="form-control" id="Categoria" v-model="publicidad.categoria">
                     <option disabled value="">Seleccione una categoría</option>
-                    <option>Categoría 1</option>
-                    <option>Categoría 2</option>
-                    <option>Categoría 3</option>
+                    <option v-for="categoria in categorias" v-bind:value="categoria.id">
+                      {{ categoria.name }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -105,6 +104,7 @@ export default {
   data () {
     return {
       clientes: [],
+      categorias: [],
       publicidad: {
         empresa: '',
         categoria: '',
@@ -124,7 +124,11 @@ export default {
     Store.getClientes()
       .then(res => {
         this.clientes = res.data
-      })  
+      }) 
+    Store.getCategorias()
+      .then(res => {
+        this.categorias = res.data
+      }) 
   },
   methods: {
     CreatePublicidad(publicidad){

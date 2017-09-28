@@ -21,12 +21,12 @@
               <tbody>
 
                 <tr v-for="publicidad in publicidads">
-                  <td>{{ publicidad.cliente_id }}</td>
+                  <td>{{ publicidad.cliente.empresa }}</td>
                   <td>Categoría a agregar</td>
                   <td>{{ publicidad.correo }}</td>
                   <td>{{ publicidad.telefono }}</td> 
                   <td>{{ publicidad.ubicacion }}</td> 
-                  <td>
+                  <td class="with-td-btn">
                     <button type="button" class="btn btn-primary" @click="modalPublicidad(publicidad.id)">Editar</button>
                     <button type="button" class="btn btn-danger"  @click="modalDelete(publicidad.id)">Eliminar</button>
                   </td>
@@ -89,5 +89,8 @@ export default {
 <style>
   .table-bordered th, .table-bordered td {
     text-align: center;
+  }
+  .with-td-btn{
+    width: 200px;
   }
 </style>

@@ -8,7 +8,8 @@ const API = {
     searchCliente: '/api/user/searchCliente',
     editCliente: '/api/user/editCliente',
     addPublicidad: '/api/user/createPublicidad',
-    getPublicidad:'/api/user/getPublicidad'
+    getPublicidad:'/api/user/getPublicidad',
+    getCategoria: '/api/user/getCategorias',
   }
 }
 export default API
