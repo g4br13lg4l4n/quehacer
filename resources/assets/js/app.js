@@ -18,6 +18,7 @@ Vue.use(EventBus)
 
 
 axios.defaults.baseURL = 'http://165.227.111.118/';
+
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
 };
