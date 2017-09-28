@@ -22,7 +22,7 @@
 
                 <tr v-for="publicidad in publicidads">
                   <td>{{ publicidad.cliente.empresa }}</td>
-                  <td>Categoría a agregar</td>
+                  <td>{{ publicidad.categoria.name}}</td>
                   <td>{{ publicidad.correo }}</td>
                   <td>{{ publicidad.telefono }}</td> 
                   <td>{{ publicidad.ubicacion }}</td> 

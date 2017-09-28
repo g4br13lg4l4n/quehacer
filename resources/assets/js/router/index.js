@@ -40,6 +40,10 @@ import Publicidad from '../views/publicidad/Publicidad'
 import AllPublicidad from '../views/publicidad/views/AllPublicidades'
 import AddPublicidad from '../views/publicidad/views/AddPublicidad'
 
+// Categoria
+import Categoria from '../views/categoria/Categoria'
+import AllCategoria from '../views/categoria/views/AllCategoria'
+import AddCategoria from '../views/categoria/views/AddCategoria'
 
 
 Vue.use(Router);
@@ -98,6 +102,23 @@ export default new Router({
             }
           ]
         },
+        {
+          path: 'categoria',
+          name: 'Categoria',
+          component: Categoria,
+          children:[
+            {
+              path: 'all-Categoria',
+              name: 'All Categoria',
+              component: AllCategoria
+            },
+            {
+              path: 'add-Categoria',
+              name: 'Add Categoria',
+              component: AddCategoria 
+            }
+          ]
+        }
       ]
     },
     {

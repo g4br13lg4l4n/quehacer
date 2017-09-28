@@ -139,11 +139,9 @@ Store.getCategorias = function () {
 		axios.get(API.admin.getCategoria)
 		.then(res => {
 			resolve(res)
-			console.log(res)
 		})
 		.then(error => {
 			reject(error)
-			console.log(error)
 		})
 	})
 }

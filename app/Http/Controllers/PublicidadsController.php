@@ -9,7 +9,7 @@ class PublicidadsController extends Controller
 {
     public function index()
     {
-        $publicidad = Publicidad::with('cliente')->get();
+        $publicidad = Publicidad::with('cliente', 'Categoria')->get();
         return response()->json($publicidad, 200);
     }
 
@@ -34,6 +34,7 @@ class PublicidadsController extends Controller
         $publicidad->clima = $clima;
         $publicidad->estacionamiento = $estacionamiento;
         $publicidad->domicilio = $servicioDomicilio;
+        $publicidad->categoria_id = $request->categoria;
 
         $publicidad->save();
 
