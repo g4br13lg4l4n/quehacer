@@ -54,9 +54,7 @@
         </div>
       </div><!--/.col-->
     </div><!--/.row-->
-    <AppModal
-    
-    ></AppModal>
+    <AppModal></AppModal>
       
   </div>
 

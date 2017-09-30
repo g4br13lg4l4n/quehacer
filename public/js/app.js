@@ -105542,8 +105542,6 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
 //
 //
 //
-//
-//
 
 
 
@@ -116522,11 +116520,9 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
   methods: {
     modalDelete: function modalDelete(id) {
       this.$bus.$emit('delete-publicidad', id);
-      console.log('delete');
     },
     modalPublicidad: function modalPublicidad(id) {
       this.$bus.$emit('edit-publicidad', id);
-      console.log('edit');
     }
   },
   created: function created() {
@@ -116534,12 +116530,11 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
 
     Store.getPublicidad().then(function (res) {
       _this.publicidads = res.data;
-      console.log(res.data);
     });
 
-    this.$bus.$on('update-Table', function () {
-      Store.getClientes().then(function (res) {
-        _this.publicidad = res.data;
+    this.$bus.$on('update-TablePublicidad', function () {
+      Store.getPublicidad().then(function (res) {
+        _this.publicidads = res.data;
       });
     });
   }
@@ -116599,21 +116594,133 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_strap_src_Modal__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FormPublicidadUpdate_vue__ = __webpack_require__(604);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 
+
+
+//import AppTable from './Tables.vue'
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+  components: {
+    AppFormEdit: __WEBPACK_IMPORTED_MODULE_1__FormPublicidadUpdate_vue__["a" /* default */],
+    //    AppTable,
+    modal: __WEBPACK_IMPORTED_MODULE_0_vue_strap_src_Modal__["a" /* default */]
+  },
+  data: function data() {
+    return {
+      dangerModal: false,
+      largeModal: false,
+      id: '',
+      cliente: []
+    };
+  },
   created: function created() {
     var _this = this;
 
-    this.$bus.$on('delete-cliente', function (id) {
+    this.$bus.$on('delete-publicidad', function (id) {
       if (id) {
         _this.dangerModal = true;
         _this.id = id;
       }
     });
-    this.$bus.$on('edit-cliente', function (id) {
+    this.$bus.$on('edit-publicidad', function (id) {
       if (id) {
         _this.largeModal = true;
         Store.searchCliente(id).then(function (res) {
@@ -116621,6 +116728,29 @@ if (false) {(function () {
         });
       }
     });
+  },
+
+  methods: {
+    editCliente: function editCliente(cliente) {
+      var _this2 = this;
+
+      Store.editCliente(cliente).then(function (res) {
+        _this2.$toaster.success(res.data.respuesta);
+        _this2.largeModal = false;
+        _this2.$bus.$emit('update-Table');
+      });
+    },
+    eliminarPublicidad: function eliminarPublicidad(id) {
+      var _this3 = this;
+
+      Store.deletePublicidad(id).then(function (res) {
+        _this3.$toaster.success(res.data.respuesta);
+        _this3.dangerModal = false;
+        _this3.$bus.$emit('update-TablePublicidad');
+      }).catch(function (error) {
+        _this3.$toaster.error('Hubo un error la publicidad');
+      });
+    }
   }
 });
 
@@ -116630,7 +116760,368 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', [_c('modal', {
+    staticClass: "modal-primary",
+    attrs: {
+      "title": "Modal title",
+      "large": "",
+      "show": _vm.largeModal,
+      "effect": "fade/zoom"
+    },
+    on: {
+      "update:show": function($event) {
+        _vm.largeModal = $event
+      }
+    }
+  }, [_c('div', {
+    staticClass: "modal-header",
+    slot: "modal-header"
+  }, [_c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("Editar Cliente")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body",
+    slot: "modal-body"
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('strong', [_vm._v("Editar Clientes")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-block"
+  }, [_c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.editCliente(_vm.cliente)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "empresa"
+    }
+  }, [_vm._v("Empresa")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.empresa),
+      expression: "cliente.empresa"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "empresa",
+      "placeholder": "Nombre de la empresa o establecimiento"
+    },
+    domProps: {
+      "value": (_vm.cliente.empresa)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.empresa = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "responsable"
+    }
+  }, [_vm._v("Responsable")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.responsable),
+      expression: "cliente.responsable"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "responsable",
+      "placeholder": "Nombre del responsable de la empresa"
+    },
+    domProps: {
+      "value": (_vm.cliente.responsable)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.responsable = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "rfc"
+    }
+  }, [_vm._v("RFC")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.rfc),
+      expression: "cliente.rfc"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "rfc",
+      "placeholder": "RFC"
+    },
+    domProps: {
+      "value": (_vm.cliente.rfc)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.rfc = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "form-group col-sm-6"
+  }, [_c('label', {
+    attrs: {
+      "for": "telefono"
+    }
+  }, [_vm._v("Teléfono")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.phone),
+      expression: "cliente.phone"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "telefono",
+      "placeholder": "Teléfono"
+    },
+    domProps: {
+      "value": (_vm.cliente.phone)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.phone = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-sm-6"
+  }, [_c('label', {
+    attrs: {
+      "for": "correo"
+    }
+  }, [_vm._v("Correo")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.correo),
+      expression: "cliente.correo"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "correo",
+      "placeholder": "Correo"
+    },
+    domProps: {
+      "value": (_vm.cliente.correo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.correo = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "form-group col-sm-6"
+  }, [_c('label', {
+    attrs: {
+      "for": "estado"
+    }
+  }, [_vm._v("Estado")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.estado),
+      expression: "cliente.estado"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "estado",
+      "placeholder": "Estado"
+    },
+    domProps: {
+      "value": (_vm.cliente.estado)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.estado = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-sm-6"
+  }, [_c('label', {
+    attrs: {
+      "for": "colonia"
+    }
+  }, [_vm._v("Colonia")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.colonia),
+      expression: "cliente.colonia"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "colonia",
+      "placeholder": "Colonia"
+    },
+    domProps: {
+      "value": (_vm.cliente.colonia)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.colonia = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-sm-6"
+  }, [_c('label', {
+    attrs: {
+      "for": "direccion"
+    }
+  }, [_vm._v("Dirección")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.direccion),
+      expression: "cliente.direccion"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "direccion",
+      "placeholder": "Dirección"
+    },
+    domProps: {
+      "value": (_vm.cliente.direccion)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.direccion = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-sm-6"
+  }, [_c('label', {
+    attrs: {
+      "for": "establecimento"
+    }
+  }, [_vm._v("Número")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.cliente.establecimiento),
+      expression: "cliente.establecimiento"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "establecimento",
+      "placeholder": "No. establecimento"
+    },
+    domProps: {
+      "value": (_vm.cliente.establecimiento)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.cliente.establecimiento = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-actions"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Guardar")])])])])])]), _vm._v(" "), _c('footer', {
+    slot: "modal-footer"
+  }, [_c('div', {
+    staticClass: "modal-footer"
+  }, [_c('div', {
+    staticClass: "col-xs-6"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.largeModal = false
+      }
+    }
+  }, [_vm._v("Cerrar")])])])])]), _vm._v(" "), _c('modal', {
+    staticClass: "modal-danger",
+    attrs: {
+      "title": "Modal title",
+      "show": _vm.dangerModal,
+      "effect": "fade/zoom"
+    },
+    on: {
+      "update:show": function($event) {
+        _vm.dangerModal = $event
+      }
+    }
+  }, [_c('div', {
+    staticClass: "modal-header",
+    slot: "modal-header"
+  }, [_c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("Modal title")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body",
+    slot: "modal-body"
+  }, [_vm._v("\n        Esta seguro de "), _c('strong', [_vm._v(" ELMINAR ")]), _vm._v(" los datos de este cliente, \n        "), _c('strong', [_vm._v(" los datos no podrán ser recuperados ")])]), _vm._v(" "), _c('footer', {
+    slot: "modal-footer"
+  }, [_c('div', {
+    staticClass: "modal-footer"
+  }, [_c('div', {
+    staticClass: "col-xs-6"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.dangerModal = false
+      }
+    }
+  }, [_vm._v("Cancelar")])]), _vm._v(" "), _c('div', {
+    staticClass: "col-xs-6"
+  }, [_c('button', {
+    staticClass: "btn btn-danger",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.eliminarPublicidad(_vm.id)
+      }
+    }
+  }, [_vm._v("Eliminar")])])])])])], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -118094,10 +118585,14 @@ var API = {
     deleteCliente: '/api/user/deleteCliente',
     searchCliente: '/api/user/searchCliente',
     editCliente: '/api/user/editCliente',
+
     addPublicidad: '/api/user/createPublicidad',
     getPublicidad: '/api/user/getPublicidad',
+    deletePublicidad: '/api/user/deletePublicidad',
+
     addCategoria: '/api/user/createCategoria',
-    getCategoria: '/api/user/getCategorias'
+    getCategoria: '/api/user/getCategorias',
+    deleteCategoria: '/api/user/deleteCategoria'
   }
 };
 /* harmony default export */ __webpack_exports__["a"] = (API);
@@ -118227,6 +118722,20 @@ Store.getPublicidad = function () {
 	});
 };
 
+Store.deletePublicidad = function (id) {
+	var data = {
+		name: 'authClient',
+		id: id
+	};
+	return new Promise(function (resolve, reject) {
+		axios.delete(API.admin.deletePublicidad + '/' + id + '').then(function (res) {
+			resolve(res);
+		}).catch(function (error) {
+			reject(error);
+		});
+	});
+};
+
 Store.getCategorias = function () {
 	return new Promise(function (resolve, reject) {
 		axios.get(API.admin.getCategoria).then(function (res) {
@@ -118240,6 +118749,20 @@ Store.getCategorias = function () {
 Store.CreateCategoria = function (categoria) {
 	return new Promise(function (resolve, reject) {
 		axios.post(API.admin.addCategoria, categoria).then(function (res) {
+			resolve(res);
+		}).catch(function (error) {
+			reject(error);
+		});
+	});
+};
+
+Store.deleteCategoria = function (id) {
+	var data = {
+		name: 'authClient',
+		id: id
+	};
+	return new Promise(function (resolve, reject) {
+		axios.delete(API.admin.deleteCategoria + '/' + id + '').then(function (res) {
 			resolve(res);
 		}).catch(function (error) {
 			reject(error);

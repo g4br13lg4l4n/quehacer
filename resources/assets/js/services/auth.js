@@ -134,6 +134,22 @@ Store.getPublicidad = function() {
 	})
 }
 
+Store.deletePublicidad = function(id) {
+	const data = {
+		name: 'authClient',
+		id: id
+	}
+	return new Promise( (resolve, reject) => {
+		axios.delete(API.admin.deletePublicidad+ '/'+id+'')
+			.then(res =>{
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	}) 
+}
+
 Store.getCategorias = function () {
 	return new Promise ((resolve, reject) => {
 		axios.get(API.admin.getCategoria)
@@ -156,6 +172,22 @@ Store.CreateCategoria = function (categoria) {
 			reject(error)
 		})
 	})
+}
+
+Store.deleteCategoria = function(id) {
+	const data = {
+		name: 'authClient',
+		id: id
+	}
+	return new Promise( (resolve, reject) => {
+		axios.delete(API.admin.deleteCategoria+ '/'+id+'')
+			.then(res =>{
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	}) 
 }
 
 

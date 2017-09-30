@@ -64,24 +64,21 @@ export default {
   methods:{
     modalDelete (id) {
       this.$bus.$emit('delete-publicidad', id)
-      console.log('delete')
     },
     modalPublicidad(id) {
       this.$bus.$emit('edit-publicidad', id)
-      console.log('edit')
     }
   },
   created () {
     Store.getPublicidad()
       .then(res => {
         this.publicidads = res.data
-        console.log(res.data)
       })   
 
-    this.$bus.$on('update-Table', () => {
-      Store.getClientes()
+    this.$bus.$on('update-TablePublicidad', () => {
+      Store.getPublicidad()
       .then(res => {
-        this.publicidad = res.data
+        this.publicidads = res.data
       })
     })
   }
