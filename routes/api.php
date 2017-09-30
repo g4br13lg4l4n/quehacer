@@ -31,10 +31,18 @@ Route::get('user/searchCliente/{id}','ClientesController@show');
 
 Route::put('user/editCliente/{id}','ClientesController@update');
 
+
+
 Route::post('user/createPublicidad','PublicidadsController@store');
 
 Route::get('user/getPublicidad', 'PublicidadsController@index');
 
+Route::delete('user/deletePublicidad/{id}', 'PublicidadsController@destroy');
+
+
+
 Route::post('user/createCategoria', 'CategoriasController@store');
 
 Route::get('user/getCategorias', 'CategoriasController@index');
+
+Route::delete('user/deleteCategoria/{id}', 'CategoriasController@destroy');

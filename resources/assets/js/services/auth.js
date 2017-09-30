@@ -128,7 +128,7 @@ Store.getPublicidad = function() {
 		.then(res => {
 			resolve(res)
 		})
-		.then(error => {
+		.catch(error => {
 			reject(error)
 		})
 	})
@@ -140,7 +140,7 @@ Store.getCategorias = function () {
 		.then(res => {
 			resolve(res)
 		})
-		.then(error => {
+		.catch(error => {
 			reject(error)
 		})
 	})

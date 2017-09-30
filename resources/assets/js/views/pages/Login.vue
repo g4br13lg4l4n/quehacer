@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import auth from '../../auth/auth.js'
 export default {
   name: 'Login',
   data () {

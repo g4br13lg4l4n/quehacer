@@ -75,6 +75,7 @@ export default {
     Store.getPublicidad()
       .then(res => {
         this.publicidads = res.data
+        console.log(res.data)
       })   
 
     this.$bus.$on('update-Table', () => {

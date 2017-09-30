@@ -17,8 +17,7 @@ Vue.component('App', require('./App.vue'));
 Vue.use(EventBus)
 
 
-axios.defaults.baseURL = 'http://165.227.111.118/';
-
+axios.defaults.baseURL = 'http://localhost:8000/';
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
 };
