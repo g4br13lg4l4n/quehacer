@@ -16,6 +16,7 @@ Vue.use(Toaster, {timeout: 5000})
 Vue.component('App', require('./App.vue'));
 Vue.use(EventBus)
 
+var bus = new Vue()
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 window.axios.defaults.headers.common = {

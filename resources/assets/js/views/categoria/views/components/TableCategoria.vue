@@ -21,8 +21,8 @@
                   <td>{{ categoria.id }}</td>
                   <td>{{ categoria.name}}</td>
                   <td class="with-td-btn">
-                    <button type="button" class="btn btn-primary" @click="modalPublicidad(publicidad.id)">Editar</button>
-                    <button type="button" class="btn btn-danger"  @click="modalDelete(publicidad.id)">Eliminar</button>
+                    <button type="button" class="btn btn-primary" @click="modalCategoria(categoria.id)">Editar</button>
+                    <button type="button" class="btn btn-danger"  @click="modalDeleteCategoria(categoria.id)">Eliminar</button>
                   </td>
                 </tr>
  
@@ -35,12 +35,16 @@
   </div>
 </template>
 <script>
+import AppModalCategoria from './ModalCategoria'
 import modal from 'vue-strap/src/Modal'
+import AppFormCategoriaUpdate from './FormCategoriaUpdate.vue'
 
   export default {
-  name: 'tables',
+  name: 'tableCategori',
   components: {
+    AppModalCategoria,
     modal,
+    AppFormCategoriaUpdate
   },
   data () {
     return {
@@ -48,13 +52,24 @@ import modal from 'vue-strap/src/Modal'
     }
   },
   methods:{
-
+    modalDeleteCategoria (id) {
+      this.$bus.$emit('delete-categoria', id)
+    },
+    modalCategoria(id) {
+      this.$bus.$emit('edit-categoria', id)
+    }
   },
   created () {
     Store.getCategorias()
       .then(res => {
         this.categorias = res.data
-      })   
+      })  
+    this.$bus.$on('update-TableCategoria', () => {
+      Store.getCategorias()
+      .then(res => {
+        this.publicidads = res.data
+      })
+    })
   }
 }
 </script>

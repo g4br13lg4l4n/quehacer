@@ -75,7 +75,7 @@
     </modal>
     <modal title="Modal title" class="modal-danger" :show.sync="dangerModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Eliminar Categoría</h4>
       </div>
       <div slot="modal-body" class="modal-body">
           Esta seguro de <strong> ELMINAR </strong> los datos de este cliente, 
@@ -87,7 +87,7 @@
               <button type="button" class="btn btn-primary" @click="dangerModal = false">Cancelar</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" class="btn btn-danger"  @click="eliminarPublicidad(id)">Eliminar</button>
+            <button type="button" class="btn btn-danger"  @click="eliminarCategoria(id)">Eliminar Categoria</button>
           </div>
         </div>
       </footer>
@@ -96,14 +96,13 @@
 </template>
 <script>
 import modal from 'vue-strap/src/Modal'
-import AppFormEdit from './FormPublicidadUpdate.vue'
-//import AppTable from './Tables.vue'
-
+import AppFormEdit from './FormCategoriaUpdate.vue'
+import AppTableCategoria from './TableCategoria'
 export default {
   components: {
-    AppFormEdit,
-//    AppTable,
-      modal
+      modal,
+      AppFormEdit,
+      AppTableCategoria
   },
   data () {
     return {
@@ -114,41 +113,31 @@ export default {
     }
   },
   created () {
-    this.$bus.$on('delete-publicidad', (id) => {
-      if (id) {
+    this.bus.$emit('id-selected', 1)
+
+    this.$bus.$on('delete-categoria', (id) => {
+    //  console.log('on  delete categoria')
+    /*  if (id) {
         this.dangerModal = true
         this.id = id
-      }
+      }*/
     })
-    this.$bus.$on('edit-publicidad', (id) => {
-      if (id) {
-        this.largeModal = true 
-        Store.searchCliente(id)
-          .then(res => {
-            this.cliente = res.data
-          })
-      }
+
+    this.$bus.$on('edit-categoria', (id) => {
+      console.log('on edit categoria')
     })
+  
   },
   methods:{
-    editCliente(cliente){
-      Store.editCliente(cliente)
-        .then(res =>{
-          this.$toaster.success(res.data.respuesta)
-          this.largeModal = false
-          this.$bus.$emit('update-Table')
-        })
-
-    },
-    eliminarPublicidad(id){
-      Store.deletePublicidad(id)
+    eliminarCategoria(id){
+      Store.deleteCategoria(id)
         .then(res => {
           this.$toaster.success(res.data.respuesta)
           this.dangerModal = false
-          this.$bus.$emit('update-TablePublicidad')
+          this.$bus.$emit('update-TableCategoria')
         })
         .catch(error => {
-          this.$toaster.error('Hubo un error la publicidad')
+          this.$toaster.error('Hubo un error al eliminar la Categoría')
         })
     }
   },

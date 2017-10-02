@@ -75,7 +75,7 @@
     </modal>
     <modal title="Modal title" class="modal-danger" :show.sync="dangerModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Eliminar Publicidad</h4>
       </div>
       <div slot="modal-body" class="modal-body">
           Esta seguro de <strong> ELMINAR </strong> los datos de este cliente, 
@@ -97,12 +97,10 @@
 <script>
 import modal from 'vue-strap/src/Modal'
 import AppFormEdit from './FormPublicidadUpdate.vue'
-//import AppTable from './Tables.vue'
 
 export default {
   components: {
     AppFormEdit,
-//    AppTable,
       modal
   },
   data () {
@@ -114,6 +112,10 @@ export default {
     }
   },
   created () {
+    this.bus.$on('id-selected', function (id) {
+      console.log(id)
+    })
+
     this.$bus.$on('delete-publicidad', (id) => {
       if (id) {
         this.dangerModal = true
@@ -148,7 +150,7 @@ export default {
           this.$bus.$emit('update-TablePublicidad')
         })
         .catch(error => {
-          this.$toaster.error('Hubo un error la publicidad')
+          this.$toaster.error('Hubo un error al eliminar la publicidad')
         })
     }
   },
