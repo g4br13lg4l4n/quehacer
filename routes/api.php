@@ -33,6 +33,8 @@ Route::get('user/getPublicidads', 'PublicidadsController@index');
 
 Route::get('user/searchPublicidad/{id}', 'PublicidadsController@show');
 
+Route::put('/user/editPublicidad/{id}', 'PublicidadsController@update');
+
 Route::delete('user/deletePublicidad/{id}', 'PublicidadsController@destroy');
 
 

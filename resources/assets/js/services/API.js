@@ -11,6 +11,7 @@ const API = {
     addPublicidad: '/api/user/createPublicidad',
     getPublicidads:'/api/user/getPublicidads',
     searchPublicidad:'/api/user/searchPublicidad',
+    editPublicidad:'/api/user/editPublicidad',
     deletePublicidad:'/api/user/deletePublicidad',
 
 

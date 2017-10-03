@@ -113,14 +113,12 @@ export default {
     }
   },
   created () {
-    this.bus.$emit('id-selected', 1)
 
     this.$bus.$on('delete-categoria', (id) => {
-    //  console.log('on  delete categoria')
-    /*  if (id) {
+      if (id) {
         this.dangerModal = true
         this.id = id
-      }*/
+      }
     })
 
     this.$bus.$on('edit-categoria', (id) => {

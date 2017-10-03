@@ -32,10 +32,11 @@
         </div>
       </div><!--/.col-->
     </div><!--/.row-->
+    <AppModalCategoria></AppModalCategoria>
   </div>
 </template>
 <script>
-import AppModalCategoria from './ModalCategoria'
+import AppModalCategoria from './ModalCategoria.vue'
 import modal from 'vue-strap/src/Modal'
 import AppFormCategoriaUpdate from './FormCategoriaUpdate.vue'
 
@@ -60,16 +61,19 @@ import AppFormCategoriaUpdate from './FormCategoriaUpdate.vue'
     }
   },
   created () {
+
     Store.getCategorias()
       .then(res => {
         this.categorias = res.data
       })  
+
     this.$bus.$on('update-TableCategoria', () => {
       Store.getCategorias()
       .then(res => {
-        this.publicidads = res.data
+        this.categorias = res.data
       })
     })
+
   }
 }
 </script>

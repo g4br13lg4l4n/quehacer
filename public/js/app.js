@@ -116835,6 +116835,8 @@ if (false) {(function () {
 //
 //
 //
+//
+//
 
 
 
@@ -116851,6 +116853,10 @@ if (false) {(function () {
       dangerModal: false,
       largeModal: false,
       id: '',
+      empresa: '',
+      empresaId: '',
+      categoria: '',
+      categoriaId: '',
       clientes: [],
       publicidad: [],
       categorias: []
@@ -116862,6 +116868,7 @@ if (false) {(function () {
     Store.getClientes().then(function (res) {
       _this.clientes = res.data;
     });
+
     Store.getCategorias().then(function (res) {
       _this.categorias = res.data;
     });
@@ -116876,45 +116883,24 @@ if (false) {(function () {
         _this.largeModal = true;
         Store.searchPublicidad(id).then(function (res) {
           _this.publicidad = res.data;
-          console.log(_this.publicidad);
+          _this.categoria = _this.publicidad.categoria.name;
+          _this.empresa = _this.publicidad.cliente.empresa;
+
+          _this.categoriaId = _this.publicidad.categoria.id;
+          _this.empresaId = _this.publicidad.cliente.id;
         });
       }
     });
-
-    /*
-        this.bus.$on('id-selected', function (id) {
-          console.log(id)
-        })
-    
-        this.$bus.$on('delete-publicidad', (id) => {
-          console.log(id)
-          
-          if (id) {
-            this.dangerModal = true
-            this.id = id
-          }
-          
-        })
-        this.$bus.$on('edit-publicidad', (id) => {
-          if (id) {
-            this.largeModal = true 
-            Store.searchCliente(id)
-              .then(res => {
-                this.cliente = res.data
-              })
-          }
-        })
-      */
   },
 
   methods: {
-    editCliente: function editCliente(cliente) {
+    editPublicidad: function editPublicidad(publicidad) {
       var _this2 = this;
 
-      Store.editCliente(cliente).then(function (res) {
+      Store.editPublicidad(publicidad).then(function (res) {
         _this2.$toaster.success(res.data.respuesta);
         _this2.largeModal = false;
-        _this2.$bus.$emit('update-Table');
+        _this2.$bus.$emit('update-TablePublicidad');
       });
     },
     eliminarPublicidad: function eliminarPublicidad(id) {
@@ -116968,7 +116954,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "submit": function($event) {
         $event.preventDefault();
-        _vm.editCliente(_vm.cliente)
+        _vm.editPublicidad(_vm.publicidad)
       }
     }
   }, [_c('div', {
@@ -117003,10 +116989,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('option', {
     attrs: {
-      "disabled": "",
-      "value": ""
+      "disabled": ""
+    },
+    domProps: {
+      "value": _vm.publicidad.empresa_id
     }
-  }, [_vm._v("Seleccione una empresa")]), _vm._v(" "), _vm._l((_vm.clientes), function(cliente) {
+  }, [_vm._v(" " + _vm._s(_vm.empresa) + " ")]), _vm._v(" "), _vm._l((_vm.clientes), function(cliente) {
     return _c('option', {
       domProps: {
         "value": cliente.id
@@ -117042,10 +117030,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('option', {
     attrs: {
-      "disabled": "",
-      "value": ""
+      "disabled": ""
+    },
+    domProps: {
+      "value": _vm.publicidad.categoria_id
     }
-  }, [_vm._v("Seleccione una categoría")]), _vm._v(" "), _vm._l((_vm.categorias), function(categoria) {
+  }, [_vm._v(" " + _vm._s(_vm.categoria) + " ")]), _vm._v(" "), _vm._l((_vm.categorias), function(categoria) {
     return _c('option', {
       domProps: {
         "value": categoria.id
@@ -117061,8 +117051,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.publicidad.rEstablecimento),
-      expression: "publicidad.rEstablecimento"
+      value: (_vm.publicidad.resena),
+      expression: "publicidad.resena"
     }],
     staticClass: "form-control",
     attrs: {
@@ -117071,12 +117061,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "placeholder": "Reseña del establecimiento"
     },
     domProps: {
-      "value": (_vm.publicidad.rEstablecimento)
+      "value": (_vm.publicidad.resena)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.publicidad.rEstablecimento = $event.target.value
+        _vm.publicidad.resena = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -117119,8 +117109,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.publicidad.precios),
-      expression: "publicidad.precios"
+      value: (_vm.publicidad.costo),
+      expression: "publicidad.costo"
     }],
     staticClass: "form-control",
     attrs: {
@@ -117129,12 +117119,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "placeholder": "Precios"
     },
     domProps: {
-      "value": (_vm.publicidad.precios)
+      "value": (_vm.publicidad.costo)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.publicidad.precios = $event.target.value
+        _vm.publicidad.costo = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -117147,8 +117137,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.publicidad.horarios),
-      expression: "publicidad.horarios"
+      value: (_vm.publicidad.horario),
+      expression: "publicidad.horario"
     }],
     staticClass: "form-control",
     attrs: {
@@ -117157,12 +117147,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "placeholder": "Horarios"
     },
     domProps: {
-      "value": (_vm.publicidad.horarios)
+      "value": (_vm.publicidad.horario)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.publicidad.horarios = $event.target.value
+        _vm.publicidad.horario = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -117239,31 +117229,31 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.publicidad.aireAcondicionado),
-      expression: "publicidad.aireAcondicionado"
+      value: (_vm.publicidad.clima),
+      expression: "publicidad.clima"
     }],
     attrs: {
       "type": "checkbox",
       "value": "Aire Acondicionado"
     },
     domProps: {
-      "checked": Array.isArray(_vm.publicidad.aireAcondicionado) ? _vm._i(_vm.publicidad.aireAcondicionado, "Aire Acondicionado") > -1 : (_vm.publicidad.aireAcondicionado)
+      "checked": Array.isArray(_vm.publicidad.clima) ? _vm._i(_vm.publicidad.clima, "Aire Acondicionado") > -1 : (_vm.publicidad.clima)
     },
     on: {
       "__c": function($event) {
-        var $$a = _vm.publicidad.aireAcondicionado,
+        var $$a = _vm.publicidad.clima,
           $$el = $event.target,
           $$c = $$el.checked ? (true) : (false);
         if (Array.isArray($$a)) {
           var $$v = "Aire Acondicionado",
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && (_vm.publicidad.aireAcondicionado = $$a.concat($$v))
+            $$i < 0 && (_vm.publicidad.clima = $$a.concat($$v))
           } else {
-            $$i > -1 && (_vm.publicidad.aireAcondicionado = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            $$i > -1 && (_vm.publicidad.clima = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
           }
         } else {
-          _vm.publicidad.aireAcondicionado = $$c
+          _vm.publicidad.clima = $$c
         }
       }
     }
@@ -117315,31 +117305,31 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.publicidad.servicioDomicilio),
-      expression: "publicidad.servicioDomicilio"
+      value: (_vm.publicidad.domicilio),
+      expression: "publicidad.domicilio"
     }],
     attrs: {
       "type": "checkbox",
       "value": "Servicio a domicilio"
     },
     domProps: {
-      "checked": Array.isArray(_vm.publicidad.servicioDomicilio) ? _vm._i(_vm.publicidad.servicioDomicilio, "Servicio a domicilio") > -1 : (_vm.publicidad.servicioDomicilio)
+      "checked": Array.isArray(_vm.publicidad.domicilio) ? _vm._i(_vm.publicidad.domicilio, "Servicio a domicilio") > -1 : (_vm.publicidad.domicilio)
     },
     on: {
       "__c": function($event) {
-        var $$a = _vm.publicidad.servicioDomicilio,
+        var $$a = _vm.publicidad.domicilio,
           $$el = $event.target,
           $$c = $$el.checked ? (true) : (false);
         if (Array.isArray($$a)) {
           var $$v = "Servicio a domicilio",
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && (_vm.publicidad.servicioDomicilio = $$a.concat($$v))
+            $$i < 0 && (_vm.publicidad.domicilio = $$a.concat($$v))
           } else {
-            $$i > -1 && (_vm.publicidad.servicioDomicilio = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            $$i > -1 && (_vm.publicidad.domicilio = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
           }
         } else {
-          _vm.publicidad.servicioDomicilio = $$c
+          _vm.publicidad.domicilio = $$c
         }
       }
     }
@@ -117446,7 +117436,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('table', {
     staticClass: "table table-bordered table-striped table-condensed"
   }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.publicidads), function(publicidad) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.categoria.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.ubicacion))]), _vm._v(" "), _c('td', {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.categoria.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.resena))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', {
       staticClass: "with-td-btn"
     }, [_c('button', {
       staticClass: "btn btn-primary",
@@ -118375,9 +118365,10 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ModalCategoria__ = __webpack_require__(621);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ModalCategoria_vue__ = __webpack_require__(621);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_strap_src_Modal__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FormCategoriaUpdate_vue__ = __webpack_require__(243);
+//
 //
 //
 //
@@ -118422,7 +118413,7 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'tableCategori',
   components: {
-    AppModalCategoria: __WEBPACK_IMPORTED_MODULE_0__ModalCategoria__["a" /* default */],
+    AppModalCategoria: __WEBPACK_IMPORTED_MODULE_0__ModalCategoria_vue__["a" /* default */],
     modal: __WEBPACK_IMPORTED_MODULE_1_vue_strap_src_Modal__["a" /* default */],
     AppFormCategoriaUpdate: __WEBPACK_IMPORTED_MODULE_2__FormCategoriaUpdate_vue__["a" /* default */]
   },
@@ -118446,9 +118437,10 @@ if (false) {(function () {
     Store.getCategorias().then(function (res) {
       _this.categorias = res.data;
     });
+
     this.$bus.$on('update-TableCategoria', function () {
       Store.getCategorias().then(function (res) {
-        _this.publicidads = res.data;
+        _this.categorias = res.data;
       });
     });
   }
@@ -118626,14 +118618,13 @@ if (false) {(function () {
     };
   },
   created: function created() {
-    this.bus.$emit('id-selected', 1);
+    var _this = this;
 
     this.$bus.$on('delete-categoria', function (id) {
-      //  console.log('on  delete categoria')
-      /*  if (id) {
-          this.dangerModal = true
-          this.id = id
-        }*/
+      if (id) {
+        _this.dangerModal = true;
+        _this.id = id;
+      }
     });
 
     this.$bus.$on('edit-categoria', function (id) {
@@ -118643,14 +118634,14 @@ if (false) {(function () {
 
   methods: {
     eliminarCategoria: function eliminarCategoria(id) {
-      var _this = this;
+      var _this2 = this;
 
       Store.deleteCategoria(id).then(function (res) {
-        _this.$toaster.success(res.data.respuesta);
-        _this.dangerModal = false;
-        _this.$bus.$emit('update-TableCategoria');
+        _this2.$toaster.success(res.data.respuesta);
+        _this2.dangerModal = false;
+        _this2.$bus.$emit('update-TableCategoria');
       }).catch(function (error) {
-        _this.$toaster.error('Hubo un error al eliminar la Categoría');
+        _this2.$toaster.error('Hubo un error al eliminar la Categoría');
       });
     }
   }
@@ -119078,7 +119069,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._v("Eliminar")])])])
-  }))])])])])])])
+  }))])])])])]), _vm._v(" "), _c('AppModalCategoria')], 1)
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -119404,6 +119395,7 @@ var API = {
     addPublicidad: '/api/user/createPublicidad',
     getPublicidads: '/api/user/getPublicidads',
     searchPublicidad: '/api/user/searchPublicidad',
+    editPublicidad: '/api/user/editPublicidad',
     deletePublicidad: '/api/user/deletePublicidad',
 
     addCategoria: '/api/user/createCategoria',
@@ -119553,6 +119545,18 @@ Store.searchPublicidad = function (id) {
 	};
 	return new Promise(function (resolve, reject) {
 		axios.get(API.admin.searchPublicidad + '/' + id + '').then(function (res) {
+			resolve(res);
+		}).catch(function (error) {
+			reject(error);
+		});
+	});
+};
+
+Store.editPublicidad = function (publicidad) {
+	var id = publicidad.id;
+
+	return new Promise(function (resolve, reject) {
+		axios.put(API.admin.editPublicidad + '/' + id + '', publicidad).then(function (res) {
 			resolve(res);
 		}).catch(function (error) {
 			reject(error);

@@ -12,14 +12,15 @@
             </div>
             <div class="card-block">
 
-              <form @submit.prevent="editCliente(cliente)">
+              <form @submit.prevent="editPublicidad(publicidad)">
 
                 <div class="row">
 
                   <div class="form-group col-sm-6">
                     <label for="Empresa">Empresa</label>
                     <select class="form-control" id="Empresa" v-model="publicidad.empresa">
-                      <option disabled value="">Seleccione una empresa</option>
+                      <option disabled v-bind:value="publicidad.empresa_id"> {{ empresa }} </option>
+
                       <option v-for="cliente in clientes" v-bind:value="cliente.id">
                         {{ cliente.empresa }}
                       </option>
@@ -29,7 +30,8 @@
                   <div class="form-group col-sm-6">
                   <label for="Categoria">Categoría</label>  
                     <select class="form-control" id="Categoria" v-model="publicidad.categoria">
-                      <option disabled value="">Seleccione una categoría</option>
+                      <option disabled v-bind:value="publicidad.categoria_id"> {{ categoria }} </option>
+
                       <option v-for="categoria in categorias" v-bind:value="categoria.id">
                         {{ categoria.name }}
                       </option>
@@ -39,7 +41,7 @@
 
                 <div class="form-group">
                   <label for="REstablecimento">Reseña del establecimiento</label>
-                  <input type="text" class="form-control"  id="REstablecimento" v-model="publicidad.rEstablecimento" placeholder="Reseña del establecimiento">
+                  <input type="text" class="form-control"  id="REstablecimento" v-model="publicidad.resena" placeholder="Reseña del establecimiento">
                 </div>
 
                 <div class="form-group">
@@ -51,11 +53,11 @@
                 <div class="row">
                   <div class="form-group col-sm-6">
                     <label for="Precios">Precios</label>
-                    <input type="text" class="form-control" id="Precios" v-model="publicidad.precios" placeholder="Precios">
+                    <input type="text" class="form-control" id="Precios" v-model="publicidad.costo" placeholder="Precios">
                   </div>
                   <div class="form-group col-sm-6">
                     <label for="Horarios">Horarios</label>
-                    <input type="text" class="form-control"  id="Horarios" v-model="publicidad.horarios" placeholder="Horarios">
+                    <input type="text" class="form-control"  id="Horarios" v-model="publicidad.horario" placeholder="Horarios">
                   </div>
                 </div><!--/.row-->
 
@@ -75,7 +77,7 @@
                   <div class="col-md-9">
                     <div class="checkbox">
                       <label for="AA">
-                        <input type="checkbox" v-model="publicidad.aireAcondicionado" value="Aire Acondicionado"> Aire Acondicionado
+                        <input type="checkbox" v-model="publicidad.clima" value="Aire Acondicionado"> Aire Acondicionado
                       </label>
                     </div>
                     <div class="checkbox">
@@ -85,7 +87,7 @@
                     </div>
                     <div class="checkbox">
                       <label for="checkbox3">
-                        <input type="checkbox" v-model="publicidad.servicioDomicilio" value="Servicio a domicilio"> Servicio a domicilio
+                        <input type="checkbox" v-model="publicidad.domicilio" value="Servicio a domicilio"> Servicio a domicilio
                       </label>
                     </div>
                   </div>
@@ -147,9 +149,13 @@ export default {
       dangerModal: false,
       largeModal: false,
       id: '',
+      empresa: '',
+      empresaId: '',
+      categoria: '',
+      categoriaId: '',
       clientes: [],
       publicidad: [],
-      categorias: []
+      categorias: [],
     }
   },
   created () {
@@ -157,6 +163,7 @@ export default {
       .then(res => {
         this.clientes = res.data
       }) 
+
     Store.getCategorias()
       .then(res => {
         this.categorias = res.data
@@ -174,45 +181,24 @@ export default {
         Store.searchPublicidad(id)
           .then(res => {
             this.publicidad = res.data
-            console.log(this.publicidad)
+            this.categoria = this.publicidad.categoria.name
+            this.empresa = this.publicidad.cliente.empresa
+
+            this.categoriaId = this.publicidad.categoria.id
+            this.empresaId = this.publicidad.cliente.id
           })
       }
     })
 
-
-/*
-    this.bus.$on('id-selected', function (id) {
-      console.log(id)
-    })
-
-    this.$bus.$on('delete-publicidad', (id) => {
-      console.log(id)
-      
-      if (id) {
-        this.dangerModal = true
-        this.id = id
-      }
-      
-    })
-    this.$bus.$on('edit-publicidad', (id) => {
-      if (id) {
-        this.largeModal = true 
-        Store.searchCliente(id)
-          .then(res => {
-            this.cliente = res.data
-          })
-      }
-    })
-  */
   },
-  methods:{
-    editCliente(cliente){
-      Store.editCliente(cliente)
-        .then(res =>{
+  methods : {
+    editPublicidad(publicidad){
+      Store.editPublicidad(publicidad)
+       .then(res =>{
           this.$toaster.success(res.data.respuesta)
           this.largeModal = false
-          this.$bus.$emit('update-Table')
-        })
+          this.$bus.$emit('update-TablePublicidad')
+        }) 
 
     },
     eliminarPublicidad(id){

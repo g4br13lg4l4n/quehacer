@@ -161,6 +161,19 @@ Store.searchPublicidad = function (id){
 	})  
 }
 
+Store.editPublicidad = function (publicidad) {
+	const id = publicidad.id
+
+	return new Promise( (resolve, reject)=> {
+		axios.put(API.admin.editPublicidad+'/'+id+'', publicidad)
+			.then(res => {
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	})
+}
 
 Store.deletePublicidad = function(id) {
 	const data = {

@@ -9,7 +9,7 @@ class PublicidadsController extends Controller
 {
     public function index()
     {
-        $publicidad = Publicidad::with('cliente', 'Categoria')->get();
+        $publicidad = Publicidad::with('cliente', 'categoria')->get();
         return response()->json($publicidad, 200);
     }
 
@@ -54,7 +54,34 @@ class PublicidadsController extends Controller
 
     public function show($id)
     {
-        $publicidad = Publicidad::find($id);
+        $publicidad = Publicidad::with('cliente', 'categoria')->find($id);
         return response()->json($publicidad, 200);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->clima ? $clima = 1 : $clima = 0;
+        $request->estacionamiento ? $estacionamiento = 1 : $estacionamiento = 0;
+        $request->domicilio ? $servicioDomicilio = 1 : $servicioDomicilio = 0;
+
+        Publicidad::where('id', $id)
+        ->update([
+            'cliente_id' => $request->cliente_id,
+            'resena' => $request->resena,
+            'ubicacion'=> $request->ubicacion,
+            'costo' =>  $request->costo,
+            'horario' => $request->horario,
+            'telefono' => $request->telefono,
+            'correo' => $request->correo,
+            'status' => 1,
+            'clima' => $clima,
+            'estacionamiento' => $estacionamiento,
+            'domicilio' => $servicioDomicilio, 
+            'categoria_id' => $request->categoria_id
+        ]);
+
+        return response()->json([
+            'respuesta' => 'Se ha actualizado la publicidad'
+        ]);
     }
 }

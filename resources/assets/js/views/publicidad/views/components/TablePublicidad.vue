@@ -23,9 +23,9 @@
                 <tr v-for="publicidad in publicidads">
                   <td>{{ publicidad.cliente.empresa }}</td>
                   <td>{{ publicidad.categoria.name}}</td>
-                  <td>{{ publicidad.correo }}</td>
+                  <td>{{ publicidad.resena }}</td> 
                   <td>{{ publicidad.telefono }}</td> 
-                  <td>{{ publicidad.ubicacion }}</td> 
+                  <td>{{ publicidad.correo }}</td>
                   <td class="with-td-btn">
                     <button type="button" class="btn btn-primary" @click="modalPublicidad(publicidad.id)">Editar</button>
                     <button type="button" class="btn btn-danger"  @click="modalDelete(publicidad.id)">Eliminar</button>
@@ -62,12 +62,14 @@ export default {
     }
   },
   methods:{
+
     modalDelete (id) {
       this.$bus.$emit('delete-publicidad', id)
     },
     modalPublicidad(id) {
       this.$bus.$emit('edit-publicidad', id)
     }
+    
   },
   created () {
     Store.getPublicidads()
@@ -81,6 +83,7 @@ export default {
         this.publicidads = res.data
       })
     })
+
   }
 }
 </script>
