@@ -11,56 +11,93 @@
               <strong>Editar Clientes</strong>
             </div>
             <div class="card-block">
+
               <form @submit.prevent="editCliente(cliente)">
-                <div class="form-group">
-                  <label for="empresa">Empresa</label>
-                  <input type="text" class="form-control" v-model="cliente.empresa"  id="empresa" placeholder="Nombre de la empresa o establecimiento">
+
+                <div class="row">
+
+                  <div class="form-group col-sm-6">
+                    <label for="Empresa">Empresa</label>
+                    <select class="form-control" id="Empresa" v-model="publicidad.empresa">
+                      <option disabled value="">Seleccione una empresa</option>
+                      <option v-for="cliente in clientes" v-bind:value="cliente.id">
+                        {{ cliente.empresa }}
+                      </option>
+                    </select>
+
+                  </div>
+                  <div class="form-group col-sm-6">
+                  <label for="Categoria">Categoría</label>  
+                    <select class="form-control" id="Categoria" v-model="publicidad.categoria">
+                      <option disabled value="">Seleccione una categoría</option>
+                      <option v-for="categoria in categorias" v-bind:value="categoria.id">
+                        {{ categoria.name }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="responsable">Responsable</label>
-                  <input type="text" class="form-control" v-model="cliente.responsable" id="responsable" placeholder="Nombre del responsable de la empresa">
+                  <label for="REstablecimento">Reseña del establecimiento</label>
+                  <input type="text" class="form-control"  id="REstablecimento" v-model="publicidad.rEstablecimento" placeholder="Reseña del establecimiento">
                 </div>
 
                 <div class="form-group">
-                  <label for="rfc">RFC</label>
-                  <input type="text" class="form-control" v-model="cliente.rfc" id="rfc" placeholder="RFC">
+                  <label for="Ubicacion">Ubicación</label>
+                  <input type="text" class="form-control" id="Ubicacion" v-model="publicidad.ubicacion" placeholder="Ubicacion">
                 </div>
+
 
                 <div class="row">
                   <div class="form-group col-sm-6">
-                    <label for="telefono">Teléfono</label>
-                    <input type="text" class="form-control" v-model="cliente.phone" id="telefono" placeholder="Teléfono">
+                    <label for="Precios">Precios</label>
+                    <input type="text" class="form-control" id="Precios" v-model="publicidad.precios" placeholder="Precios">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="correo">Correo</label>
-                    <input type="text" class="form-control" v-model="cliente.correo" id="correo" placeholder="Correo">
+                    <label for="Horarios">Horarios</label>
+                    <input type="text" class="form-control"  id="Horarios" v-model="publicidad.horarios" placeholder="Horarios">
                   </div>
                 </div><!--/.row-->
 
                 <div class="row">
                   <div class="form-group col-sm-6">
-                    <label for="estado">Estado</label>
-                    <input type="text" class="form-control" v-model="cliente.estado" id="estado" placeholder="Estado">
+                    <label for="telefono">No. Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" v-model="publicidad.telefono" placeholder="Teléfono">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label for="colonia">Colonia</label>
-                    <input type="text" class="form-control" v-model="cliente.colonia" id="colonia" placeholder="Colonia">
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" class="form-control" v-model="cliente.direccion" id="direccion" placeholder="Dirección">
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="establecimento">Número</label>
-                    <input type="text" class="form-control" v-model="cliente.establecimiento" id="establecimento" placeholder="No. establecimento">
+                    <label for="Correo">Correo</label>
+                    <input type="text" class="form-control" id="Correo" v-model="publicidad.correo" placeholder="Correo">
                   </div>
                 </div><!--/.row-->
+
+                <div class="form-group row">
+                  <label class="col-md-3 form-control-label">Servicios adicionales</label>
+                  <div class="col-md-9">
+                    <div class="checkbox">
+                      <label for="AA">
+                        <input type="checkbox" v-model="publicidad.aireAcondicionado" value="Aire Acondicionado"> Aire Acondicionado
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="checkbox2">
+                        <input type="checkbox" v-model="publicidad.estacionamiento" value="Estacionamiento"> Estacionamiento
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="checkbox3">
+                        <input type="checkbox" v-model="publicidad.servicioDomicilio" value="Servicio a domicilio"> Servicio a domicilio
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                
 
                 <div class="form-actions">
                   <button type="submit" class="btn btn-primary">Guardar</button> 
                 </div>
+
               </form><!-- /Form -->
+
             </div>
           </div>
        
@@ -97,30 +134,65 @@
 <script>
 import modal from 'vue-strap/src/Modal'
 import AppFormEdit from './FormPublicidadUpdate.vue'
+import AppTablePublicidad from './TablePublicidad.vue'
 
 export default {
   components: {
-    AppFormEdit,
-      modal
+    modal,
+    AppFormEdit, 
+    AppTablePublicidad
   },
   data () {
     return {
       dangerModal: false,
       largeModal: false,
       id: '',
-      cliente: []
+      clientes: [],
+      publicidad: [],
+      categorias: []
     }
   },
   created () {
+    Store.getClientes()
+      .then(res => {
+        this.clientes = res.data
+      }) 
+    Store.getCategorias()
+      .then(res => {
+        this.categorias = res.data
+      }) 
+
+
+    this.$bus.$on('delete-publicidad', (id) => {
+      this.id = id
+      this.dangerModal = true
+    })
+
+    this.$bus.$on('edit-publicidad', (id) => {
+      if (id) {
+        this.largeModal = true 
+        Store.searchPublicidad(id)
+          .then(res => {
+            this.publicidad = res.data
+            console.log(this.publicidad)
+          })
+      }
+    })
+
+
+/*
     this.bus.$on('id-selected', function (id) {
       console.log(id)
     })
 
     this.$bus.$on('delete-publicidad', (id) => {
+      console.log(id)
+      
       if (id) {
         this.dangerModal = true
         this.id = id
       }
+      
     })
     this.$bus.$on('edit-publicidad', (id) => {
       if (id) {
@@ -131,6 +203,7 @@ export default {
           })
       }
     })
+  */
   },
   methods:{
     editCliente(cliente){

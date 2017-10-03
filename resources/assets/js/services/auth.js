@@ -22,6 +22,10 @@ Store.login = function (user) {
 		})	
 }
 
+/*
+*  Metodos para clientes 
+*/
+
 Store.CreateClient = function (cliente) {
 
 	const data = {
@@ -68,7 +72,7 @@ Store.searchCliente = function (id){
 		id: id
 	}
 	return new Promise( (resolve, reject)=> {
-		axios.get(API.admin.searchCliente+ '/'+id+'', data)
+		axios.get(API.admin.searchCliente+ '/'+id+'')
 			.then(res =>{
 				resolve(res)
 			})
@@ -110,6 +114,11 @@ Store.deleteCliente = function(id) {
 	}) 
 }
 
+/*
+*  Metodos para la publicidad
+*/
+
+
 Store.CreatePublicidad = function(publicidad){
 	return new Promise((resolve, reject) => {
 		axios.post(API.admin.addPublicidad, publicidad)
@@ -122,9 +131,9 @@ Store.CreatePublicidad = function(publicidad){
 	})
 }
 
-Store.getPublicidad = function() {
+Store.getPublicidads = function() {
 	return new Promise((resolve, reject) => {
-		axios.get(API.admin.getPublicidad)
+		axios.get(API.admin.getPublicidads)
 		.then(res => {
 			resolve(res)
 		})
@@ -133,6 +142,25 @@ Store.getPublicidad = function() {
 		})
 	})
 }
+
+
+Store.searchPublicidad = function (id){
+	const data = {
+		name: 'authClient',
+		id: id
+	}
+	return new Promise( (resolve, reject)=> {
+		axios.get(API.admin.searchPublicidad+ '/'+id+'')
+			.then(res =>{
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+
+	})  
+}
+
 
 Store.deletePublicidad = function(id) {
 	const data = {
@@ -149,6 +177,13 @@ Store.deletePublicidad = function(id) {
 			})
 	}) 
 }
+
+
+/*
+*  Metodos para categorias
+*/
+
+
 
 Store.getCategorias = function () {
 	return new Promise ((resolve, reject) => {

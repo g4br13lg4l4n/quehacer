@@ -2,21 +2,15 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 $http = new GuzzleHttp\Client;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+    
+Route::post('login/clientes', 'UsuarioClientesController@login');
+
 
 Route::post('login', 'UsersController@login');
 //Route::post('register', 'UsersController@register');
@@ -35,9 +29,13 @@ Route::put('user/editCliente/{id}','ClientesController@update');
 
 Route::post('user/createPublicidad','PublicidadsController@store');
 
-Route::get('user/getPublicidad', 'PublicidadsController@index');
+Route::get('user/getPublicidads', 'PublicidadsController@index');
+
+Route::get('user/searchPublicidad/{id}', 'PublicidadsController@show');
 
 Route::delete('user/deletePublicidad/{id}', 'PublicidadsController@destroy');
+
+
 
 
 

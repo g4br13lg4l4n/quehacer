@@ -70,13 +70,13 @@ export default {
     }
   },
   created () {
-    Store.getPublicidad()
+    Store.getPublicidads()
       .then(res => {
         this.publicidads = res.data
       })   
 
     this.$bus.$on('update-TablePublicidad', () => {
-      Store.getPublicidad()
+      Store.getPublicidads()
       .then(res => {
         this.publicidads = res.data
       })

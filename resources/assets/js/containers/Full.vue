@@ -31,7 +31,8 @@ export default {
   },
   data () {
     return {
-      getUser: false
+      getUser: false,
+      datas: ''
     } 
   },
   created () {
@@ -39,15 +40,10 @@ export default {
       this.getUser = true
     }
   },
-  methods: {
-    alerta(){
-
-    }
-  },
   watch: {
     getUser() {
-       this.datas = this.$route.params.data
-       this.$emit('datas', this.datas)
+       this.datas = this.$route.params.data.user.name
+       this.$bus.$emit('datas', this.datas)
     }
   }
 }

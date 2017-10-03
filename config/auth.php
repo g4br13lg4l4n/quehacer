@@ -45,6 +45,10 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
         ],
+        'usuarioCliente-api' => [
+            'driver' => 'passport',
+            'provider' => 'usuarioClientes',
+        ],
     ],
 
     /*
@@ -69,7 +73,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'usuarioClientes' => [
+            'driver' => 'eloquent',
+            'model' => App\UsuarioCliente::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -94,6 +101,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'usuarioClientes' => [
+            'provider' => 'usuarioClientes',
             'table' => 'password_resets',
             'expire' => 60,
         ],

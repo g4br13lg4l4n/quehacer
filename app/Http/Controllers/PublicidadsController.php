@@ -51,4 +51,10 @@ class PublicidadsController extends Controller
             'respuesta' => 'Se ha eliminado el registro de publicidad'
             ], 200);
     }
+
+    public function show($id)
+    {
+        $publicidad = Publicidad::find($id);
+        return response()->json($publicidad, 200);
+    }
 }

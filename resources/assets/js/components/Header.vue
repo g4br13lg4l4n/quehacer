@@ -36,15 +36,13 @@ export default {
   },
   data () {
     return {
-      datas: { },
       user: ''
     }
   },
   created () {
-    this.$on('data', (datas) => {
-      this.datas = datas
+    this.$bus.$on('datas', (datas) => {
+      this.user = datas
     })
-    this.user = this.$route.params.data.user.name
   },
   methods: {
     click () {

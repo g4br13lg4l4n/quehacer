@@ -9,8 +9,10 @@ const API = {
     editCliente: '/api/user/editCliente',
     
     addPublicidad: '/api/user/createPublicidad',
-    getPublicidad:'/api/user/getPublicidad',
+    getPublicidads:'/api/user/getPublicidads',
+    searchPublicidad:'/api/user/searchPublicidad',
     deletePublicidad:'/api/user/deletePublicidad',
+
 
     addCategoria: '/api/user/createCategoria',
     getCategoria: '/api/user/getCategorias',

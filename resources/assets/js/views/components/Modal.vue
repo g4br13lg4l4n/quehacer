@@ -75,7 +75,7 @@
     </modal>
     <modal title="Modal title" class="modal-danger" :show.sync="dangerModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Eliminar Cliente</h4>
       </div>
       <div slot="modal-body" class="modal-body">
           Esta seguro de <strong> ELMINAR </strong> los datos de este cliente, 
