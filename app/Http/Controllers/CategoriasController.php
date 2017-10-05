@@ -35,19 +35,30 @@ class CategoriasController extends Controller
 
     public function show($id)
     {
-        //
+        $categoria = categoria::find($id);
+        return response()->json($categoria, 200);
     }
 
 
     public function edit($id)
     {
-        //
+        
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+
+
+        Categoria::where('id', $id)
+        ->update([
+            'name' => $request->name,
+        ]);
+
+        return response()->json([
+            'respuesta' => 'Se ah actualizado la categoria '. $request->name
+        ], 200);
+
     }
 
 

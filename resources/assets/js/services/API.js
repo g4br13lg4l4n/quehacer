@@ -17,6 +17,8 @@ const API = {
 
     addCategoria: '/api/user/createCategoria',
     getCategoria: '/api/user/getCategorias',
+    searchCategoria: '/api/user/searchCategoria',
+    editCategoria: 'api/user/editCategoria',
     deleteCategoria: '/api/user/deleteCategoria'
   }
 }

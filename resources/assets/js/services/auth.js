@@ -222,6 +222,23 @@ Store.CreateCategoria = function (categoria) {
 	})
 }
 
+
+Store.searchCategoria = function (id){
+	const data = {
+		name: 'authClient',
+		id: id
+	}
+	return new Promise( (resolve, reject)=> {
+		axios.get(API.admin.searchCategoria+ '/'+id+'')
+			.then(res =>{
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	})  
+}
+
 Store.deleteCategoria = function(id) {
 	const data = {
 		name: 'authClient',
@@ -236,6 +253,20 @@ Store.deleteCategoria = function(id) {
 				reject(error)
 			})
 	}) 
+}
+
+Store.editCategoria = function (categoria) {
+	const id = categoria.id
+
+	return new Promise( (resolve, reject)=> {
+		axios.put(API.admin.editCategoria+'/'+id+'', categoria)
+			.then(res => {
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	})	
 }
 
 

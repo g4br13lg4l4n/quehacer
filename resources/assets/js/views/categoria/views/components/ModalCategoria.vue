@@ -2,69 +2,28 @@
   <div>
     <modal title="Modal title" class="modal-primary" large :show.sync="largeModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
-        <h4 class="modal-title">Editar Cliente</h4>
+        <h4 class="modal-title">Editar Categoría</h4>
       </div>
+
       <div slot="modal-body" class="modal-body">
-        
           <div class="card">
             <div class="card-header">
-              <strong>Editar Clientes</strong>
+              <strong>Editar Categoría</strong>
             </div>
             <div class="card-block">
-              <form @submit.prevent="editCliente(cliente)">
+              <form @submit.prevent="editCategoria(categoria)">
                 <div class="form-group">
-                  <label for="empresa">Empresa</label>
-                  <input type="text" class="form-control" v-model="cliente.empresa"  id="empresa" placeholder="Nombre de la empresa o establecimiento">
+                  <label for="categoria">Categoría</label>
+                  <input type="text" class="form-control" v-model="categoria.name"  id="categoria" placeholder="Categoría">
                 </div>
-
-                <div class="form-group">
-                  <label for="responsable">Responsable</label>
-                  <input type="text" class="form-control" v-model="cliente.responsable" id="responsable" placeholder="Nombre del responsable de la empresa">
-                </div>
-
-                <div class="form-group">
-                  <label for="rfc">RFC</label>
-                  <input type="text" class="form-control" v-model="cliente.rfc" id="rfc" placeholder="RFC">
-                </div>
-
-                <div class="row">
-                  <div class="form-group col-sm-6">
-                    <label for="telefono">Teléfono</label>
-                    <input type="text" class="form-control" v-model="cliente.phone" id="telefono" placeholder="Teléfono">
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="correo">Correo</label>
-                    <input type="text" class="form-control" v-model="cliente.correo" id="correo" placeholder="Correo">
-                  </div>
-                </div><!--/.row-->
-
-                <div class="row">
-                  <div class="form-group col-sm-6">
-                    <label for="estado">Estado</label>
-                    <input type="text" class="form-control" v-model="cliente.estado" id="estado" placeholder="Estado">
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="colonia">Colonia</label>
-                    <input type="text" class="form-control" v-model="cliente.colonia" id="colonia" placeholder="Colonia">
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" class="form-control" v-model="cliente.direccion" id="direccion" placeholder="Dirección">
-                  </div>
-                  <div class="form-group col-sm-6">
-                    <label for="establecimento">Número</label>
-                    <input type="text" class="form-control" v-model="cliente.establecimiento" id="establecimento" placeholder="No. establecimento">
-                  </div>
-                </div><!--/.row-->
-
                 <div class="form-actions">
                   <button type="submit" class="btn btn-primary">Guardar</button> 
                 </div>
               </form><!-- /Form -->
             </div>
           </div>
-       
       </div>
+
       <footer slot="modal-footer">
         <div class="modal-footer">
           <div class="col-xs-6">
@@ -109,7 +68,8 @@ export default {
       dangerModal: false,
       largeModal: false,
       id: '',
-      cliente: []
+      cliente: [],
+      categoria: []
     }
   },
   created () {
@@ -122,7 +82,15 @@ export default {
     })
 
     this.$bus.$on('edit-categoria', (id) => {
-      console.log('on edit categoria')
+      
+      if(id) {
+        this.largeModal = true 
+
+        Store.searchCategoria(id)
+          .then(res => {
+            this.categoria = res.data 
+          })
+      }
     })
   
   },
@@ -137,7 +105,19 @@ export default {
         .catch(error => {
           this.$toaster.error('Hubo un error al eliminar la Categoría')
         })
+    },
+    editCategoria (categoria) {
+      Store.editCategoria (categoria)
+        .then (res => {
+          this.largeModal = false
+          this.$toaster.success(res.data.respuesta)
+          this.$bus.$emit('update-TableCategoria')
+        })
+        .catch(error => {
+          this.$toaster.error('Hubo un error al editar la categoría')
+        })    
     }
+
   },
 }
 </script>

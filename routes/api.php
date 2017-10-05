@@ -45,4 +45,8 @@ Route::post('user/createCategoria', 'CategoriasController@store');
 
 Route::get('user/getCategorias', 'CategoriasController@index');
 
+Route::get('user/searchCategoria/{id}', 'CategoriasController@show');
+
+Route::put('user/editCategoria/{id}', 'CategoriasController@update');
+
 Route::delete('user/deleteCategoria/{id}', 'CategoriasController@destroy');
