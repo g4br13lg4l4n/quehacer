@@ -1,8 +1,6 @@
 <template>
   <div class="app flex-row align-items-center">
-    <div class="container">
-      <router-link :to="{ name: 'Register' }">Crear Cuenta</router-link>
-      
+    <div class="container">      
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card-group mb-0">
