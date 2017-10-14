@@ -122,6 +122,11 @@ export default new Router({
       ]
     },
     {
+      path: 'register',
+      name: 'Register',
+      component: Register
+    },
+    {
       path: '/pages',
       redirect: '/pages/p404',
       name: 'Pages',
@@ -139,11 +144,6 @@ export default new Router({
           name: 'Page500',
           component: Page500
         },
-        {
-          path: 'register',
-          name: 'Register',
-          component: Register
-        }
       ]
     }
   ]

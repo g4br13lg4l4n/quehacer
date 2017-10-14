@@ -40723,7 +40723,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8__com
 
 var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 
-__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://localhost:8000/';
+__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://165.227.111.118/';
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
@@ -71764,6 +71764,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
       }]
     }]
   }, {
+    path: 'register',
+    name: 'Register',
+    component: __WEBPACK_IMPORTED_MODULE_18__views_pages_Register__["a" /* default */]
+  }, {
     path: '/pages',
     redirect: '/pages/p404',
     name: 'Pages',
@@ -71780,10 +71784,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
       path: '500',
       name: 'Page500',
       component: __WEBPACK_IMPORTED_MODULE_16__views_pages_Page500__["a" /* default */]
-    }, {
-      path: 'register',
-      name: 'Register',
-      component: __WEBPACK_IMPORTED_MODULE_18__views_pages_Register__["a" /* default */]
     }]
   }]
 }));
@@ -74356,9 +74356,8 @@ if (false) {(function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Header__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Sidebar__ = __webpack_require__(285);
-throw new Error("Cannot find module \"../components/Aside\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Footer__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Breadcrumb__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Footer__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Breadcrumb__ = __webpack_require__(293);
 //
 //
 //
@@ -74375,7 +74374,6 @@ throw new Error("Cannot find module \"../components/Aside\"");
 //
 //
 //
-
 
 
 
@@ -74387,8 +74385,7 @@ throw new Error("Cannot find module \"../components/Aside\"");
   components: {
     AppHeader: __WEBPACK_IMPORTED_MODULE_0__components_Header__["a" /* default */],
     Sidebar: __WEBPACK_IMPORTED_MODULE_1__components_Sidebar__["a" /* default */],
-    AppAside: __WEBPACK_IMPORTED_MODULE_2__components_Aside___default.a,
-    AppFooter: __WEBPACK_IMPORTED_MODULE_3__components_Footer__["a" /* default */]
+    AppFooter: __WEBPACK_IMPORTED_MODULE_2__components_Footer__["a" /* default */]
   },
   data: function data() {
     return {
@@ -115403,6 +115400,8 @@ exports.push([module.i, "\n.has-error{\n  border: 1px solid red;\n}\n", ""]);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'Login',
@@ -115453,7 +115452,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "app flex-row align-items-center"
   }, [_c('div', {
     staticClass: "container"
-  }, [_c('div', {
+  }, [_c('router-link', {
+    attrs: {
+      "to": {
+        name: 'Register'
+      }
+    }
+  }, [_vm._v("Crear Cuenta")]), _vm._v(" "), _c('div', {
     staticClass: "row justify-content-center"
   }, [_c('div', {
     staticClass: "col-md-8"
@@ -115524,7 +115529,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm.user.password = $event.target.value
       }
     }
-  })]), _vm._v(" "), _vm._m(2)])])]), _vm._v(" "), _vm._m(3)])])])])])
+  })]), _vm._v(" "), _vm._m(2)])])]), _vm._v(" "), _vm._m(3)])])])], 1)])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('span', {
@@ -115649,31 +115654,22 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'Register'
+  name: 'Register',
+  data: function data() {
+    return {};
+  },
+
+  methods: {
+    facebook: function facebook() {
+      Store.facebook().then(function (res) {
+        console.log(res);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -115682,9 +115678,6 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "app flex-row align-items-center"
   }, [_c('div', {
@@ -115695,62 +115688,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "col-md-6"
   }, [_c('div', {
     staticClass: "card mx-2"
-  }, [_c('div', {
-    staticClass: "card-block p-2"
-  }, [_c('h1', [_vm._v("Register")]), _vm._v(" "), _c('p', {
-    staticClass: "text-muted"
-  }, [_vm._v("Create your account")]), _vm._v(" "), _c('div', {
-    staticClass: "input-group mb-1"
-  }, [_c('span', {
-    staticClass: "input-group-addon"
-  }, [_c('i', {
-    staticClass: "icon-user"
-  })]), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "placeholder": "Username"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "input-group mb-1"
-  }, [_c('span', {
-    staticClass: "input-group-addon"
-  }, [_vm._v("@")]), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "placeholder": "Email"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "input-group mb-1"
-  }, [_c('span', {
-    staticClass: "input-group-addon"
-  }, [_c('i', {
-    staticClass: "icon-lock"
-  })]), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "password",
-      "placeholder": "Password"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "input-group mb-2"
-  }, [_c('span', {
-    staticClass: "input-group-addon"
-  }, [_c('i', {
-    staticClass: "icon-lock"
-  })]), _vm._v(" "), _c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "password",
-      "placeholder": "Repeat password"
-    }
-  })]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-block btn-success",
-    attrs: {
-      "type": "button"
-    }
-  }, [_vm._v("Create Account")])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "card-footer p-2"
   }, [_c('div', {
     staticClass: "row"
@@ -115760,15 +115698,27 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "btn btn-block btn-facebook",
     attrs: {
       "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.facebook()
+      }
     }
-  }, [_c('span', [_vm._v("facebook")])])]), _vm._v(" "), _c('div', {
+  }, [_c('span', [_vm._v("facebook")])])]), _vm._v(" "), _vm._m(1)])])])])])])])
+}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-block p-2"
+  }, [_c('h3', [_vm._v("Registrar")])])
+},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "col-6"
   }, [_c('button', {
     staticClass: "btn btn-block btn-twitter",
     attrs: {
       "type": "button"
     }
-  }, [_c('span', [_vm._v("twitter")])])])])])])])])])])
+  }, [_c('span', [_vm._v("twitter")])])])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
@@ -118820,6 +118770,9 @@ if (false) {
 var API = {
   register: '/api/register',
   login: '/api/login',
+  loginUsers: {
+    facebook: '/api/login/facebook'
+  },
   admin: {
     addCliente: '/api/user/createClient',
     getClientes: '/api/user/getClientes',
@@ -119072,6 +119025,16 @@ Store.editCategoria = function (categoria) {
 
 	return new Promise(function (resolve, reject) {
 		axios.put(API.admin.editCategoria + '/' + id + '', categoria).then(function (res) {
+			resolve(res);
+		}).catch(function (error) {
+			reject(error);
+		});
+	});
+};
+
+Store.facebook = function () {
+	return new Promise(function (resolve, reject) {
+		axios.get(API.loginUsers.facebook).then(function (res) {
 			resolve(res);
 		}).catch(function (error) {
 			reject(error);

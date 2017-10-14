@@ -270,5 +270,18 @@ Store.editCategoria = function (categoria) {
 }
 
 
+Store.facebook = function () {
+	return new Promise((resolve, reject)=> {
+		axios.get(API.loginUsers.facebook)
+		.then(res => {
+			resolve(res)
+		})
+		.catch(error => {
+			reject(error)
+		})
+	})
+}
+
+
 export default Store
 

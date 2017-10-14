@@ -1,6 +1,9 @@
 const API = {
   register: '/api/register',
   login : '/api/login',
+  loginUsers: {
+    facebook: '/api/login/facebook'
+  },
   admin: {
     addCliente: '/api/user/createClient',
     getClientes:'/api/user/getClientes',
