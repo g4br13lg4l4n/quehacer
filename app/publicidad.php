@@ -7,7 +7,7 @@ use App\Cliente;
 use App\Categoria;
 class Publicidad extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['created_at', 'update_at'];
 
     public function cliente()
     {
