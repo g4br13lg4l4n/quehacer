@@ -21,7 +21,7 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
 
-        define('UPLOAD_DIR', 'images/');
+        define('UPLOAD_DIR', 'storage/');
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
