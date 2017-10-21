@@ -12,8 +12,13 @@ class CreatePublicidadsTable extends Migration
             $table->increments('id');
             $table->integer('cliente_id')->unsigned();
             $table->foreign('cliente_id')->references('id')->on('clientes');
+
             $table->integer('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
+            
+            $table->integer('pictore_id')->unsigned()->nullable();
+            $table->foreign('pictore_id')->references('id')->on('pictores');
+
             $table->string('resena');
             $table->string('ubicacion');
             $table->string('costo');
@@ -24,6 +29,7 @@ class CreatePublicidadsTable extends Migration
             $table->string('clima');
             $table->string('estacionamiento');
             $table->string('domicilio');
+
             $table->timestamps();
         });
     }

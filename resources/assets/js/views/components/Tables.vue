@@ -15,6 +15,7 @@
                   <th>Correo</th>
                   <th>Teléfono</th>
                   <th>Responsable</th>
+                  <th>Imagen</th>
                   <th>No. Publicaciones</th>
                   <th>Acciones</th>
                 </tr>
@@ -27,6 +28,7 @@
                   <td>{{ cliente.correo }}</td>
                   <td>{{ cliente.phone }}</td> 
                   <td>{{ cliente.responsable }}</td>
+                  <td> <img class="img" v-bind:src="cliente.imagen" > </td> 
                   <td>
                     <button type="button" class="btn btn-info"> 0 </button>
                   </td> 
@@ -95,16 +97,20 @@ export default {
       Store.getClientes()
       .then(res => {
         this.clientes = res.data
+        console.log(this.clientes)
       })
     })
   }
 }
 </script>
-<style>
+<style scoped>
   .table-bordered th, .table-bordered td {
     text-align: center;
   }
   .with-td-btn{
     width: 200px;
+  }
+  .img{
+    width: 80px;
   }
 </style>

@@ -15,7 +15,23 @@ class PublicidadsController extends Controller
 
     public function store(Request $request)
     {
+
+       $images = $request->images;
+
+        for ($i=0; $i < count($images); $i++) { 
+            print_r($images[$i]);
+        }
+
+/*
+        foreach ($images as $clave => $valor) {
+            print_r($valor);
+        }
+*/
+    /*    
         $publicidad = new Publicidad;
+
+        $archivo = $request->file('image');
+
 
 
         $request->aireAcondicionado ? $clima = 1 : $clima = 0;
@@ -41,6 +57,7 @@ class PublicidadsController extends Controller
         return response()->json([
             'respuesta' => 'Se ah agregado la nueva Publicidad',
         ], 200);
+        */
     }
 
     public function destroy($id)

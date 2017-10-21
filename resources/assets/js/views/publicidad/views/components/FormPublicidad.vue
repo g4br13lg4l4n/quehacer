@@ -63,7 +63,12 @@
                   <input type="text" class="form-control" id="Correo" v-model="publicidad.correo" placeholder="Correo">
                 </div>
               </div><!--/.row-->
-
+              <div class="form-group row">
+                <label class="col-md-1 form-control-label" for="file-multiple-input">Imagenes</label>
+                <div class="col-md-9">
+                  <input type="file" multiple ref="file_input" @change="uploadFiles">
+                </div>
+              </div>
               <div class="form-group row">
                 <label class="col-md-3 form-control-label">Servicios adicionales</label>
                 <div class="col-md-9">
@@ -98,9 +103,10 @@
 </template>
 
 <script>
-
 export default {
   name: 'forms',
+  components: {
+  },
   data () {
     return {
       clientes: [],
@@ -116,7 +122,8 @@ export default {
         correo: '',
         aireAcondicionado: '0',
         estacionamiento: '0',
-        servicioDomicilio:'0'
+        servicioDomicilio:'0',
+        images: []
       }
     }
   },
@@ -130,7 +137,20 @@ export default {
         this.categorias = res.data
       }) 
   },
+
   methods: {
+    uploadFiles: function () {
+      var files = this.$refs.file_input.files;
+      
+      var data = new FormData();
+      for (var i = 0; i< files.length; i++) {
+         data.append('input_name[]', files[i])
+      }
+      
+      this.publicidad.images = data.getAll('input_name[]')
+      console.log(this.publicidad.images)
+      
+    },
     CreatePublicidad(publicidad){
       Store.CreatePublicidad(this.publicidad)
       .then(res => {

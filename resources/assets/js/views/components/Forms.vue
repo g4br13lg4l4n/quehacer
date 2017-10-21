@@ -7,10 +7,17 @@
             <strong>Datos del Cliente</strong>
           </div>
           <div class="card-block">
-            <form @submit.prevent="CreateClient(cliente)">
+            <form @submit.prevent="CreateClient(cliente)" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="empresa">Empresa</label>
-                <input type="text" class="form-control" value="" v-model="cliente.empresa" id="empresa" placeholder="Nombre de la empresa o establecimiento">
+                <input type="text" class="form-control" v-model="cliente.empresa" id="empresa" placeholder="Nombre de la empresa o establecimiento">
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 form-control-label" for="file-input">Imágen</label>
+                <div class="col-md-9">
+                  <input type="file" id="file-input" v-on:change="upImages" name="file-input">
+                </div>
               </div>
 
               <div class="form-group">
@@ -79,18 +86,29 @@ export default {
         estado: '',
         colonia: '',
         direccion: '',
-        establecimiento: ''
+        establecimiento: '',
+        image: ''
       }
     }
   },
   methods: {
+    upImages(e) {
+      var fileReader =  new FileReader()
+      
+      fileReader.readAsDataURL(e.target.files[0])
+      fileReader.onload = (e) => {
+        this.cliente.image = e.target.result
+      }
+    },
     CreateClient(cliente) {
       if(!this.cliente.empresa && !this.cliente.responsable){ 
           this.errors.hasError = true
         return 
       }
+      console.log(this.cliente)
       Store.CreateClient(this.cliente)
         .then(res => {
+          console.log(res.data.respuesta)
           this.$toaster.success(res.data.respuesta)
           this.cliente = {};
         })

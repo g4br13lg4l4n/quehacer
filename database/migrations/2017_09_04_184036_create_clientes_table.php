@@ -24,6 +24,7 @@ class CreateClientesTable extends Migration
             $table->string('correo');
             $table->string('phone');
             $table->string('responsable');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

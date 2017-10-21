@@ -38,7 +38,8 @@ Store.CreateClient = function (cliente) {
 		estado: cliente.estado,
 		colonia: cliente.colonia,
 		direccion: cliente.direccion,
-		establecimiento: cliente.establecimiento
+		establecimiento: cliente.establecimiento,
+		image: cliente.image
 	}
 	return new Promise((resolve, reject) => {
 		axios.post(API.admin.addCliente, data)

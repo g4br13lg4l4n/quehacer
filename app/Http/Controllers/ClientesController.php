@@ -21,6 +21,14 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
 
+        define('UPLOAD_DIR', 'images/');
+        $image_parts = explode(";base64,", $request->image);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $file = '../../'.UPLOAD_DIR . uniqid() . '.png';
+        file_put_contents($file, $image_base64);
+
         $cliente = new Cliente;
 
         $cliente->empresa = $request->empresa;
@@ -32,12 +40,14 @@ class ClientesController extends Controller
         $cliente->correo = $request->correo;
         $cliente->phone = $request->telefono;
         $cliente->responsable = $request->responsable;
+        $cliente->imagen = $file;
         
         $cliente->save();
 
         return response()->json([
             'respuesta' => 'Se ha agregado un nuevo Cliente',
         ], 200);
+  
     }
 
 
