@@ -40722,9 +40722,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('App', __webpack_require__
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8__components_plugins_event_bus__["a" /* default */]);
 
 var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
-
-__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://localhost:8085/';
-
+__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://localhost:8000/';
 //axios.defaults.baseURL = 'http://165.227.111.118/'; 
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
@@ -100813,24 +100812,28 @@ if (false) {
 
       fileReader.readAsDataURL(e.target.files[0]);
       fileReader.onload = function (e) {
+        console.log(e.target);
         _this.cliente.image = e.target.result;
+        console.log(e.target.result);
       };
     },
     CreateClient: function CreateClient(cliente) {
-      var _this2 = this;
-
       if (!this.cliente.empresa && !this.cliente.responsable) {
         this.errors.hasError = true;
         return;
       }
-      console.log(this.cliente);
-      Store.CreateClient(this.cliente).then(function (res) {
-        console.log(res.data.respuesta);
-        _this2.$toaster.success(res.data.respuesta);
-        _this2.cliente = {};
-      }).catch(function (error) {
-        _this2.$toaster.error('Hubo un error al ingresar el cliente' + _this2.empresa);
-      });
+      //  console.log(this.cliente.image)
+      /*  
+        Store.CreateClient(this.cliente)
+          .then(res => {
+            console.log(res.data.respuesta)
+            this.$toaster.success(res.data.respuesta)
+            this.cliente = {};
+          })
+          .catch(error => {
+            this.$toaster.error('Hubo un error al ingresar el cliente'+ this.empresa)
+          })
+        */
     }
   }
 });
@@ -105348,7 +105351,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered td[data-v-ef91ba64] {\n  text-align: center;\n}\n.with-td-btn[data-v-ef91ba64]{\n  width: 200px;\n}\n.img[data-v-ef91ba64]{\n  width: 80px;\n}\n", ""]);
+exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered td[data-v-ef91ba64] {\n  text-align: center;\n}\n.with-td-btn[data-v-ef91ba64]{\n  width: 200px;\n}\n.img[data-v-ef91ba64]{\n  width: 80px;\n}\ntd[data-v-ef91ba64]{\n  max-width: 150px;\n  word-break: break-all;\n}\n", ""]);
 
 // exports
 
@@ -117436,25 +117439,32 @@ if (false) {(function () {
 
 
   methods: {
-    uploadFiles: function uploadFiles() {
-      var files = this.$refs.file_input.files;
-
-      var data = new FormData();
-      for (var i = 0; i < files.length; i++) {
-        data.append('input_name[]', files[i]);
-      }
-
-      this.publicidad.images = data.getAll('input_name[]');
-      console.log(this.publicidad.images);
-    },
-    CreatePublicidad: function CreatePublicidad(publicidad) {
+    uploadFiles: function uploadFiles(e) {
       var _this2 = this;
 
+      var fileReader = void 0;
+      var files = e.target;
+      var imgCant = e.target.files.length;
+      var file = void 0;
+
+      for (var i = 0; i < imgCant; i++) {
+        file = files.files[i];
+        fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = function (e) {
+          console.log(e.target.result);
+          _this2.publicidad.images = e.target.result;
+        };
+      }
+    },
+    CreatePublicidad: function CreatePublicidad(publicidad) {
+      var _this3 = this;
+
       Store.CreatePublicidad(this.publicidad).then(function (res) {
-        _this2.$toaster.success(res.data.respuesta);
-        _this2.publicidad = {};
+        _this3.$toaster.success(res.data.respuesta);
+        _this3.publicidad = {};
       }).catch(function (error) {
-        _this2.$toaster.error('Hubo un error al ingresar la Publicidad');
+        _this3.$toaster.error('Hubo un error al ingresar la Publicidad');
       });
     }
   }
@@ -117477,6 +117487,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "card-block"
   }, [_c('form', {
+    attrs: {
+      "enctype": "multipart/form-data"
+    },
     on: {
       "submit": function($event) {
         $event.preventDefault();

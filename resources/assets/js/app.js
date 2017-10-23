@@ -17,9 +17,8 @@ Vue.component('App', require('./App.vue'));
 Vue.use(EventBus)
 
 var bus = new Vue()
-
-axios.defaults.baseURL = 'http://localhost:8085/';
-
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+axios.defaults.baseURL = 'http://localhost:8000/';
 //axios.defaults.baseURL = 'http://165.227.111.118/'; 
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',

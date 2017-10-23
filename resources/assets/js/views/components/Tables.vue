@@ -113,4 +113,8 @@ export default {
   .img{
     width: 80px;
   }
+  td{
+    max-width: 150px;
+    word-break: break-all;
+  }
 </style>

@@ -97,7 +97,9 @@ export default {
       
       fileReader.readAsDataURL(e.target.files[0])
       fileReader.onload = (e) => {
+        console.log(e.target)
         this.cliente.image = e.target.result
+        console.log(e.target.result)
       }
     },
     CreateClient(cliente) {
@@ -105,7 +107,8 @@ export default {
           this.errors.hasError = true
         return 
       }
-      console.log(this.cliente)
+    //  console.log(this.cliente.image)
+    /*  
       Store.CreateClient(this.cliente)
         .then(res => {
           console.log(res.data.respuesta)
@@ -115,6 +118,7 @@ export default {
         .catch(error => {
           this.$toaster.error('Hubo un error al ingresar el cliente'+ this.empresa)
         })
+      */
     }
   },
 }
