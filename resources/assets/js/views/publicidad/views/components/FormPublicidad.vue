@@ -7,7 +7,7 @@
             <strong>Datos de la Publicidad</strong>
           </div>
           <div class="card-block">
-            <form @submit.prevent="CreatePublicidad(publicidad)">
+            <form @submit.prevent="CreatePublicidad(publicidad)" enctype="multipart/form-data">
               <div class="row">
 
                 <div class="form-group col-sm-6">
@@ -66,7 +66,7 @@
               <div class="form-group row">
                 <label class="col-md-1 form-control-label" for="file-multiple-input">Imagenes</label>
                 <div class="col-md-9">
-                  <input type="file" multiple ref="file_input" @change="uploadFiles">
+                  <input type="file" multiple ref="file_input" v-on:change="uploadFiles">
                 </div>
               </div>
               <div class="form-group row">
@@ -139,16 +139,21 @@ export default {
   },
 
   methods: {
-    uploadFiles: function () {
-      var files = this.$refs.file_input.files;
+    uploadFiles(e){
+      let fileReader
+      const files = e.target;
+      const imgCant = e.target.files.length;
+      let file;
       
-      var data = new FormData();
-      for (var i = 0; i< files.length; i++) {
-         data.append('input_name[]', files[i])
+      for (let i = 0; i < imgCant; i++) {
+        file = files.files[i]
+        fileReader = new FileReader()
+        fileReader.readAsDataURL(file)
+        fileReader.onload = ((e) => {
+          console.log(e.target.result)
+          this.publicidad.images = e.target.result
+        })
       }
-      
-      this.publicidad.images = data.getAll('input_name[]')
-      console.log(this.publicidad.images)
       
     },
     CreatePublicidad(publicidad){

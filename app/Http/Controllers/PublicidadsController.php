@@ -16,17 +16,8 @@ class PublicidadsController extends Controller
     public function store(Request $request)
     {
 
-       $images = $request->images;
+        dd($request);
 
-        for ($i=0; $i < count($images); $i++) { 
-            print_r($images[$i]);
-        }
-
-/*
-        foreach ($images as $clave => $valor) {
-            print_r($valor);
-        }
-*/
     /*    
         $publicidad = new Publicidad;
 
