@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cliente;
 use App\Publicidad;
+use App\Picture;
 use Illuminate\Support\Facades\Storage;
 class ClientesController extends Controller
 {
@@ -94,7 +95,8 @@ class ClientesController extends Controller
         $clean_url = explode('/', $get_picture);
         $picture = $clean_url[4];
         Storage::delete('public/uploads/'.$picture);
-
+        
+        $cliente->publicidads()->pictures()->delete();
         $cliente->publicidads()->delete();
         $cliente->delete();
 

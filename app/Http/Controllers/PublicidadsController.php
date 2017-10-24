@@ -16,16 +16,25 @@ class PublicidadsController extends Controller
 
     public function store(Request $request)
     {
-
-       define('UPLOAD_DIR', 'public/storage/uploads/');
-        
+        $pictureArray = [];
+        define('UPLOAD_DIR', 'public/storage/uploads/');
+        foreach ($request->images as $image) {
+            $image_parts = explode(";base64,", $image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = '../'.UPLOAD_DIR . uniqid() . '.png';
+            file_put_contents($file, $image_base64);
+            $explde_file = explode("public/", $file);
+            $file2 = '../'.$explde_file[0].$explde_file[1];
+            array_push($pictureArray, $file2); 
+        }
         $publicidad = new Publicidad;
 
         $request->aireAcondicionado ? $clima = 1 : $clima = 0;
         $request->estacionamiento ? $estacionamiento = 1 : $estacionamiento = 0;
         $request->servicioDomicilio ? $servicioDomicilio = 1 : $servicioDomicilio = 0;
  
-
         $publicidad->cliente_id = $request->empresa;
         $publicidad->resena = $request->rEstablecimento;
         $publicidad->ubicacion = $request->ubicacion;
@@ -40,25 +49,11 @@ class PublicidadsController extends Controller
         $publicidad->categoria_id = $request->categoria;
         $publicidad->save();
 
-
-        if($publicidad->id) {
+        foreach ($pictureArray as $value) {
             $picture = new Picture;
-            foreach ($request->images as $image) {
-                $image_parts = explode(";base64,", $image);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
-                $image_base64 = base64_decode($image_parts[1]);
-                $file = '../'.UPLOAD_DIR . uniqid() . '.png';
-                file_put_contents($file, $image_base64);
-                $explde_file = explode("public/", $file);
-                $file2 = '../'.$explde_file[0].$explde_file[1];
-
-                dd($file2);
-
-                $picture->url = $file2;
-                $picture->publicidad_id = $publicidad->id;
-                $picture->save();
-            }
+            $picture->url = $value;
+            $picture->publicidad_id = $publicidad->id;   
+            $picture->save();
         }
 
         return response()->json([
