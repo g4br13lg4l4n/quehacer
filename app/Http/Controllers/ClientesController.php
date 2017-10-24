@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cliente;
 use App\Publicidad;
+use Illuminate\Support\Facades\Storage;
 class ClientesController extends Controller
 {
     public function index()
@@ -89,6 +90,11 @@ class ClientesController extends Controller
     public function destroy($id)
     {
         $cliente = Cliente::find($id);
+        $get_picture = Cliente::find($id)->imagen;
+        $clean_url = explode('/', $get_picture);
+        $picture = $clean_url[4];
+        Storage::delete('public/uploads/'.$picture);
+
         $cliente->publicidads()->delete();
         $cliente->delete();
 

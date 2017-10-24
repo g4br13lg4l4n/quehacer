@@ -100812,28 +100812,23 @@ if (false) {
 
       fileReader.readAsDataURL(e.target.files[0]);
       fileReader.onload = function (e) {
-        console.log(e.target);
         _this.cliente.image = e.target.result;
-        console.log(e.target.result);
       };
     },
     CreateClient: function CreateClient(cliente) {
+      var _this2 = this;
+
       if (!this.cliente.empresa && !this.cliente.responsable) {
         this.errors.hasError = true;
         return;
       }
-      //  console.log(this.cliente.image)
-      /*  
-        Store.CreateClient(this.cliente)
-          .then(res => {
-            console.log(res.data.respuesta)
-            this.$toaster.success(res.data.respuesta)
-            this.cliente = {};
-          })
-          .catch(error => {
-            this.$toaster.error('Hubo un error al ingresar el cliente'+ this.empresa)
-          })
-        */
+      Store.CreateClient(this.cliente).then(function (res) {
+        console.log(res.data.respuesta);
+        _this2.$toaster.success(res.data.respuesta);
+        _this2.cliente = {};
+      }).catch(function (error) {
+        _this2.$toaster.error('Hubo un error al ingresar el cliente' + _this2.empresa);
+      });
     }
   }
 });
@@ -105351,7 +105346,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered td[data-v-ef91ba64] {\n  text-align: center;\n}\n.with-td-btn[data-v-ef91ba64]{\n  width: 200px;\n}\n.img[data-v-ef91ba64]{\n  width: 80px;\n}\ntd[data-v-ef91ba64]{\n  max-width: 150px;\n  word-break: break-all;\n}\n", ""]);
+exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered td[data-v-ef91ba64] {\n  text-align: center;\n}\n.with-td-btn[data-v-ef91ba64]{\n  width: 200px;\n}\n.img[data-v-ef91ba64]{\n  width: 80px;\n}\ntd[data-v-ef91ba64]{\n  max-width: 150px;\n  word-break: break-all;\n}\n.no-datas[data-v-ef91ba64]{\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -105364,6 +105359,11 @@ exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Modal_vue__ = __webpack_require__(560);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_strap_src_Modal__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Forms_vue__ = __webpack_require__(39);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
 //
 //
 //
@@ -105442,10 +105442,16 @@ exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered 
   },
   data: function data() {
     return {
-      clientes: []
+      clientes: [],
+      clienteVacio: false
     };
   },
 
+  computed: {
+    ClientesMessage: function ClientesMessage() {
+      return 'No encontramos Clientes';
+    }
+  },
   methods: {
     modalDelete: function modalDelete(id) {
       this.$bus.$emit('delete-cliente', id);
@@ -105459,12 +105465,13 @@ exports.push([module.i, "\n.table-bordered th[data-v-ef91ba64], .table-bordered 
 
     Store.getClientes().then(function (res) {
       _this.clientes = res.data;
+      _this.clienteVacio = _typeof(_this.clientes[0]) === 'object';
     });
 
     this.$bus.$on('update-Table', function () {
       Store.getClientes().then(function (res) {
         _this.clientes = res.data;
-        console.log(_this.clientes);
+        _this.clienteVacio = _typeof(_this.clientes[0]) === 'object';
       });
     });
   }
@@ -106083,7 +106090,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('table', {
     staticClass: "table table-bordered table-striped table-condensed"
-  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.clientes), function(cliente) {
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', [_vm._l((_vm.clientes), function(cliente) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.rfc))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.correo))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.phone))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(cliente.responsable))]), _vm._v(" "), _c('td', [_c('img', {
       staticClass: "img",
       attrs: {
@@ -106112,7 +106119,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._v("Eliminar")])])])
-  }))]), _vm._v(" "), _vm._m(3)])])])]), _vm._v(" "), _c('AppModal')], 1)
+  }), _vm._v(" "), (this.clienteVacio === false) ? _c('tr', [_c('td', {
+    staticClass: "no-datas"
+  }, [_vm._v(" " + _vm._s(_vm.ClientesMessage) + " ")])]) : _vm._e()], 2)]), _vm._v(" "), _vm._m(3)])])])]), _vm._v(" "), _c('AppModal')], 1)
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -117452,13 +117461,14 @@ if (false) {(function () {
         fileReader = new FileReader();
         fileReader.readAsDataURL(file);
         fileReader.onload = function (e) {
-          console.log(e.target.result);
-          _this2.publicidad.images = e.target.result;
+          _this2.publicidad.images.push(e.target.result);
         };
       }
     },
     CreatePublicidad: function CreatePublicidad(publicidad) {
       var _this3 = this;
+
+      console.log(this.publicidad);
 
       Store.CreatePublicidad(this.publicidad).then(function (res) {
         _this3.$toaster.success(res.data.respuesta);

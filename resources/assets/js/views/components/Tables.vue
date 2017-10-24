@@ -22,22 +22,25 @@
               </thead>
               <tbody>
 
-                <tr v-for="cliente in clientes">
-                  <td>{{ cliente.empresa }}</td>
-                  <td>{{ cliente.rfc }}</td>
-                  <td>{{ cliente.correo }}</td>
-                  <td>{{ cliente.phone }}</td> 
-                  <td>{{ cliente.responsable }}</td>
-                  <td> <img class="img" v-bind:src="cliente.imagen" > </td> 
-                  <td>
-                    <button type="button" class="btn btn-info"> 0 </button>
-                  </td> 
-                  <td class="with-td-btn">
-                    <button type="button" class="btn btn-primary" @click="modalCliente(cliente.id)">Editar</button>
-                    <button type="button" class="btn btn-danger"  @click="modalDelete(cliente.id)">Eliminar</button>
-                  </td>
-                </tr>
- 
+          
+                  <tr v-for="cliente in clientes">
+                    <td>{{ cliente.empresa }}</td>
+                    <td>{{ cliente.rfc }}</td>
+                    <td>{{ cliente.correo }}</td>
+                    <td>{{ cliente.phone }}</td> 
+                    <td>{{ cliente.responsable }}</td>
+                    <td> <img class="img" v-bind:src="cliente.imagen" > </td> 
+                    <td>
+                      <button type="button" class="btn btn-info"> 0 </button>
+                    </td> 
+                    <td class="with-td-btn">
+                      <button type="button" class="btn btn-primary" @click="modalCliente(cliente.id)">Editar</button>
+                      <button type="button" class="btn btn-danger"  @click="modalDelete(cliente.id)">Eliminar</button>
+                    </td>
+                  </tr>
+                <tr v-if="this.clienteVacio === false">
+                  <td class='no-datas'> {{ ClientesMessage }} </td>
+                </tr> 
               </tbody>
             </table>
             <nav>
@@ -72,11 +75,17 @@ export default {
   components: {
     modal,
     AppForm,
-    AppModal
+    AppModal,
   },
   data () {
     return {
       clientes: [],
+      clienteVacio: false
+    }
+  },
+  computed: {
+    ClientesMessage () {
+      return `No encontramos Clientes`
     }
   },
   methods:{
@@ -91,13 +100,14 @@ export default {
     Store.getClientes()
       .then(res => {
         this.clientes = res.data
+        this.clienteVacio =  typeof( this.clientes[0]) === 'object'
       })   
 
     this.$bus.$on('update-Table', () => {
       Store.getClientes()
       .then(res => {
         this.clientes = res.data
-        console.log(this.clientes)
+        this.clienteVacio =  typeof( this.clientes[0]) === 'object'
       })
     })
   }
@@ -116,5 +126,8 @@ export default {
   td{
     max-width: 150px;
     word-break: break-all;
+  }
+  .no-datas{
+    text-align: center;
   }
 </style>

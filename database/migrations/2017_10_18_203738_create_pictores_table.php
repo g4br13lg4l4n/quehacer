@@ -16,6 +16,8 @@ class CreatePictoresTable extends Migration
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
+            $table->integer('publicidad_id')->unsigned();
+            $table->foreign('publicidad_id')->references('id')->on('publicidads');
             $table->timestamps();
         });
     }

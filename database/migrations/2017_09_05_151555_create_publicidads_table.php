@@ -15,9 +15,6 @@ class CreatePublicidadsTable extends Migration
 
             $table->integer('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
-            
-            $table->integer('pictore_id')->unsigned()->nullable();
-            $table->foreign('pictore_id')->references('id')->on('pictores');
 
             $table->string('resena');
             $table->string('ubicacion');

@@ -150,13 +150,14 @@ export default {
         fileReader = new FileReader()
         fileReader.readAsDataURL(file)
         fileReader.onload = ((e) => {
-          console.log(e.target.result)
-          this.publicidad.images = e.target.result
+          this.publicidad.images.push(e.target.result) 
         })
       }
       
     },
     CreatePublicidad(publicidad){
+      console.log(this.publicidad)
+    
       Store.CreatePublicidad(this.publicidad)
       .then(res => {
         this.$toaster.success(res.data.respuesta)
@@ -165,6 +166,7 @@ export default {
       .catch(error => {
           this.$toaster.error('Hubo un error al ingresar la Publicidad')
         })
+    
     }
   }, 
 }

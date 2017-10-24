@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Publicidad;
 use App\Cliente;
+use App\Picture;
 class PublicidadsController extends Controller
 {
     public function index()
@@ -16,14 +17,29 @@ class PublicidadsController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
+       define('UPLOAD_DIR', 'public/storage/uploads/');
+       foreach ($request->images as $image) {
 
-    /*    
+            $image_parts = explode(";base64,", $image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = '../'.UPLOAD_DIR . uniqid() . '.png';
+            file_put_contents($file, $image_base64);
+            $explde_file = explode("public/", $file);
+            $file2 = '../'.$explde_file[0].$explde_file[1];
+
+        }
+        $picture = Picture::create([
+            'url' => 'best business ever'
+        ]);
+
+        $business->owners()->sync([$user->id]);
+
+        return $user;
+
+       
         $publicidad = new Publicidad;
-
-        $archivo = $request->file('image');
-
-
 
         $request->aireAcondicionado ? $clima = 1 : $clima = 0;
         $request->estacionamiento ? $estacionamiento = 1 : $estacionamiento = 0;
@@ -42,13 +58,18 @@ class PublicidadsController extends Controller
         $publicidad->estacionamiento = $estacionamiento;
         $publicidad->domicilio = $servicioDomicilio;
         $publicidad->categoria_id = $request->categoria;
-
         $publicidad->save();
+
+
+
+
+
+
 
         return response()->json([
             'respuesta' => 'Se ah agregado la nueva Publicidad',
         ], 200);
-        */
+        
     }
 
     public function destroy($id)
