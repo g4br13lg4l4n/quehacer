@@ -40724,9 +40724,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8__com
 var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 __WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 
-//axios.defaults.baseURL = 'http://localhost:8000/';
-
-__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://165.227.111.118/';
+__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://localhost:8000/';
+//axios.defaults.baseURL = 'http://165.227.111.118/'; 
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
@@ -100805,7 +100804,8 @@ if (false) {
         direccion: '',
         establecimiento: '',
         image: ''
-      }
+      },
+      status: false
     };
   },
 
@@ -100824,14 +100824,17 @@ if (false) {
       var _this2 = this;
 
       if (!this.cliente.empresa && !this.cliente.responsable) {
-        this.errors.hasError = true;
+        this.$toaster.warning('Todos los datos son necesarios');
         return;
       }
+      this.status = true;
+      document.getElementById('file-input').value = '';
       Store.CreateClient(this.cliente).then(function (res) {
-        console.log(res.data.respuesta);
         _this2.$toaster.success(res.data.respuesta);
         _this2.cliente = {};
+        _this2.status = false;
       }).catch(function (error) {
+        _this2.status = false;
         _this2.$toaster.error('Hubo un error al ingresar el cliente' + _this2.empresa);
       });
     }
@@ -100893,13 +100896,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group row"
   }, [_c('label', {
-    staticClass: "col-md-3 form-control-label",
+    staticClass: "col-md-1 form-control-label",
     attrs: {
       "for": "file-input"
     }
-  }, [_vm._v("Imágen")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Imagen")]), _vm._v(" "), _c('div', {
     staticClass: "col-md-9"
   }, [_c('input', {
     attrs: {
@@ -101138,21 +101141,20 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm.cliente.establecimiento = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _vm._m(1)])])])])])])
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-actions"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit",
+      "disabled": _vm.status
+    }
+  }, [_vm._v("Guardar")])])])])])])])])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-header"
   }, [_c('strong', [_vm._v("Datos del Cliente")])])
-},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-actions"
-  }, [_c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("Guardar")])])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
@@ -116238,7 +116240,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-align: center;\n}\n.with-td-btn{\n  width: 200px;\n}\n", ""]);
+exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-align: center;\n}\n.with-td-btn{\n  width: 200px;\n}\nli{\n  list-style: none;\n}\nli img{\n  width: 40px;\n}\n", ""]);
 
 // exports
 
@@ -116251,6 +116253,12 @@ exports.push([module.i, "\n.table-bordered th, .table-bordered td {\n  text-alig
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ModalPublicidad_vue__ = __webpack_require__(601);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_strap_src_Modal__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FormPublicidadUpdate_vue__ = __webpack_require__(242);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -117129,7 +117137,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('table', {
     staticClass: "table table-bordered table-striped table-condensed"
   }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.publicidads), function(publicidad) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.categoria.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.resena))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(publicidad.cliente.empresa))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.categoria.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.resena))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.telefono))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(publicidad.correo))]), _vm._v(" "), _c('td', _vm._l((publicidad.pictures), function(picture) {
+      return _c('li', [_c('img', {
+        attrs: {
+          "src": picture.url
+        }
+      })])
+    })), _vm._v(" "), _c('td', {
       staticClass: "with-td-btn"
     }, [_c('button', {
       staticClass: "btn btn-primary",
@@ -117161,7 +117175,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "fa fa-qq"
   }), _vm._v(" PUBLICIDAD\n        ")])
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("Empresa")]), _vm._v(" "), _c('th', [_vm._v("Categoría")]), _vm._v(" "), _c('th', [_vm._v("Reseña")]), _vm._v(" "), _c('th', [_vm._v("Teléfono")]), _vm._v(" "), _c('th', [_vm._v("Correo")]), _vm._v(" "), _c('th', [_vm._v("Acciones")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Empresa")]), _vm._v(" "), _c('th', [_vm._v("Categoría")]), _vm._v(" "), _c('th', [_vm._v("Reseña")]), _vm._v(" "), _c('th', [_vm._v("Teléfono")]), _vm._v(" "), _c('th', [_vm._v("Correo")]), _vm._v(" "), _c('th', [_vm._v("Imagenes")]), _vm._v(" "), _c('th', [_vm._v("Acciones")])])])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
@@ -117415,7 +117429,6 @@ if (false) {(function () {
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'forms',
@@ -117437,7 +117450,8 @@ if (false) {(function () {
         estacionamiento: '0',
         servicioDomicilio: '0',
         images: []
-      }
+      },
+      status: false
     };
   },
   created: function created() {
@@ -117474,12 +117488,14 @@ if (false) {(function () {
       var _this3 = this;
 
       document.getElementById('files').value = '';
-
+      this.status = true;
       Store.CreatePublicidad(this.publicidad).then(function (res) {
+        _this3.status = false;
         _this3.$toaster.success(res.data.respuesta);
         _this3.publicidad = {};
         _this3.publicidad.images = [];
       }).catch(function (error) {
+        _this3.status = false;
         _this3.$toaster.error('Hubo un error al ingresar la Publicidad');
       });
     }
@@ -117903,21 +117919,20 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }
-  }), _vm._v(" Servicio a domicilio\n                  ")])])])]), _vm._v(" "), _vm._m(1)])])])])])])
+  }), _vm._v(" Servicio a domicilio\n                  ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-actions"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit",
+      "disabled": _vm.status
+    }
+  }, [_vm._v("Guardar")])])])])])])])])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-header"
   }, [_c('strong', [_vm._v("Datos de la Publicidad")])])
-},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-actions"
-  }, [_c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("Guardar")])])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }

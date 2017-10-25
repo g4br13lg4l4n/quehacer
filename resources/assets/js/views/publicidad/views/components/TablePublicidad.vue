@@ -15,6 +15,7 @@
                   <th>Reseña</th>
                   <th>Teléfono</th>
                   <th>Correo</th>
+                  <th>Imagenes</th>  
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -26,6 +27,11 @@
                   <td>{{ publicidad.resena }}</td> 
                   <td>{{ publicidad.telefono }}</td> 
                   <td>{{ publicidad.correo }}</td>
+                  <td>
+                    <li v-for="picture in publicidad.pictures">
+                          <img :src="picture.url" /> 
+                    </li>  
+                  </td>
                   <td class="with-td-btn">
                     <button type="button" class="btn btn-primary" @click="modalPublicidad(publicidad.id)">Editar</button>
                     <button type="button" class="btn btn-danger"  @click="modalDelete(publicidad.id)">Eliminar</button>
@@ -62,7 +68,6 @@ export default {
     }
   },
   methods:{
-
     modalDelete (id) {
       this.$bus.$emit('delete-publicidad', id)
     },
@@ -83,7 +88,6 @@ export default {
         this.publicidads = res.data
       })
     })
-
   }
 }
 </script>
@@ -93,5 +97,11 @@ export default {
   }
   .with-td-btn{
     width: 200px;
+  }
+  li{
+    list-style: none;
+  }
+  li img{
+    width: 40px;
   }
 </style>

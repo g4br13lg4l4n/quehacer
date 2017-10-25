@@ -10,7 +10,7 @@ class PublicidadsController extends Controller
 {
     public function index()
     {
-        $publicidad = Publicidad::with('cliente', 'categoria')->get();
+        $publicidad = Publicidad::with('cliente', 'categoria', 'pictures')->get();
         return response()->json($publicidad, 200);
     }
 

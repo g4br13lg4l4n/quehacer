@@ -90,9 +90,8 @@
                 </div>
               </div>
               
-
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Guardar</button> 
+                <button type="submit" :disabled="status" class="btn btn-primary">Guardar</button> 
               </div>
             </form><!-- /Form -->
           </div>
@@ -124,7 +123,8 @@ export default {
         estacionamiento: '0',
         servicioDomicilio:'0',
         images: []
-      }
+      },
+      status: false
     }
   },
   created (){
@@ -157,14 +157,16 @@ export default {
     },
     CreatePublicidad(publicidad){
       document.getElementById('files').value = ''
-
+      this.status = true
       Store.CreatePublicidad(this.publicidad)
       .then(res => {
+        this.status = false
         this.$toaster.success(res.data.respuesta)
         this.publicidad = {};
         this.publicidad.images = [];
       })
       .catch(error => {
+          this.status = false
           this.$toaster.error('Hubo un error al ingresar la Publicidad')
         })
     

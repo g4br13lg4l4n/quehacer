@@ -13,8 +13,8 @@
                 <input type="text" class="form-control" v-model="cliente.empresa" id="empresa" placeholder="Nombre de la empresa o establecimiento">
               </div>
 
-              <div class="form-group">
-                <label class="col-md-3 form-control-label" for="file-input">Imágen</label>
+              <div class="form-group row">
+                <label class="col-md-1 form-control-label" for="file-input">Imagen</label>
                 <div class="col-md-9">
                   <input type="file" id="file-input" v-on:change="upImages" name="file-input">
                 </div>
@@ -61,7 +61,7 @@
               </div><!--/.row-->
 
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Guardar</button> 
+                <button type="submit" :disabled="status" class="btn btn-primary">Guardar</button> 
               </div>
             </form><!-- /Form -->
           </div>
@@ -87,8 +87,9 @@ export default {
         colonia: '',
         direccion: '',
         establecimiento: '',
-        image: ''
-      }
+        image: '',
+      },
+      status: false
     }
   },
   methods: {
@@ -101,17 +102,21 @@ export default {
       }
     },
     CreateClient(cliente) {
+
       if(!this.cliente.empresa && !this.cliente.responsable){ 
-          this.errors.hasError = true
+          this.$toaster.warning('Todos los datos son necesarios')
         return 
       }
+      this.status = true
+      document.getElementById('file-input').value = ''
       Store.CreateClient(this.cliente)
         .then(res => {
-          console.log(res.data.respuesta)
           this.$toaster.success(res.data.respuesta)
           this.cliente = {};
+          this.status = false
         })
         .catch(error => {
+          this.status = false
           this.$toaster.error('Hubo un error al ingresar el cliente'+ this.empresa)
         })
     }
