@@ -7,7 +7,7 @@
         </li>
 
          <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/components'}" disabled>
-          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i>Clientes</div>
+          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="fa fa-user" arial-hidden="true"></i>Clientes</div>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
               <router-link :to="{ name: 'All Clientes' }" class="nav-link" exact><i class="icon-puzzle"></i>Todos</router-link>
@@ -19,7 +19,7 @@
         </router-link>
 
         <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/components'}" disabled>
-          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i>Publicidad</div>
+          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="fa fa-file-powerpoint-o"></i>Publicidad</div>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
               <router-link :to="{ name: 'All Publicidad' }" class="nav-link" exact><i class="icon-puzzle"></i>Todos</router-link>

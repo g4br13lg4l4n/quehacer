@@ -66,7 +66,7 @@
               <div class="form-group row">
                 <label class="col-md-1 form-control-label" for="file-multiple-input">Imagenes</label>
                 <div class="col-md-9">
-                  <input type="file" multiple ref="file_input" v-on:change="uploadFiles">
+                  <input type="file" id="files" multiple ref="file_input" v-on:change="uploadFiles">
                 </div>
               </div>
               <div class="form-group row">
@@ -156,8 +156,8 @@ export default {
       
     },
     CreatePublicidad(publicidad){
-      console.log(this.publicidad)
-    
+      document.getElementById('files').value = ''
+
       Store.CreatePublicidad(this.publicidad)
       .then(res => {
         this.$toaster.success(res.data.respuesta)

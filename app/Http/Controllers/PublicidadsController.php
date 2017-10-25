@@ -65,7 +65,7 @@ class PublicidadsController extends Controller
     public function destroy($id)
     {
         $publicidad = Publicidad::find($id)->delete();
-
+        
         return response()->json([
             'respuesta' => 'Se ha eliminado el registro de publicidad'
             ], 200);

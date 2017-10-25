@@ -6,11 +6,9 @@ import router from './router';
 import axios from 'axios'
 import API from './services/API'
 import Store from './services/auth'
-
+import {utils} from 'vue-strap'
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
-
-import EventBus from './components/plugins/event-bus'
 
 Vue.use(Toaster, {timeout: 5000})
 Vue.component('App', require('./App.vue'));
