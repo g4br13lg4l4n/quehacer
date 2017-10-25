@@ -11,7 +11,7 @@ class CreatePublicidadsTable extends Migration
         Schema::create('publicidads', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
 
             $table->integer('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');

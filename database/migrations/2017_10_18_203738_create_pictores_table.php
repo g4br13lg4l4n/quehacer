@@ -17,7 +17,7 @@ class CreatePictoresTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->integer('publicidad_id')->unsigned();
-            $table->foreign('publicidad_id')->references('id')->on('publicidads');
+            $table->foreign('publicidad_id')->references('id')->on('publicidads')->onDelete('cascade');
             $table->timestamps();
         });
     }

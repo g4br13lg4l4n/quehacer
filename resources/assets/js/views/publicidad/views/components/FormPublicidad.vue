@@ -162,6 +162,7 @@ export default {
       .then(res => {
         this.$toaster.success(res.data.respuesta)
         this.publicidad = {};
+        this.publicidad.images = [];
       })
       .catch(error => {
           this.$toaster.error('Hubo un error al ingresar la Publicidad')

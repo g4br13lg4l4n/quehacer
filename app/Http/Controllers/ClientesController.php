@@ -95,9 +95,7 @@ class ClientesController extends Controller
         $clean_url = explode('/', $get_picture);
         $picture = $clean_url[4];
         Storage::delete('public/uploads/'.$picture);
-        
-        $cliente->publicidads()->pictures()->delete();
-        $cliente->publicidads()->delete();
+
         $cliente->delete();
 
         return response()->json([

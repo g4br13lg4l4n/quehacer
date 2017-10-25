@@ -117473,6 +117473,7 @@ if (false) {(function () {
       Store.CreatePublicidad(this.publicidad).then(function (res) {
         _this3.$toaster.success(res.data.respuesta);
         _this3.publicidad = {};
+        _this3.publicidad.images = [];
       }).catch(function (error) {
         _this3.$toaster.error('Hubo un error al ingresar la Publicidad');
       });
