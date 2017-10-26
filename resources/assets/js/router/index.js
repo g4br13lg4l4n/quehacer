@@ -6,25 +6,17 @@ import Full from '../containers/Full';
 
 // Views
 import Dashboard from '../views/Dashboard';
-import Charts from '../views/Charts';
-import Widgets from '../views/Widgets';
+import Charts from '../views/graficas/Charts';
 
 // Views - Components
-import Buttons from '../views/components/Buttons';
-import SocialButtons from '../views/components/SocialButtons';
-import Cards from '../views/components/Cards';
 import Forms from '../views/components/Forms';
 import Modals from '../views/components/Modals';
-import Switches from '../views/components/Switches';
 import Tables from '../views/components/Tables';
 
 
 // Views - Pages
 import Page404 from '../views/pages/Page404';
-import Page500 from '../views/pages/Page500';
 import Login from '../views/pages/Login';
-import Register from '../views/pages/Register';
-
 
 // Clientes
 import Clientes from '../views/clientes/Clientes'
@@ -115,13 +107,13 @@ export default new Router({
               component: AddCategoria 
             }
           ]
-        }
+        },
+         {
+          path: 'charts',
+          name: 'Charts',
+          component: Charts,
+        },
       ]
-    },
-    {
-      path: 'register',
-      name: 'Register',
-      component: Register
     },
     {
       path: '/pages',
@@ -135,11 +127,6 @@ export default new Router({
           path: '404',
           name: 'Page404',
           component: Page404
-        },
-        {
-          path: '500',
-          name: 'Page500',
-          component: Page500
         },
       ]
     }

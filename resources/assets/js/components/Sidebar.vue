@@ -42,10 +42,9 @@
           </ul>
         </router-link>
 
-
         <li class="divider"></li>
-        <li class="nav-title">
-          Extras
+        <li class="nav-item">
+          <router-link :to="{ name: 'Charts' }" class="nav-link" exact><i class="icon-pie-chart"></i> Graficas </router-link>
         </li>
         
       </ul>
