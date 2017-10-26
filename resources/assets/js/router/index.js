@@ -18,9 +18,6 @@ import Modals from '../views/components/Modals';
 import Switches from '../views/components/Switches';
 import Tables from '../views/components/Tables';
 
-// Views - Icons
-import FontAwesome from '../views/icons/FontAwesome';
-import SimpleLineIcons from '../views/icons/SimpleLineIcons';
 
 // Views - Pages
 import Page404 from '../views/pages/Page404';
