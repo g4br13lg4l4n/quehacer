@@ -35,6 +35,7 @@ class PublicidadsController extends Controller
         $request->estacionamiento ? $estacionamiento = 1 : $estacionamiento = 0;
         $request->servicioDomicilio ? $servicioDomicilio = 1 : $servicioDomicilio = 0;
  
+        $publicidad->name = $request->name;
         $publicidad->cliente_id = $request->empresa;
         $publicidad->resena = $request->rEstablecimento;
         $publicidad->ubicacion = $request->ubicacion;

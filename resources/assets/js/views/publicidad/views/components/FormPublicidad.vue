@@ -9,6 +9,10 @@
           <div class="card-block">
             <form @submit.prevent="CreatePublicidad(publicidad)" enctype="multipart/form-data">
               <div class="row">
+                <div class="form-group col-sm-12">
+                  <label for="NamePub">Nombre de la publibidad</label>
+                  <input type="text" class="form-control"  id="NamePub" v-model="publicidad.name" placeholder="Reseña del establecimiento">
+              </div>
 
                 <div class="form-group col-sm-6">
                   <label for="Empresa">Empresa</label>
@@ -111,6 +115,7 @@ export default {
       clientes: [],
       categorias: [],
       publicidad: {
+        name: '',
         empresa: '',
         categoria: '',
         rEstablecimento: '',

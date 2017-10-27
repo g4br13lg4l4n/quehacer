@@ -10,6 +10,7 @@
             <table class="table table-bordered table-striped table-condensed">
               <thead>
                 <tr>
+                  <th>Nombre Pub.</th>
                   <th>Empresa</th>
                   <th>Categoría</th>
                   <th>Reseña</th>
@@ -22,6 +23,7 @@
               <tbody>
 
                 <tr v-for="publicidad in publicidads">
+                  <td>{{ publicidad.name }}</td>
                   <td>{{ publicidad.cliente.empresa }}</td>
                   <td>{{ publicidad.categoria.name}}</td>
                   <td>{{ publicidad.resena }}</td> 

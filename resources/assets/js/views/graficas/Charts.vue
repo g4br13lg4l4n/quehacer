@@ -12,19 +12,11 @@
               <span class="input-group-btn">
                 <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Generar grafica de: </button>
               </span>
-                <select class="form-control col-sm-4">
-                  <option disabled="disabled" value="">1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
+              <select class="form-control col-md-4" id="Empresa" v-model="publicidad">
+                  <option disabled value="">Seleccione una Publicidad</option>
+                  <option v-for="publicidad in publicidads" v-bind:value="publicidad.id">
+                    {{ publicidad.name}} - {{ publicidad.cliente.empresa }}
+                  </option>
                 </select>
             </div>
 
@@ -100,6 +92,18 @@ export default {
     ManChart,
     GenderChart,
     StateChart
+  },
+  data () {
+    return {
+      publicidad: '',
+      publicidads: [],
+    }
+  },
+  created () {
+    Store.getPublicidads()
+      .then(res => {
+        this.publicidads = res.data
+      })
   }
 }
 </script>
