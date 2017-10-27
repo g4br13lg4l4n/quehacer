@@ -6,20 +6,21 @@
           <div class="card-header">
             Crear Estadisticas
           </div>
-          <form @submit.prevent="CreateChart(publicidad)" enctype="multipart/form-data">
-
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Generar grafica de: </button>
-              </span>
-              <select class="form-control col-md-4" id="Empresa" v-model="publicidad">
-                  <option disabled value="">Seleccione una Publicidad</option>
-                  <option v-for="publicidad in publicidads" v-bind:value="publicidad.id">
-                    {{ publicidad.name}} - {{ publicidad.cliente.empresa }}
-                  </option>
-                </select>
-            </div>
-          </form>
+          <div class="margins">
+            <form @submit.prevent="CreateChart(publicidad)" enctype="multipart/form-data">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Generar grafica de: </button>
+                </span>
+                <select class="form-control col-md-4" id="Empresa" v-model="publicidad">
+                    <option disabled value="">Seleccione una Publicidad</option>
+                    <option v-for="publicidad in publicidads" v-bind:value="publicidad.id">
+                      {{ publicidad.name}} - {{ publicidad.cliente.empresa }}
+                    </option>
+                  </select>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -121,4 +122,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .margins{
+    margin: 20px 10px;
+  }
+</style>
+
 
