@@ -6,11 +6,11 @@
           <div class="card-header">
             Crear Estadisticas
           </div>
-          <div>
+          <form @submit.prevent="CreateChart(publicidad)" enctype="multipart/form-data">
 
             <div class="input-group">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Generar grafica de: </button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Generar grafica de: </button>
               </span>
               <select class="form-control col-md-4" id="Empresa" v-model="publicidad">
                   <option disabled value="">Seleccione una Publicidad</option>
@@ -19,8 +19,7 @@
                   </option>
                 </select>
             </div>
-
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -97,6 +96,21 @@ export default {
     return {
       publicidad: '',
       publicidads: [],
+      dataCarts: ''
+    }
+  },
+  methods: {
+    CreateChart(){
+      if(this.publicidad){
+        Store.searchPublicidad(this.publicidad)
+          .then(res => {
+            this.dataCarts = res.data
+            console.log(this.dataCarts);
+          })
+      }else{
+        this.$toaster.warning('Seleccionar una publicidad')
+      }
+
     }
   },
   created () {

@@ -75702,7 +75702,6 @@ if (false) {(function () {
 //
 //
 //
-//
 
 
 
@@ -75719,14 +75718,30 @@ if (false) {(function () {
   data: function data() {
     return {
       publicidad: '',
-      publicidads: []
+      publicidads: [],
+      dataCarts: ''
     };
   },
+
+  methods: {
+    CreateChart: function CreateChart() {
+      var _this = this;
+
+      if (this.publicidad) {
+        Store.searchPublicidad(this.publicidad).then(function (res) {
+          _this.dataCarts = res.data;
+          console.log(_this.dataCarts);
+        });
+      } else {
+        this.$toaster.warning('Seleccionar una publicidad');
+      }
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     Store.getPublicidads().then(function (res) {
-      _this.publicidads = res.data;
+      _this2.publicidads = res.data;
     });
   }
 });
@@ -95719,7 +95734,17 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card"
   }, [_c('div', {
     staticClass: "card-header"
-  }, [_vm._v("\n          Crear Estadisticas\n        ")]), _vm._v(" "), _c('div', [_c('div', {
+  }, [_vm._v("\n          Crear Estadisticas\n        ")]), _vm._v(" "), _c('form', {
+    attrs: {
+      "enctype": "multipart/form-data"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.CreateChart(_vm.publicidad)
+      }
+    }
+  }, [_c('div', {
     staticClass: "input-group"
   }, [_vm._m(0), _vm._v(" "), _c('select', {
     directives: [{
@@ -95788,7 +95813,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
   }, [_c('button', {
     staticClass: "btn btn-primary",
     attrs: {
-      "type": "button"
+      "type": "submit"
     }
   }, [_c('i', {
     staticClass: "fa fa-search"
