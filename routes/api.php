@@ -16,7 +16,6 @@ Route::group(['middleware' => ['web']], function () {
 
 
 
-
 Route::post('login', 'UsersController@login');
 //Route::post('register', 'UsersController@register');
 
@@ -46,8 +45,6 @@ Route::delete('user/deletePublicidad/{id}', 'PublicidadsController@destroy');
 
 
 
-
-
 Route::post('user/createCategoria', 'CategoriasController@store');
 
 Route::get('user/getCategorias', 'CategoriasController@index');
@@ -57,3 +54,12 @@ Route::get('user/searchCategoria/{id}', 'CategoriasController@show');
 Route::put('user/editCategoria/{id}', 'CategoriasController@update');
 
 Route::delete('user/deleteCategoria/{id}', 'CategoriasController@destroy');
+
+
+
+Route::get('user/getUserApps', 'UserAplicationsController@index');
+Route::get('user/searchUserApps/{id}', 'UserAplicationsController@show');
+Route::post('user/createUserApp', 'UserAplicationsController@store');
+
+
+Route::post('user/createPublicidadInterest', 'PublicidadInterestsController@store');

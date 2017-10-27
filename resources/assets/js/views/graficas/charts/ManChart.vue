@@ -4,18 +4,19 @@
   export default Bar.extend({
     mounted () {
       this.renderChart({
-        labels: ["Hombres"],
+        labels: ["Mayor edad",'Menor edad', 'Media de edad'],
         datasets: [
           {
-            label: "Edad Mayor",
+            label: "Hombres",
             backgroundColor: "#3aa2eb",
-            data: [35],
+            data: [35, 12, 25],
           },
           {
-            label: "Edad Menor",
-            backgroundColor: "#3aa2eb",
-            data: [16],
+            label: "Mujeres",
+            backgroundColor: "#ee6082",
+            data: [30, 16, 22],
           },
+          
         ],
         options: {
           scales: {

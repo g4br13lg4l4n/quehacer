@@ -16,9 +16,12 @@ class PublicidadsController extends Controller
 
     public function getPublicidadChart($id)
     {
-        $publicidadChart = Publicidad::with('cliente')->find($id);
+    //    $publicidadChart = Publicidad::with('cliente', 'publicidadInterests')->find($id); //userAplications
+        
+        $publicidadChart = Publicidad::with('userAplications')->find($id);
         return response()->json($publicidadChart, 200);
     }
+
 
     public function store(Request $request)
     {
@@ -64,7 +67,7 @@ class PublicidadsController extends Controller
         }
 
         return response()->json([
-            'respuesta' => 'Se ah agregado la nueva Publicidad',
+            'respuesta' => 'Se ha agregado la nueva Publicidad',
         ], 200);
         
     }

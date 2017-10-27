@@ -17,6 +17,8 @@ class CreatePublicidadInterestsTable extends Migration
             $table->increments('id');
             $table->integer('user_aplication_id')->unsigned();
             $table->foreign('user_aplication_id')->references('id')->on('user_aplications')->onDelete('cascade');
+            $table->integer('publicidad_id')->unsigned();
+            $table->foreign('publicidad_id')->references('id')->on('publicidads')->onDelete('cascade');
             $table->timestamps();
         });
     }
