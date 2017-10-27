@@ -103,7 +103,7 @@ export default {
   methods: {
     CreateChart(){
       if(this.publicidad){
-        Store.searchPublicidad(this.publicidad)
+        Store.getPublicidadChart(this.publicidad)
           .then(res => {
             this.dataCarts = res.data
             console.log(this.dataCarts);

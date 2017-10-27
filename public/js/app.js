@@ -75733,7 +75733,7 @@ if (false) {(function () {
       var _this = this;
 
       if (this.publicidad) {
-        Store.searchPublicidad(this.publicidad).then(function (res) {
+        Store.getPublicidadChart(this.publicidad).then(function (res) {
           _this.dataCarts = res.data;
           console.log(_this.dataCarts);
         });
@@ -101942,6 +101942,7 @@ var API = {
 
     addPublicidad: '/api/user/createPublicidad',
     getPublicidads: '/api/user/getPublicidads',
+    getPublicidadChart: '/api/user/getPublicidadChart',
     searchPublicidad: '/api/user/searchPublicidad',
     editPublicidad: '/api/user/editPublicidad',
     deletePublicidad: '/api/user/deletePublicidad',
@@ -102082,6 +102083,20 @@ Store.CreatePublicidad = function (publicidad) {
 Store.getPublicidads = function () {
 	return new Promise(function (resolve, reject) {
 		axios.get(API.admin.getPublicidads).then(function (res) {
+			resolve(res);
+		}).catch(function (error) {
+			reject(error);
+		});
+	});
+};
+
+Store.getPublicidadChart = function (id) {
+	var data = {
+		name: 'authClient',
+		id: id
+	};
+	return new Promise(function (resolve, reject) {
+		axios.get(API.admin.getPublicidadChart + '/' + id + '').then(function (res) {
 			resolve(res);
 		}).catch(function (error) {
 			reject(error);

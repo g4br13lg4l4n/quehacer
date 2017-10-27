@@ -14,6 +14,12 @@ class PublicidadsController extends Controller
         return response()->json($publicidad, 200);
     }
 
+    public function getPublicidadChart($id)
+    {
+        $publicidadChart = Publicidad::with('cliente')->find($id);
+        return response()->json($publicidadChart, 200);
+    }
+
     public function store(Request $request)
     {
         $pictureArray = [];

@@ -13,6 +13,7 @@ const API = {
     
     addPublicidad: '/api/user/createPublicidad',
     getPublicidads:'/api/user/getPublicidads',
+    getPublicidadChart:'/api/user/getPublicidadChart',
     searchPublicidad:'/api/user/searchPublicidad',
     editPublicidad:'/api/user/editPublicidad',
     deletePublicidad:'/api/user/deletePublicidad',

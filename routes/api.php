@@ -36,6 +36,8 @@ Route::post('user/createPublicidad','PublicidadsController@store');
 
 Route::get('user/getPublicidads', 'PublicidadsController@index');
 
+Route::get('user/getPublicidadChart/{id}', 'PublicidadsController@getPublicidadChart');
+
 Route::get('user/searchPublicidad/{id}', 'PublicidadsController@show');
 
 Route::put('/user/editPublicidad/{id}', 'PublicidadsController@update');

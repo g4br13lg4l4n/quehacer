@@ -144,6 +144,22 @@ Store.getPublicidads = function() {
 	})
 }
 
+Store.getPublicidadChart = function(id){
+	const data = {
+		name: 'authClient',
+		id: id
+	}
+	return new Promise( (resolve, reject)=> {
+		axios.get(API.admin.getPublicidadChart+ '/'+id+'')
+			.then(res =>{
+				resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+
+	})
+}
 
 Store.searchPublicidad = function (id){
 	const data = {
