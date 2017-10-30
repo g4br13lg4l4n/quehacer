@@ -27,13 +27,13 @@
     <div class="card-columns cols-2">
       <div class="card">
         <div class="card-header">
-          Estaditica de uso en Hombres
+          Estaditica de uso por sexo mas detallada
           <div class="card-actions">
           </div>
         </div>
         <div class="card-block">
           <div class="chart-wrapper">
-            <man-chart></man-chart>
+            <sex-chart></sex-chart>
           </div>
         </div>
       </div>
@@ -50,23 +50,10 @@
           </div>
         </div>
       </div>
-
+      
       <div class="card">
         <div class="card-header">
-          Estaditica de uso en Mujeres
-          <div class="card-actions">
-          </div>
-        </div>
-        <div class="card-block">
-          <div class="chart-wrapper">
-            <woman-chart></woman-chart>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          Estaditica de uso por Genero
+          Estaditica de uso por Sexo
           <div class="card-actions">
           </div>
         </div>
@@ -76,28 +63,45 @@
           </div>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-header">
+          Estaditica de cantidad de usuarios
+          <div class="card-actions">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="chart-wrapper">
+          
+            <users-chart v-if="numberUsers"
+              v-bind:data="numberUsers">
+              </users-chart>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import WomanChart from './charts/WomanChart'
-import ManChart from './charts/ManChart'
+import SexChart from './charts/SexChart'
 import GenderChart from './charts/GenderChart'
 import StateChart from './charts/StateChart'
+import UsersChart from './charts/UsersChart'
 export default {
   name: 'Charts',
   components: {
-    WomanChart,
-    ManChart,
+    SexChart,
     GenderChart,
-    StateChart
+    StateChart,
+    UsersChart
   },
   data () {
     return {
       publicidad: '',
       publicidads: [],
-      dataCarts: ''
+      dataCharts: '',
+      numberUsers: '',
     }
   },
   methods: {
@@ -105,14 +109,16 @@ export default {
       if(this.publicidad){
         Store.getPublicidadChart(this.publicidad)
           .then(res => {
-            this.dataCarts = res.data
-            console.log(this.dataCarts);
+            this.dataCharts = res.data
+            this.userChartResult(res.data)
           })
       }else{
         this.$toaster.warning('Seleccionar una publicidad')
       }
-
-    }
+    },
+    userChartResult(a){
+      this.numberUsers = a.user_aplications.length
+    },
   },
   created () {
     Store.getPublicidads()

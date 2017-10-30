@@ -9,10 +9,19 @@
           <div class="card-block">
             <form @submit.prevent="CreatePublicidad(publicidad)" enctype="multipart/form-data">
               <div class="row">
-                <div class="form-group col-sm-12">
-                  <label for="NamePub">Nombre de la publibidad</label>
+                <div class="form-group col-sm-8">
+                  <label for="NamePub">Nombre de la publicidad</label>
                   <input type="text" class="form-control"  id="NamePub" v-model="publicidad.name" placeholder="Reseña del establecimiento">
               </div>
+              
+              <div class="form-group col-sm-4">
+                  <label for="Idioma">Idioma</label>
+                  <select class="form-control" id="Idioma" v-model="publicidad.idioma">
+                    <option disabled value="">Seleccione un Idioma</option>
+                    <option value="1">Español</option>
+                    <option value="2">Ingles</option>
+                  </select>
+                </div>
 
                 <div class="form-group col-sm-6">
                   <label for="Empresa">Empresa</label>
@@ -22,8 +31,8 @@
                       {{ cliente.empresa }}
                     </option>
                   </select>
-
                 </div>
+
                 <div class="form-group col-sm-6">
                 <label for="Categoria">Categoría</label>  
                   <select class="form-control" id="Categoria" v-model="publicidad.categoria">
@@ -115,6 +124,7 @@ export default {
       clientes: [],
       categorias: [],
       publicidad: {
+        idioma:'',
         name: '',
         empresa: '',
         categoria: '',

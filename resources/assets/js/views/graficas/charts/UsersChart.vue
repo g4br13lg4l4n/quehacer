@@ -1,21 +1,17 @@
 <script>
-  import VueCharts from 'vue-chartjs'
   import { Bar } from 'vue-chartjs'
+
   export default Bar.extend({
+    props: ['data', 'options'],
     mounted () {
       this.renderChart({
-        labels: ["Mujeres"],
+        labels: ["Cantidad de usuarios"],
         datasets: [
           {
-            label: "Edad Mayor",
-            backgroundColor: "#ee6082",
-            data: [35],
-          },
-          {
-            label: "Edad Menor",
-            backgroundColor: "#ee6082",
-            data: [16],
-          },
+            label: "Usuarios",
+            backgroundColor: "#3aa2eb",
+            data: [this.data],
+          },          
         ],
         options: {
           scales: {
