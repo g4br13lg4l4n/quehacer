@@ -75789,7 +75789,15 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
       fDetailsUsers: [],
       fMaxAgeUsers: 0,
       fMinAgeUsers: 0,
-      fMeddAgeUsers: 0
+      fMeddAgeUsers: 0,
+      ArrayState: [],
+      state: {
+        datasets: [{
+          label: "",
+          backgroundColor: "#5ad9fa",
+          data: []
+        }]
+      }
     };
   },
 
@@ -75820,6 +75828,13 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
           });
           _this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length;
           _this.fDetailsUsers.push(_this.fMaxAgeUsers, _this.fMinAgeUsers, _this.fMeddAgeUsers);
+
+          /*
+          const arr = ['Tabasco', 'Tabasco', 'Tabasco', 'Tabasco', 'Teapa', 'Teapa', 'Teapa', 'Jalapa']
+          let location = arr.slice().sort()
+           */
+
+          console.log(_this.ArrayState);
         });
       } else {
         this.$toaster.warning('Seleccionar una publicidad');
@@ -75830,6 +75845,9 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
       var users = a.user_aplications;
 
       users.forEach(function (el) {
+        if (el.locations) {
+          this.ArrayState.push(el.locations);
+        }
         if (el.gender === 'm') {
           this.mArrayAge.push(el.age);
           this.mGender += 1;

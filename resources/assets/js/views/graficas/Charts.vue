@@ -123,6 +123,16 @@ export default {
       fMaxAgeUsers: 0,
       fMinAgeUsers: 0,
       fMeddAgeUsers: 0,
+      ArrayState: [],
+      state: {
+        datasets: [
+          {
+            label: "",
+            backgroundColor: "#5ad9fa",
+            data: [],
+          },
+        ]
+      },
     }
   },
   methods: {
@@ -153,6 +163,14 @@ export default {
             this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length
             this.fDetailsUsers.push(this.fMaxAgeUsers, this.fMinAgeUsers, this.fMeddAgeUsers)
             
+            /*
+            const arr = ['Tabasco', 'Tabasco', 'Tabasco', 'Tabasco', 'Teapa', 'Teapa', 'Teapa', 'Jalapa']
+            let location = arr.slice().sort()
+
+            */
+
+            console.log(this.ArrayState)
+
           })
       }else{
         this.$toaster.warning('Seleccionar una publicidad')
@@ -163,6 +181,9 @@ export default {
       const users = a.user_aplications
 
       users.forEach(function(el) {
+        if(el.locations){
+         this.ArrayState.push(el.locations)
+        }
         if(el.gender === 'm') {
            this.mArrayAge.push(el.age) 
           this.mGender += 1
