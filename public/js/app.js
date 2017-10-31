@@ -75750,6 +75750,9 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
 //
 //
 //
+//
+//
+//
 
 
 
@@ -75768,7 +75771,12 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
       publicidad: '',
       publicidads: [],
       dataCharts: '',
-      numberUsers: ''
+      numberUsers: '',
+      stateUsers: '',
+      sexUsers: '',
+      genDetalleUsers: [],
+      fGender: 0,
+      mGender: 0
     };
   },
 
@@ -75779,14 +75787,25 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
       if (this.publicidad) {
         Store.getPublicidadChart(this.publicidad).then(function (res) {
           _this.dataCharts = res.data;
-          _this.userChartResult(res.data);
+          _this.createChart(res.data);
+          _this.genDetalleUsers.push(_this.mGender, _this.fGender);
+          console.log(_this.dataCharts);
         });
       } else {
         this.$toaster.warning('Seleccionar una publicidad');
       }
     },
-    userChartResult: function userChartResult(a) {
+    createChart: function createChart(a) {
       this.numberUsers = a.user_aplications.length;
+      var users = a.user_aplications;
+
+      users.forEach(function (el) {
+        if (el.gender === 'm') {
+          return this.mGender += 1;
+        } else {
+          return this.fGender += 1;
+        }
+      }, this);
     }
   },
   created: function created() {
@@ -95478,17 +95497,23 @@ if (false) {(function () {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["Bar"].extend({
+  props: ['genero'],
+  watch: {
+    genero: function genero(dataNow, dataOld) {
+      //this.genero = dataNow
+    }
+  },
   mounted: function mounted() {
     this.renderChart({
       labels: ["Género"],
       datasets: [{
         label: "Femenino",
         backgroundColor: "#ee6082",
-        data: [30]
+        data: [this.genero[1]]
       }, {
         label: "Masculino",
         backgroundColor: "#3aa2eb",
-        data: [10]
+        data: [this.genero[0]]
       }],
       options: {
         scales: {
@@ -95650,11 +95675,17 @@ if (false) {(function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_chartjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_chartjs__);
+var _this = this;
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["Bar"].extend({
-  props: ['data', 'options'],
+  props: ['data'],
+  watch: {
+    data: function data(dataNow, dataOld) {
+      _this.data = dataNow;
+    }
+  },
   mounted: function mounted() {
     this.renderChart({
       labels: ["Cantidad de usuarios"],
@@ -95752,27 +95783,31 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [_c('sex-chart')], 1)])]), _vm._v(" "), _c('div', {
+  }, [(_vm.numberUsers) ? _c('users-chart', {
+    attrs: {
+      "data": _vm.numberUsers
+    }
+  }) : _vm._e()], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
   }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [_c('state-chart')], 1)])]), _vm._v(" "), _c('div', {
+  }, [_c('sex-chart')], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
   }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [_c('gender-chart')], 1)])]), _vm._v(" "), _c('div', {
+  }, [_c('state-chart')], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
   }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [(_vm.numberUsers) ? _c('users-chart', {
+  }, [(_vm.genDetalleUsers[0]) ? _c('gender-chart', {
     attrs: {
-      "data": _vm.numberUsers
+      "genero": _vm.genDetalleUsers
     }
   }) : _vm._e()], 1)])])])])
 }
@@ -95790,6 +95825,12 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-header"
+  }, [_vm._v("\n        Estaditica de cantidad de usuarios\n        "), _c('div', {
+    staticClass: "card-actions"
+  })])
+},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
   }, [_vm._v("\n        Estaditica de uso por sexo mas detallada\n        "), _c('div', {
     staticClass: "card-actions"
   })])
@@ -95803,12 +95844,6 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
   return _c('div', {
     staticClass: "card-header"
   }, [_vm._v("\n        Estaditica de uso por Sexo\n        "), _c('div', {
-    staticClass: "card-actions"
-  })])
-},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card-header"
-  }, [_vm._v("\n        Estaditica de cantidad de usuarios\n        "), _c('div', {
     staticClass: "card-actions"
   })])
 }]

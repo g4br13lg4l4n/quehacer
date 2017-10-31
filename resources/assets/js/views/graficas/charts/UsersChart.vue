@@ -1,8 +1,13 @@
 <script>
   import { Bar } from 'vue-chartjs'
-
+  
   export default Bar.extend({
-    props: ['data', 'options'],
+    props: ['data'],
+    watch: {
+      data: (dataNow, dataOld) => {
+        this.data = dataNow
+      }
+    },
     mounted () {
       this.renderChart({
         labels: ["Cantidad de usuarios"],

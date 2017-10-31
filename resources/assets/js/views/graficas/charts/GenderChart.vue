@@ -2,6 +2,12 @@
   import VueCharts from 'vue-chartjs'
   import { Bar } from 'vue-chartjs'
   export default Bar.extend({
+    props: ['genero'],
+    watch: {
+      genero: (dataNow, dataOld) => {
+        //this.genero = dataNow
+      }
+    },
     mounted () {
       this.renderChart({
         labels: ["Género"],
@@ -9,12 +15,12 @@
           {
             label: "Femenino",
             backgroundColor: "#ee6082",
-            data: [30],
+            data: [this.genero[1]],
           },
           {
             label: "Masculino",
             backgroundColor: "#3aa2eb",
-            data: [10],
+            data: [this.genero[0]],
           },
         ],
         options: {

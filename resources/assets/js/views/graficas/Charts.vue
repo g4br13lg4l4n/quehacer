@@ -25,6 +25,22 @@
       </div>
     </div>
     <div class="card-columns cols-2">
+
+      <div class="card">
+        <div class="card-header">
+          Estaditica de cantidad de usuarios
+          <div class="card-actions">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="chart-wrapper">
+            <users-chart v-if="numberUsers"
+              :data="numberUsers" >
+              </users-chart>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           Estaditica de uso por sexo mas detallada
@@ -59,26 +75,13 @@
         </div>
         <div class="card-block">
           <div class="chart-wrapper">
-            <gender-chart></gender-chart>
+            <gender-chart
+            v-if="genDetalleUsers[0]"
+            :genero="genDetalleUsers"></gender-chart>
           </div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-header">
-          Estaditica de cantidad de usuarios
-          <div class="card-actions">
-          </div>
-        </div>
-        <div class="card-block">
-          <div class="chart-wrapper">
-          
-            <users-chart v-if="numberUsers"
-              v-bind:data="numberUsers">
-              </users-chart>
-          </div>
-        </div>
-      </div>
+    
     </div>
   </div>
 </template>
@@ -102,6 +105,11 @@ export default {
       publicidads: [],
       dataCharts: '',
       numberUsers: '',
+      stateUsers: '',
+      sexUsers: '',
+      genDetalleUsers:[],
+      fGender: 0,
+      mGender: 0,
     }
   },
   methods: {
@@ -110,14 +118,26 @@ export default {
         Store.getPublicidadChart(this.publicidad)
           .then(res => {
             this.dataCharts = res.data
-            this.userChartResult(res.data)
+            this.createChart(res.data)
+            this.genDetalleUsers.push(this.mGender, this.fGender)
+            console.log(this.dataCharts)
           })
       }else{
         this.$toaster.warning('Seleccionar una publicidad')
       }
     },
-    userChartResult(a){
+    createChart(a){
       this.numberUsers = a.user_aplications.length
+      const users = a.user_aplications
+
+      users.forEach(function(el) {
+        if(el.gender === 'm') {
+          return this.mGender += 1
+        } else {
+          return this.fGender += 1
+        }
+      }, this);
+      
     },
   },
   created () {
