@@ -75753,6 +75753,9 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
 //
 //
 //
+//
+//
+//
 
 
 
@@ -75774,9 +75777,19 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
       numberUsers: '',
       stateUsers: '',
       sexUsers: '',
-      genDetalleUsers: [],
+      genUsers: [],
       fGender: 0,
-      mGender: 0
+      mGender: 0,
+      mArrayAge: [],
+      fArrayAge: [],
+      mDetailsUsers: [],
+      mMaxAgeUsers: 0,
+      mMinAgeUsers: 0,
+      mMeddAgeUsers: 0,
+      fDetailsUsers: [],
+      fMaxAgeUsers: 0,
+      fMinAgeUsers: 0,
+      fMeddAgeUsers: 0
     };
   },
 
@@ -75788,8 +75801,25 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
         Store.getPublicidadChart(this.publicidad).then(function (res) {
           _this.dataCharts = res.data;
           _this.createChart(res.data);
-          _this.genDetalleUsers.push(_this.mGender, _this.fGender);
-          console.log(_this.dataCharts);
+          _this.genUsers.push(_this.mGender, _this.fGender);
+
+          _this.mMaxAgeUsers = Math.max.apply(null, _this.mArrayAge);
+          _this.mMinAgeUsers = Math.min.apply(null, _this.mArrayAge);
+          var vmAge = _this.mArrayAge;
+          var vmAgeSuma = vmAge.reduce(function (a, b) {
+            return parseInt(a) + parseInt(b);
+          });
+          _this.mMeddAgeUsers = parseInt(vmAgeSuma) / vmAge.length;
+          _this.mDetailsUsers.push(_this.mMaxAgeUsers, _this.mMinAgeUsers, _this.mMeddAgeUsers);
+
+          _this.fMaxAgeUsers = Math.max.apply(null, _this.fArrayAge);
+          _this.fMinAgeUsers = Math.min.apply(null, _this.fArrayAge);
+          var vfAge = _this.fArrayAge;
+          var vfAgeSuma = vfAge.reduce(function (a, b) {
+            return parseInt(a) + parseInt(b);
+          });
+          _this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length;
+          _this.fDetailsUsers.push(_this.fMaxAgeUsers, _this.fMinAgeUsers, _this.fMeddAgeUsers);
         });
       } else {
         this.$toaster.warning('Seleccionar una publicidad');
@@ -75801,9 +75831,11 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
 
       users.forEach(function (el) {
         if (el.gender === 'm') {
-          return this.mGender += 1;
+          this.mArrayAge.push(el.age);
+          this.mGender += 1;
         } else {
-          return this.fGender += 1;
+          this.fArrayAge.push(el.age);
+          this.fGender += 1;
         }
       }, this);
     }
@@ -95793,7 +95825,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [_c('sex-chart')], 1)])]), _vm._v(" "), _c('div', {
+  }, [(_vm.mArrayAge.length) ? _c('sex-chart', {
+    attrs: {
+      "mDetailsUsers": _vm.mDetailsUsers,
+      "fDetailsUsers": _vm.fDetailsUsers
+    }
+  }) : _vm._e()], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
   }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "card-block"
@@ -95805,9 +95842,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [(_vm.genDetalleUsers[0]) ? _c('gender-chart', {
+  }, [(_vm.genUsers[0]) ? _c('gender-chart', {
     attrs: {
-      "genero": _vm.genDetalleUsers
+      "genero": _vm.genUsers
     }
   }) : _vm._e()], 1)])])])])
 }
@@ -103891,17 +103928,18 @@ if (false) {(function () {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["Bar"].extend({
+  props: ['fDetailsUsers', 'mDetailsUsers'],
   mounted: function mounted() {
     this.renderChart({
       labels: ["Mayor edad", 'Menor edad', 'Media de edad'],
       datasets: [{
         label: "Hombres",
         backgroundColor: "#3aa2eb",
-        data: [35, 12, 25]
+        data: this.mDetailsUsers
       }, {
         label: "Mujeres",
         backgroundColor: "#ee6082",
-        data: [30, 16, 22]
+        data: this.fDetailsUsers
       }],
       options: {
         scales: {

@@ -49,7 +49,10 @@
         </div>
         <div class="card-block">
           <div class="chart-wrapper">
-            <sex-chart></sex-chart>
+            <sex-chart v-if="mArrayAge.length"
+            :mDetailsUsers="mDetailsUsers"
+            :fDetailsUsers="fDetailsUsers"
+            ></sex-chart>
           </div>
         </div>
       </div>
@@ -76,8 +79,8 @@
         <div class="card-block">
           <div class="chart-wrapper">
             <gender-chart
-            v-if="genDetalleUsers[0]"
-            :genero="genDetalleUsers"></gender-chart>
+            v-if="genUsers[0]"
+            :genero="genUsers"></gender-chart>
           </div>
         </div>
       </div>
@@ -107,9 +110,19 @@ export default {
       numberUsers: '',
       stateUsers: '',
       sexUsers: '',
-      genDetalleUsers:[],
+      genUsers:[],
       fGender: 0,
       mGender: 0,
+      mArrayAge: [],
+      fArrayAge:[],
+      mDetailsUsers: [],
+      mMaxAgeUsers: 0,
+      mMinAgeUsers: 0,
+      mMeddAgeUsers: 0,
+      fDetailsUsers: [],
+      fMaxAgeUsers: 0,
+      fMinAgeUsers: 0,
+      fMeddAgeUsers: 0,
     }
   },
   methods: {
@@ -119,8 +132,27 @@ export default {
           .then(res => {
             this.dataCharts = res.data
             this.createChart(res.data)
-            this.genDetalleUsers.push(this.mGender, this.fGender)
-            console.log(this.dataCharts)
+            this.genUsers.push(this.mGender, this.fGender)
+
+            this.mMaxAgeUsers = Math.max.apply(null, this.mArrayAge)
+            this.mMinAgeUsers = Math.min.apply(null, this.mArrayAge)
+            let vmAge = this.mArrayAge
+            let vmAgeSuma = vmAge.reduce((a , b) =>{
+              return parseInt(a)+ parseInt(b)
+            })
+            this.mMeddAgeUsers = parseInt(vmAgeSuma) / vmAge.length
+            this.mDetailsUsers.push(this.mMaxAgeUsers, this.mMinAgeUsers, this.mMeddAgeUsers)
+
+
+            this.fMaxAgeUsers = Math.max.apply(null, this.fArrayAge)
+            this.fMinAgeUsers = Math.min.apply(null, this.fArrayAge)
+            let vfAge = this.fArrayAge
+            let vfAgeSuma = vfAge.reduce( (a, b) =>{
+              return parseInt(a) + parseInt(b)
+            })
+            this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length
+            this.fDetailsUsers.push(this.fMaxAgeUsers, this.fMinAgeUsers, this.fMeddAgeUsers)
+            
           })
       }else{
         this.$toaster.warning('Seleccionar una publicidad')
@@ -132,9 +164,11 @@ export default {
 
       users.forEach(function(el) {
         if(el.gender === 'm') {
-          return this.mGender += 1
+           this.mArrayAge.push(el.age) 
+          this.mGender += 1
         } else {
-          return this.fGender += 1
+          this.fArrayAge.push(el.age)
+          this.fGender += 1
         }
       }, this);
       
