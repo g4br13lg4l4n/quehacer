@@ -95815,9 +95815,10 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [(_vm.numberUsers) ? _c('users-chart', {
+  }, [(_vm.mArrayAge.length) ? _c('sex-chart', {
     attrs: {
-      "data": _vm.numberUsers
+      "mDetailsUsers": _vm.mDetailsUsers,
+      "fDetailsUsers": _vm.fDetailsUsers
     }
   }) : _vm._e()], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
@@ -95825,10 +95826,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [(_vm.mArrayAge.length) ? _c('sex-chart', {
+  }, [(_vm.numberUsers) ? _c('users-chart', {
     attrs: {
-      "mDetailsUsers": _vm.mDetailsUsers,
-      "fDetailsUsers": _vm.fDetailsUsers
+      "data": _vm.numberUsers
     }
   }) : _vm._e()], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
@@ -95862,13 +95862,13 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-header"
-  }, [_vm._v("\n        Estaditica de cantidad de usuarios\n        "), _c('div', {
+  }, [_vm._v("\n        Estaditica de uso por sexo mas detallada\n        "), _c('div', {
     staticClass: "card-actions"
   })])
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-header"
-  }, [_vm._v("\n        Estaditica de uso por sexo mas detallada\n        "), _c('div', {
+  }, [_vm._v("\n        Estaditica de cantidad de usuarios\n        "), _c('div', {
     staticClass: "card-actions"
   })])
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

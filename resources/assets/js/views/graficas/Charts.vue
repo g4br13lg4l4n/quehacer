@@ -28,21 +28,6 @@
 
       <div class="card">
         <div class="card-header">
-          Estaditica de cantidad de usuarios
-          <div class="card-actions">
-          </div>
-        </div>
-        <div class="card-block">
-          <div class="chart-wrapper">
-            <users-chart v-if="numberUsers"
-              :data="numberUsers" >
-              </users-chart>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
           Estaditica de uso por sexo mas detallada
           <div class="card-actions">
           </div>
@@ -53,6 +38,21 @@
             :mDetailsUsers="mDetailsUsers"
             :fDetailsUsers="fDetailsUsers"
             ></sex-chart>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          Estaditica de cantidad de usuarios
+          <div class="card-actions">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="chart-wrapper">
+            <users-chart v-if="numberUsers"
+              :data="numberUsers" >
+              </users-chart>
           </div>
         </div>
       </div>
