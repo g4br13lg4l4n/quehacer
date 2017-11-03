@@ -46,6 +46,9 @@
         <li class="nav-item">
           <router-link :to="{ name: 'Charts' }" class="nav-link" exact><i class="icon-pie-chart"></i> Graficas </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Sugerencia' }" class="nav-link" exact><i class="fa fa-commenting" aria-hidden="true"></i> Sugerencias </router-link>
+        </li>
         
       </ul>
     </nav>

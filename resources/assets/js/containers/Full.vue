@@ -35,6 +35,8 @@ export default {
   created () {
     if(this.$route.params.data){
       this.getUser = true
+    }else{
+      this.$router.push({ name: 'Page404' })
     }
   },
   watch: {

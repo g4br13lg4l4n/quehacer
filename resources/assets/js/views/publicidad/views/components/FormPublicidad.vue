@@ -11,7 +11,7 @@
               <div class="row">
                 <div class="form-group col-sm-8">
                   <label for="NamePub">Nombre de la publicidad</label>
-                  <input type="text" class="form-control"  id="NamePub" v-model="publicidad.name" placeholder="Reseña del establecimiento">
+                  <input type="text" class="form-control"  id="NamePub" v-model="publicidad.name" placeholder="Nombre de la publicidad">
               </div>
               
               <div class="form-group col-sm-4">

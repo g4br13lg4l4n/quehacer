@@ -23,7 +23,10 @@ const API = {
     getCategoria: '/api/user/getCategorias',
     searchCategoria: '/api/user/searchCategoria',
     editCategoria: 'api/user/editCategoria',
-    deleteCategoria: '/api/user/deleteCategoria'
+    deleteCategoria: '/api/user/deleteCategoria',
+
+    getSugerencias: 'api/user/getSugerencias',
+    deleteSugerencia: '/api/user/deleteSugerencia'
   }
 }
 export default API

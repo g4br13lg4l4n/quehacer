@@ -16,6 +16,10 @@
                   <label for="categoria">Categoría</label>
                   <input type="text" class="form-control" v-model="categoria.name"  id="categoria" placeholder="Categoría">
                 </div>
+                <div class="form-group">
+                  <label for="categoria">Descripción de la categoría</label>
+                  <input type="text" class="form-control" v-model="categoria.descripcion"  id="categoria" placeholder="Descripción de la categoría">
+                </div>
                 <div class="form-actions">
                   <button type="submit" class="btn btn-primary">Guardar</button> 
                 </div>
