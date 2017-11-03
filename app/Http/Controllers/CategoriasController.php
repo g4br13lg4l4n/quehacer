@@ -25,6 +25,7 @@ class CategoriasController extends Controller
         $categoria = new Categoria;
 
         $categoria->name = $request->categoria;
+        $categoria->descripcion = $request->descripcion;
         $categoria->save();
 
         return response()->json([
@@ -48,11 +49,10 @@ class CategoriasController extends Controller
 
     public function update(Request $request, $id)
     {
-
-
         Categoria::where('id', $id)
         ->update([
             'name' => $request->name,
+            'descripcion' => $request->descripcion
         ]);
 
         return response()->json([

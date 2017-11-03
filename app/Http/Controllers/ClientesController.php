@@ -41,6 +41,7 @@ class ClientesController extends Controller
         $cliente->establecimiento = $request->establecimiento;
         $cliente->estado = $request->estado;
         $cliente->rfc = $request->rfc;
+        $cliente->municipio = $request->municipio;
         $cliente->correo = $request->correo;
         $cliente->phone = $request->telefono;
         $cliente->responsable = $request->responsable;
@@ -77,6 +78,7 @@ class ClientesController extends Controller
             'establecimiento' =>  $request->establecimiento,
             'estado' => $request->estado,
             'rfc' => $request->rfc,
+            'municipio'=> $request->municipio,
             'correo' => $request->correo,
             'phone' => $request->phone,
             'responsable' => $request->responsable, 

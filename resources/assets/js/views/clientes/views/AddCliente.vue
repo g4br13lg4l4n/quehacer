@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import AppEdit from '../../components/Forms.vue'
+  import AppEdit from './components/Forms.vue'
   export default{
     components: {
       AppEdit

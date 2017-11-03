@@ -90,10 +90,10 @@
 </template>
 
 <script>
-import SexChart from './charts/SexChart'
-import GenderChart from './charts/GenderChart'
-import StateChart from './charts/StateChart'
-import UsersChart from './charts/UsersChart'
+import SexChart from './views/SexChart'
+import GenderChart from './views/GenderChart'
+import StateChart from './views/StateChart'
+import UsersChart from './views/UsersChart'
 export default {
   name: 'Charts',
   components: {

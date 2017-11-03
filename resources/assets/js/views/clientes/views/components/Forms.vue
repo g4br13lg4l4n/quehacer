@@ -25,9 +25,15 @@
                 <input type="text" class="form-control" v-model="cliente.responsable" id="responsable" placeholder="Nombre del responsable de la empresa">
               </div>
 
-              <div class="form-group">
-                <label for="rfc">RFC</label>
-                <input type="text" class="form-control" v-model="cliente.rfc" id="rfc" placeholder="RFC">
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label for="rfc">RFC</label>
+                  <input type="text" class="form-control" v-model="cliente.rfc" id="rfc" placeholder="RFC">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="municipio">Municipio</label>
+                  <input type="text" class="form-control" v-model="cliente.municipio" id="municipio" placeholder="Municipio">
+                </div>
               </div>
 
               <div class="row">
@@ -80,6 +86,7 @@ export default {
       cliente: {
         empresa: '',
         responsable: '',
+        municipio: '',
         rfc: '',
         telefono: '',
         correo: '',
@@ -107,6 +114,7 @@ export default {
           this.$toaster.warning('Todos los datos son necesarios')
         return 
       }
+      
       this.status = true
       document.getElementById('file-input').value = ''
       Store.CreateClient(this.cliente)

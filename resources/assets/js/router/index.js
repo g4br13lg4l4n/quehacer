@@ -8,11 +8,6 @@ import Full from '../containers/Full';
 import Dashboard from '../views/Dashboard';
 import Charts from '../views/graficas/Charts';
 
-// Views - Components
-import Forms from '../views/components/Forms';
-import Modals from '../views/components/Modals';
-import Tables from '../views/components/Tables';
-
 
 // Views - Pages
 import Page404 from '../views/pages/Page404';
@@ -22,6 +17,9 @@ import Login from '../views/pages/Login';
 import Clientes from '../views/clientes/Clientes'
 import AddCliente from '../views/clientes/views/AddCliente'
 import AllClientes from '../views/clientes/views/AllClientes'
+import Forms from '../views/clientes/views/components/Forms';
+import Tables from '../views/clientes/views/components/Tables';
+
 
 
 // Publicidad
@@ -34,18 +32,27 @@ import Categoria from '../views/categoria/Categoria'
 import AllCategoria from '../views/categoria/views/AllCategoria'
 import AddCategoria from '../views/categoria/views/AddCategoria'
 
+import Sugerecia from '../views/sugerencia/Sugerencia'
+
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+   mode: 'history',
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
       path: '/',
       name: 'Login',
-      component: Login
+      component: Login,
+      children: [
+        {
+          path: '*',
+          name: '404',
+          component: Page404
+        },
+      ]
     },
     {
       path: '/dashboard/',
@@ -108,10 +115,15 @@ export default new Router({
             }
           ]
         },
-         {
+        {
           path: 'charts',
           name: 'Charts',
           component: Charts,
+        },
+        {
+          path: 'sugerencia',
+          name: 'Sugerencia',
+          component: Sugerecia
         },
       ]
     },

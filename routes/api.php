@@ -63,3 +63,8 @@ Route::post('user/createUserApp', 'UserAplicationsController@store');
 
 
 Route::post('user/createPublicidadInterest', 'PublicidadInterestsController@store');
+
+
+Route::post('user/createSugerencia','SugerenciasController@store');
+Route::get('user/getSugerencias', 'SugerenciasController@index');
+Route::delete('user/deleteSugerencia/{id}', 'SugerenciasController@destroy');

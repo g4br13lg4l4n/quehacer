@@ -33,6 +33,7 @@ Store.CreateClient = function (cliente) {
 		empresa: cliente.empresa,
 		responsable: cliente.responsable,
 		rfc: cliente.rfc,
+		municipio: cliente.municipio,
 		telefono: cliente.telefono,
 		correo: cliente.correo,
 		estado: cliente.estado,
@@ -72,7 +73,7 @@ Store.searchCliente = function (id){
 		name: 'authClient',
 		id: id
 	}
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.get(API.admin.searchCliente+ '/'+id+'')
 			.then(res =>{
 				resolve(res)
@@ -88,7 +89,7 @@ Store.editCliente = function (cliente){
 
 	const id = cliente.id
 
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.put(API.admin.editCliente+'/'+id+'', cliente)
 			.then(res => {
 				resolve(res)
@@ -149,7 +150,7 @@ Store.getPublicidadChart = function(id){
 		name: 'authClient',
 		id: id
 	}
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.get(API.admin.getPublicidadChart+ '/'+id+'')
 			.then(res =>{
 				resolve(res)
@@ -166,7 +167,7 @@ Store.searchPublicidad = function (id){
 		name: 'authClient',
 		id: id
 	}
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.get(API.admin.searchPublicidad+ '/'+id+'')
 			.then(res =>{
 				resolve(res)
@@ -181,7 +182,7 @@ Store.searchPublicidad = function (id){
 Store.editPublicidad = function (publicidad) {
 	const id = publicidad.id
 
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.put(API.admin.editPublicidad+'/'+id+'', publicidad)
 			.then(res => {
 				resolve(res)
@@ -245,7 +246,7 @@ Store.searchCategoria = function (id){
 		name: 'authClient',
 		id: id
 	}
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.get(API.admin.searchCategoria+ '/'+id+'')
 			.then(res =>{
 				resolve(res)
@@ -275,7 +276,7 @@ Store.deleteCategoria = function(id) {
 Store.editCategoria = function (categoria) {
 	const id = categoria.id
 
-	return new Promise( (resolve, reject)=> {
+	return new Promise( (resolve, reject) => {
 		axios.put(API.admin.editCategoria+'/'+id+'', categoria)
 			.then(res => {
 				resolve(res)
@@ -288,7 +289,7 @@ Store.editCategoria = function (categoria) {
 
 
 Store.facebook = function () {
-	return new Promise((resolve, reject)=> {
+	return new Promise((resolve, reject) => {
 		axios.get(API.loginUsers.facebook)
 		.then(res => {
 			resolve(res)
@@ -296,6 +297,33 @@ Store.facebook = function () {
 		.catch(error => {
 			reject(error)
 		})
+	})
+}
+
+/**
+ * 	Sugerencias 
+ */
+Store.getSugerencias = function () {
+	return new Promise ((resolve, reject) =>{
+		axios.get(API.admin.getSugerencias)
+			.then(res => {
+					resolve(res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	})
+}
+
+Store.deleteSugerencia = function (id) {
+	return new Promise ((resolve, reject) => {
+			axios.delete(API.admin.deleteSugerencia + '/'+ id)
+				.then(res => {
+					resolve(res)
+				})
+				.catch(error => {
+					reject(error)
+				})
 	})
 }
 

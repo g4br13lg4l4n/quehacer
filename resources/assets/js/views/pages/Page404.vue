@@ -5,14 +5,12 @@
         <div class="col-md-6">
           <div class="clearfix">
             <h1 class="float-left display-3 mr-2">404</h1>
-            <h4 class="pt-1">Oops! You're lost.</h4>
-            <p class="text-muted">The page you are looking for was not found.</p>
+            <h4 class="pt-1">Oops! No encontramos esta página.</h4>
+            <p class="text-muted">La página no existe, disculpe las molestias</p>
           </div>
           <div class="input-prepend input-group">
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input id="prependedInput" class="form-control" size="16" type="text" placeholder="What are you looking for?">
             <span class="input-group-btn">
-              <button class="btn btn-info" type="button">Search</button>
+              <a class="btn btn-info" href="/">Ir a login</a>
             </span>
           </div>
         </div>

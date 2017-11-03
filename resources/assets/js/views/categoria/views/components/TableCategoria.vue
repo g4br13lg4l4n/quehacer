@@ -12,6 +12,7 @@
                 <tr>
                   <th>id</th>
                   <th>Categoría</th>
+                  <th>Desc. categoría</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -20,6 +21,7 @@
                 <tr v-for="categoria in categorias">
                   <td>{{ categoria.id }}</td>
                   <td>{{ categoria.name}}</td>
+                  <td>{{ categoria.descripcion}}</td>
                   <td class="with-td-btn">
                     <button type="button" class="btn btn-primary" @click="modalCategoria(categoria.id)">Editar</button>
                     <button type="button" class="btn btn-danger"  @click="modalDeleteCategoria(categoria.id)">Eliminar</button>
