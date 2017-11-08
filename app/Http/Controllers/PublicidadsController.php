@@ -86,7 +86,7 @@ class PublicidadsController extends Controller
 
     public function show($id)
     {
-        $publicidad = Publicidad::with('cliente', 'categoria')->find($id);
+        $publicidad = Publicidad::with('cliente', 'categoria', 'pictures')->find($id);
         return response()->json($publicidad, 200);
     }
 

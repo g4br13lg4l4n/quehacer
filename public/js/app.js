@@ -40724,8 +40724,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_8__com
 var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 __WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 
-//axios.defaults.baseURL = 'http://localhost:8000/';
-__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://165.227.111.118/';
+__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.baseURL = 'http://localhost:8000/';
+//axios.defaults.baseURL = 'http://165.227.111.118/'; 
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
