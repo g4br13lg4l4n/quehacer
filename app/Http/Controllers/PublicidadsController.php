@@ -48,6 +48,9 @@ class PublicidadsController extends Controller
         $publicidad->cliente_id = $request->empresa;
         $publicidad->resena = $request->rEstablecimento;
         $publicidad->ubicacion = $request->ubicacion;
+        $publicidad->idioma = $request->idioma;
+        $publicidad->mapaLat = $request->mapaLat;
+        $publicidad->mapaLng = $request->mapaLng;
         $publicidad->costo = $request->precios;
         $publicidad->horario = $request->horarios;
         $publicidad->telefono = $request->telefono;
