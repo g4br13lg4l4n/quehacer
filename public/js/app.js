@@ -99396,14 +99396,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     slot: "modal-header"
   }, [_c('h4', {
     staticClass: "modal-title"
-  }, [_vm._v("Editar Cliente")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Editar Publicidad")])]), _vm._v(" "), _c('div', {
     staticClass: "modal-body",
     slot: "modal-body"
   }, [_c('div', {
     staticClass: "card"
   }, [_c('div', {
     staticClass: "card-header"
-  }, [_c('strong', [_vm._v("Editar Clientes")])]), _vm._v(" "), _c('div', {
+  }, [_c('strong', [_vm._v("Editar Publicidad")])]), _vm._v(" "), _c('div', {
     staticClass: "card-block"
   }, [_c('form', {
     on: {
