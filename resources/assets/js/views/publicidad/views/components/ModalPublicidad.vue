@@ -2,13 +2,13 @@
   <div>
     <modal title="Modal title" class="modal-primary" large :show.sync="largeModal" effect="fade/zoom">
       <div slot="modal-header" class="modal-header">
-        <h4 class="modal-title">Editar Cliente</h4>
+        <h4 class="modal-title">Editar Publicidad</h4>
       </div>
       <div slot="modal-body" class="modal-body">
         
           <div class="card">
             <div class="card-header">
-              <strong>Editar Clientes</strong>
+              <strong>Editar Publicidad</strong>
             </div>
             <div class="card-block">
 
