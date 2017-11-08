@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group col-sm-6">
-                <label for="Categoria">Categoría</label>  
+                  <label for="Categoria">Categoría</label>  
                   <select class="form-control" id="Categoria" v-model="publicidad.categoria">
                     <option disabled value="">Seleccione una categoría</option>
                     <option v-for="categoria in categorias" v-bind:value="categoria.id">
@@ -49,12 +49,22 @@
                 <input type="text" class="form-control"  id="REstablecimento" v-model="publicidad.rEstablecimento" placeholder="Reseña del establecimiento">
               </div>
 
-              <div class="form-group">
-                <label for="Ubicacion">Ubicación</label>
-                <input type="text" class="form-control" id="Ubicacion" v-model="publicidad.ubicacion" placeholder="Ubicacion">
+              <div class="row">
+                <div class="form-group col-sm-4">
+                  <label for="Ubicacion">Ubicación</label>
+                  <input type="text" class="form-control" id="Ubicacion" v-model="publicidad.ubicacion" placeholder="Ubicacion">
+                </div>
+
+                <div class="form-group col-sm-4">
+                  <label for="mapaLat">Latitud Mapa</label>
+                  <input type="text" class="form-control" id="mapaLat" v-model="publicidad.mapaLat" placeholder="Latitud Mapa">
+                </div>
+
+                <div class="form-group col-sm-4">
+                  <label for="mapaLng">Longitud Mapa</label>
+                  <input type="text" class="form-control" id="mapaLng" v-model="publicidad.mapaLng" placeholder="Longitud Mapa">
+                </div>
               </div>
-
-
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label for="Precios">Precios</label>
@@ -130,13 +140,15 @@ export default {
         categoria: '',
         rEstablecimento: '',
         ubicacion: '',
+        mapaLat: '',
+        mapaLng: '',
         precios: '',
         horarios: '',
         telefono: '',
         correo: '',
-        aireAcondicionado: '0',
-        estacionamiento: '0',
-        servicioDomicilio:'0',
+        aireAcondicionado: '',
+        estacionamiento: '',
+        servicioDomicilio:'',
         images: []
       },
       status: false

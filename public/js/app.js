@@ -100196,6 +100196,16 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'forms',
@@ -100211,13 +100221,15 @@ if (false) {(function () {
         categoria: '',
         rEstablecimento: '',
         ubicacion: '',
+        mapaLat: '',
+        mapaLng: '',
         precios: '',
         horarios: '',
         telefono: '',
         correo: '',
-        aireAcondicionado: '0',
-        estacionamiento: '0',
-        servicioDomicilio: '0',
+        aireAcondicionado: '',
+        estacionamiento: '',
+        servicioDomicilio: '',
         images: []
       },
       status: false
@@ -100475,7 +100487,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "form-group col-sm-4"
   }, [_c('label', {
     attrs: {
       "for": "Ubicacion"
@@ -100503,6 +100517,62 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-sm-4"
+  }, [_c('label', {
+    attrs: {
+      "for": "mapaLat"
+    }
+  }, [_vm._v("Latitud Mapa")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.publicidad.mapaLat),
+      expression: "publicidad.mapaLat"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "mapaLat",
+      "placeholder": "Latitud Mapa"
+    },
+    domProps: {
+      "value": (_vm.publicidad.mapaLat)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.publicidad.mapaLat = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-sm-4"
+  }, [_c('label', {
+    attrs: {
+      "for": "mapaLng"
+    }
+  }, [_vm._v("Longitud Mapa")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.publicidad.mapaLng),
+      expression: "publicidad.mapaLng"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "mapaLng",
+      "placeholder": "Longitud Mapa"
+    },
+    domProps: {
+      "value": (_vm.publicidad.mapaLng)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.publicidad.mapaLng = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "form-group col-sm-6"
