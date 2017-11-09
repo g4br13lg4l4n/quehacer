@@ -60,6 +60,7 @@ Route::delete('user/deleteCategoria/{id}', 'CategoriasController@destroy');
 Route::get('user/getUserApps', 'UserAplicationsController@index');
 Route::get('user/searchUserApps/{id}', 'UserAplicationsController@show');
 Route::post('user/createUserApp', 'UserAplicationsController@store');
+Route::get('user/searchUserAppsForFacebook/{id}','UserAplicationsController@searchFacebook');
 
 
 Route::post('user/createPublicidadInterest', 'PublicidadInterestsController@store');
