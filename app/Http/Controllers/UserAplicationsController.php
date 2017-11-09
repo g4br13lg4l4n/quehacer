@@ -51,7 +51,7 @@ class UserAplicationsController extends Controller
     }
 
     public function searchFacebook($id) {
-        $pubInterestFacebook = UserAplication::with('publicidad')->where('idUserFacebook', $id)->first();
+        $pubInterestFacebook = UserAplication::where('idUserFacebook', $id)->first();
         return response()->json($pubInterestFacebook, 200);
     }
 
