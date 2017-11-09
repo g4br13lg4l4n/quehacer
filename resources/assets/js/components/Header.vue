@@ -17,9 +17,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav ml-auto mr-3">
-       <span slot="button">
-        <span class="hidden-md-down">{{ user }}</span>
-      </span>
+        <router-link :to="{ name: 'Login' }" class="nav-link" alt="Salir" exact><i class="fa fa-user"></i>  {{ user }} </router-link>
     </ul>
   </navbar>
 </template>
@@ -64,11 +62,7 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
-
-.mr-3{
-  margin-left: 3em;
-}
+<style lang="css">
 .dropdown-toggle::after {
   /*display: none !important;*/
 }
