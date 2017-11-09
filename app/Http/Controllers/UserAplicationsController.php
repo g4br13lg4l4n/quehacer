@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserAplication;
-
+use Exception;
 class UserAplicationsController extends Controller
 {
 
@@ -22,17 +22,22 @@ class UserAplicationsController extends Controller
     public function store(Request $request)
     {
         $userApp = new UserAplication;
+        $codeError = null;
+        try {
+            $userApp->email = $request->email;
+            $userApp->name = $request->name;
+            $userApp->age = $request->age;
+            $userApp->gender = $request->gender;
+            $userApp->locations = $request->locations;
+            $userApp->save();
         
-        $userApp->email = $request->email;
-        $userApp->name = $request->name;
-        $userApp->age = $request->age;
-        $userApp->gender = $request->gender;
-        $userApp->locations = $request->locations;
-
-        $userApp->save();
-
+        } catch(Exception $exception) {
+            $codeError = $exception->getCode();
+        }
+        
         return response()->json([
             'respuesta' => 'Ha Ingresado un nuevo usuario a la aplicación',
+            'error' => $codeError,
         ], 200);
 
     }
