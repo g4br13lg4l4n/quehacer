@@ -30,10 +30,6 @@ class PublicidadInterestsController extends Controller
         ], 200);
     }
 
-    public function searchFacebook($id) {
-        $pubInterestFacebook = PublicidadInterest::with('publicidad')->where('idUserFacebook', $id)->first();
-    }
-
     public function show($id)
     {
         //
