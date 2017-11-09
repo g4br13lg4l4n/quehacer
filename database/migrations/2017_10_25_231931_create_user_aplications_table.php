@@ -16,6 +16,7 @@ class CreateUserAplicationsTable extends Migration
         Schema::create('user_aplications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
+            $table->string('idUserFacebook')->unique();
             $table->string('name');
             $table->string('age');
             $table->string('gender');
