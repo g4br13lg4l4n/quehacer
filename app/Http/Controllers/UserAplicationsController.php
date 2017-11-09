@@ -29,6 +29,7 @@ class UserAplicationsController extends Controller
             $userApp->age = $request->age;
             $userApp->gender = $request->gender;
             $userApp->locations = $request->locations;
+            $userApp->idUserFacebook = $request->idUserFacebook;
             $userApp->save();
         
         } catch(Exception $exception) {
@@ -37,6 +38,7 @@ class UserAplicationsController extends Controller
         
         return response()->json([
             'respuesta' => 'Ha Ingresado un nuevo usuario a la aplicación',
+            'idFacebook' => $userApp->idUserFacebook,
             'error' => $codeError,
         ], 200);
 
