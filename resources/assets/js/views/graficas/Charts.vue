@@ -184,7 +184,7 @@ export default {
         if(el.locations){
          this.ArrayState.push(el.locations)
         }
-        if(el.gender === 'm') {
+        if(el.gender === 'male') {
            this.mArrayAge.push(el.age) 
           this.mGender += 1
         } else {
