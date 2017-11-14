@@ -15,9 +15,7 @@ class PublicidadsController extends Controller
     }
 
     public function getPublicidadChart($id)
-    {
-    //    $publicidadChart = Publicidad::with('cliente', 'publicidadInterests')->find($id); //userAplications
-        
+    {  
         $publicidadChart = Publicidad::with('userAplications')->find($id);
         return response()->json($publicidadChart, 200);
     }
@@ -115,5 +113,11 @@ class PublicidadsController extends Controller
         return response()->json([
             'respuesta' => 'Se ha actualizado la publicidad'
         ]);
+    }
+
+    public function getPublicidadForCategory($id)
+    {
+        $publicidad = Publicidad::where('categoria_id', $id)->with('cliente', 'categoria', 'pictures')->get();
+        return response()->json($publicidad, 200);
     }
 }

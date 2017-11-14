@@ -43,6 +43,7 @@ Route::put('/user/editPublicidad/{id}', 'PublicidadsController@update');
 
 Route::delete('user/deletePublicidad/{id}', 'PublicidadsController@destroy');
 
+Route::get('user/getPublicidadForCategory/{id}', 'PublicidadsController@getPublicidadForCategory');
 
 
 Route::post('user/createCategoria', 'CategoriasController@store');
