@@ -65,7 +65,8 @@
         </div>
         <div class="card-block">
           <div class="chart-wrapper">
-            <state-chart></state-chart>
+            <state-chart
+            :state ="ArrayState"></state-chart>
           </div>
         </div>
       </div>
@@ -123,16 +124,38 @@ export default {
       fMaxAgeUsers: 0,
       fMinAgeUsers: 0,
       fMeddAgeUsers: 0,
-      ArrayState: [],
-      state: {
+      ArrayState: {
+        labels: ["Estados"],
         datasets: [
           {
-            label: "",
+            label: "Tabasco",
             backgroundColor: "#5ad9fa",
-            data: [],
+            data: [50],
           },
-        ]
+          {
+            label: "Chiapas",
+            backgroundColor: "#5ad9fa",
+            data: [50],
+          },
+        ],
+        options: {
+          scales: {
+            xAxes: [
+              {
+                ticks: {
+                  beginAtZero:true
+                },
+                gridLines: {
+                  display: true,
+                  color: "red",
+                  lineWidth: 1
+                }
+              }
+            ]
+          }
+        }
       },
+      state: [],
     }
   },
   methods: {
@@ -147,30 +170,33 @@ export default {
             this.mMaxAgeUsers = Math.max.apply(null, this.mArrayAge)
             this.mMinAgeUsers = Math.min.apply(null, this.mArrayAge)
             let vmAge = this.mArrayAge
-            let vmAgeSuma = vmAge.reduce((a , b) =>{
-              return parseInt(a)+ parseInt(b)
-            })
-            this.mMeddAgeUsers = parseInt(vmAgeSuma) / vmAge.length
-            this.mDetailsUsers.push(this.mMaxAgeUsers, this.mMinAgeUsers, this.mMeddAgeUsers)
-
-
+            if (vmAge.length > 1) {
+                let vmAgeSuma = vmAge.reduce((a , b) => {
+                return parseInt(a)+ parseInt(b)
+              })
+              this.mMeddAgeUsers = parseInt(vmAgeSuma) / vmAge.length
+              this.mDetailsUsers.push(this.mMaxAgeUsers, this.mMinAgeUsers, this.mMeddAgeUsers)
+            }
+            
             this.fMaxAgeUsers = Math.max.apply(null, this.fArrayAge)
             this.fMinAgeUsers = Math.min.apply(null, this.fArrayAge)
             let vfAge = this.fArrayAge
-            let vfAgeSuma = vfAge.reduce( (a, b) =>{
-              return parseInt(a) + parseInt(b)
-            })
-            this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length
-            this.fDetailsUsers.push(this.fMaxAgeUsers, this.fMinAgeUsers, this.fMeddAgeUsers)
+            if (vfAge.length > 0) {
+                let vfAgeSuma = vfAge.reduce( (a, b) => {
+                return parseInt(a) + parseInt(b)
+              })
+              this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length
+              this.fDetailsUsers.push(this.fMaxAgeUsers, this.fMinAgeUsers, this.fMeddAgeUsers) 
+            }
+
+            var arr = this.state
+            var stateClean = [];
+            stateClean = arr.filter(function(elem, pos) {
+              return arr.indexOf(elem) == pos;
+            });
             
-            /*
-            const arr = ['Tabasco', 'Tabasco', 'Tabasco', 'Tabasco', 'Teapa', 'Teapa', 'Teapa', 'Jalapa']
-            let location = arr.slice().sort()
-
-            */
-
-            console.log(this.ArrayState)
-
+            console.log(JSON.stringify(stateClean));
+            
           })
       }else{
         this.$toaster.warning('Seleccionar una publicidad')
@@ -182,7 +208,7 @@ export default {
 
       users.forEach(function(el) {
         if(el.locations){
-         this.ArrayState.push(el.locations)
+          this.state.push(el.locations)
         }
         if(el.gender === 'male') {
            this.mArrayAge.push(el.age) 

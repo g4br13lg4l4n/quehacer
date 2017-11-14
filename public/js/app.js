@@ -75552,6 +75552,7 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
 //
 //
 //
+//
 
 
 
@@ -75586,14 +75587,33 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
       fMaxAgeUsers: 0,
       fMinAgeUsers: 0,
       fMeddAgeUsers: 0,
-      ArrayState: [],
-      state: {
+      ArrayState: {
+        labels: ["Estados"],
         datasets: [{
-          label: "",
+          label: "Tabasco",
           backgroundColor: "#5ad9fa",
-          data: []
-        }]
-      }
+          data: [50]
+        }, {
+          label: "Chiapas",
+          backgroundColor: "#5ad9fa",
+          data: [50]
+        }],
+        options: {
+          scales: {
+            xAxes: [{
+              ticks: {
+                beginAtZero: true
+              },
+              gridLines: {
+                display: true,
+                color: "red",
+                lineWidth: 1
+              }
+            }]
+          }
+        }
+      },
+      state: []
     };
   },
 
@@ -75610,27 +75630,32 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
           _this.mMaxAgeUsers = Math.max.apply(null, _this.mArrayAge);
           _this.mMinAgeUsers = Math.min.apply(null, _this.mArrayAge);
           var vmAge = _this.mArrayAge;
-          var vmAgeSuma = vmAge.reduce(function (a, b) {
-            return parseInt(a) + parseInt(b);
-          });
-          _this.mMeddAgeUsers = parseInt(vmAgeSuma) / vmAge.length;
-          _this.mDetailsUsers.push(_this.mMaxAgeUsers, _this.mMinAgeUsers, _this.mMeddAgeUsers);
+          if (vmAge.length > 1) {
+            var vmAgeSuma = vmAge.reduce(function (a, b) {
+              return parseInt(a) + parseInt(b);
+            });
+            _this.mMeddAgeUsers = parseInt(vmAgeSuma) / vmAge.length;
+            _this.mDetailsUsers.push(_this.mMaxAgeUsers, _this.mMinAgeUsers, _this.mMeddAgeUsers);
+          }
 
           _this.fMaxAgeUsers = Math.max.apply(null, _this.fArrayAge);
           _this.fMinAgeUsers = Math.min.apply(null, _this.fArrayAge);
           var vfAge = _this.fArrayAge;
-          var vfAgeSuma = vfAge.reduce(function (a, b) {
-            return parseInt(a) + parseInt(b);
+          if (vfAge.length > 0) {
+            var vfAgeSuma = vfAge.reduce(function (a, b) {
+              return parseInt(a) + parseInt(b);
+            });
+            _this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length;
+            _this.fDetailsUsers.push(_this.fMaxAgeUsers, _this.fMinAgeUsers, _this.fMeddAgeUsers);
+          }
+
+          var arr = _this.state;
+          var stateClean = [];
+          stateClean = arr.filter(function (elem, pos) {
+            return arr.indexOf(elem) == pos;
           });
-          _this.fMeddAgeUsers = parseInt(vfAgeSuma) / vfAge.length;
-          _this.fDetailsUsers.push(_this.fMaxAgeUsers, _this.fMinAgeUsers, _this.fMeddAgeUsers);
 
-          /*
-          const arr = ['Tabasco', 'Tabasco', 'Tabasco', 'Tabasco', 'Teapa', 'Teapa', 'Teapa', 'Jalapa']
-          let location = arr.slice().sort()
-           */
-
-          console.log(_this.ArrayState);
+          console.log(JSON.stringify(stateClean));
         });
       } else {
         this.$toaster.warning('Seleccionar una publicidad');
@@ -75642,7 +75667,7 @@ exports.push([module.i, "\n.margins[data-v-d662c610]{\n  margin: 20px 10px;\n}\n
 
       users.forEach(function (el) {
         if (el.locations) {
-          this.ArrayState.push(el.locations);
+          this.state.push(el.locations);
         }
         if (el.gender === 'male') {
           this.mArrayAge.push(el.age);
@@ -95524,33 +95549,9 @@ if (false) {(function () {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["Bar"].extend({
+  props: ['state'],
   mounted: function mounted() {
-    this.renderChart({
-      labels: ["Estados"],
-      datasets: [{
-        label: "Tabasco",
-        backgroundColor: "#5ad9fa",
-        data: [50]
-      }, {
-        label: "Chiapas",
-        backgroundColor: "#5ad9fa",
-        data: [10]
-      }],
-      options: {
-        scales: {
-          xAxes: [{
-            ticks: {
-              beginAtZero: true
-            },
-            gridLines: {
-              display: true,
-              color: "red",
-              lineWidth: 1
-            }
-          }]
-        }
-      }
-    });
+    this.renderChart(this.state);
   }
 }));
 
@@ -95737,7 +95738,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "card-block"
   }, [_c('div', {
     staticClass: "chart-wrapper"
-  }, [_c('state-chart')], 1)])]), _vm._v(" "), _c('div', {
+  }, [_c('state-chart', {
+    attrs: {
+      "state": _vm.ArrayState
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "card"
   }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "card-block"
