@@ -86,31 +86,53 @@
                   <input type="text" class="form-control" id="Correo" v-model="publicidad.correo" placeholder="Correo">
                 </div>
               </div><!--/.row-->
+              <br>
               <div class="form-group row">
-                <label class="col-md-1 form-control-label" for="file-multiple-input">Imagenes</label>
+                <label class="col-md-1 form-control-label" for="file-multiple-input">Imagenes: </label>
                 <div class="col-md-9">
                   <input type="file" id="files" multiple ref="file_input" v-on:change="uploadFiles">
                 </div>
               </div>
+              <br>
               <div class="form-group row">
-                <label class="col-md-3 form-control-label">Servicios adicionales</label>
-                <div class="col-md-9">
+                <label class="col-md-2 form-control-label">Servicios adicionales: </label>
+
+                <div class="col-md-2">
                   <div class="checkbox">
-                    <label for="AA">
+                    <label>
                       <input type="checkbox" v-model="publicidad.aireAcondicionado" value="Aire Acondicionado"> Aire Acondicionado
                     </label>
                   </div>
                   <div class="checkbox">
-                    <label for="checkbox2">
+                    <label>
                       <input type="checkbox" v-model="publicidad.estacionamiento" value="Estacionamiento"> Estacionamiento
                     </label>
                   </div>
                   <div class="checkbox">
-                    <label for="checkbox3">
+                    <label>
                       <input type="checkbox" v-model="publicidad.servicioDomicilio" value="Servicio a domicilio"> Servicio a domicilio
                     </label>
                   </div>
                 </div>
+
+                <div class="col-md-2">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.wifi" value="Aire Acondicionado"> Wi-Fi
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.bar" value="Estacionamiento"> Bar
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.musica" value="Servicio a domicilio"> Música en vivo
+                    </label>
+                  </div>
+                </div>
+
               </div>
               
               <div class="form-actions">
@@ -149,6 +171,9 @@ export default {
         aireAcondicionado: '',
         estacionamiento: '',
         servicioDomicilio:'',
+        wifi:'',
+        bar:'',
+        musica:'',
         images: []
       },
       status: false

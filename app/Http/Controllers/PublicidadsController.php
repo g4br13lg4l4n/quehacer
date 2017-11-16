@@ -10,7 +10,7 @@ class PublicidadsController extends Controller
 {
     public function index()
     {
-        $publicidad = Publicidad::with('cliente', 'categoria')->get();
+        $publicidad = Publicidad::with('cliente', 'categoria', 'pictures')->get();
         return response()->json($publicidad, 200);
     }
 
@@ -41,6 +41,9 @@ class PublicidadsController extends Controller
         $request->aireAcondicionado ? $clima = 1 : $clima = 0;
         $request->estacionamiento ? $estacionamiento = 1 : $estacionamiento = 0;
         $request->servicioDomicilio ? $servicioDomicilio = 1 : $servicioDomicilio = 0;
+        $request->wifi ? $wifi = 1 : $wifi = 0;
+        $request->bar ? $bar = 1 : $bar = 0;
+        $request->musica ? $musica = 1 : $musica = 0;
  
         $publicidad->name = $request->name;
         $publicidad->cliente_id = $request->empresa;
@@ -57,6 +60,9 @@ class PublicidadsController extends Controller
         $publicidad->clima = $clima;
         $publicidad->estacionamiento = $estacionamiento;
         $publicidad->domicilio = $servicioDomicilio;
+        $publicidad->wifi = $wifi;
+        $publicidad->bar = $bar;
+        $publicidad->musica = $musica;
         $publicidad->categoria_id = $request->categoria;
         $publicidad->save();
 

@@ -30,6 +30,9 @@ class CreatePublicidadsTable extends Migration
             $table->string('clima');
             $table->string('estacionamiento');
             $table->string('domicilio');
+            $table->string('wifi');
+            $table->string('bar');
+            $table->string('musica');
 
             $table->timestamps();
         });
