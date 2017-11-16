@@ -12,6 +12,7 @@ use App\Publicidad;
 class Publicidad extends Model
 {
     protected $guarded = [];
+    public $timestamps = false;
 
     public function cliente()
     {

@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class UsuarioCliente extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-
     protected $guard = 'usuarioCliente-api';
 
     protected $fillable = [

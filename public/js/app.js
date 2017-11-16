@@ -100099,6 +100099,28 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'forms',
@@ -100123,6 +100145,9 @@ if (false) {(function () {
         aireAcondicionado: '',
         estacionamiento: '',
         servicioDomicilio: '',
+        wifi: '',
+        bar: '',
+        musica: '',
         images: []
       },
       status: false
@@ -100581,14 +100606,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm.publicidad.correo = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
     staticClass: "form-group row"
   }, [_c('label', {
     staticClass: "col-md-1 form-control-label",
     attrs: {
       "for": "file-multiple-input"
     }
-  }, [_vm._v("Imagenes")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Imagenes: ")]), _vm._v(" "), _c('div', {
     staticClass: "col-md-9"
   }, [_c('input', {
     ref: "file_input",
@@ -100600,19 +100625,15 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "change": _vm.uploadFiles
     }
-  })])]), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
     staticClass: "form-group row"
   }, [_c('label', {
-    staticClass: "col-md-3 form-control-label"
-  }, [_vm._v("Servicios adicionales")]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-9"
+    staticClass: "col-md-2 form-control-label"
+  }, [_vm._v("Servicios adicionales: ")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-2"
   }, [_c('div', {
     staticClass: "checkbox"
-  }, [_c('label', {
-    attrs: {
-      "for": "AA"
-    }
-  }, [_c('input', {
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -100646,11 +100667,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }), _vm._v(" Aire Acondicionado\n                  ")])]), _vm._v(" "), _c('div', {
     staticClass: "checkbox"
-  }, [_c('label', {
-    attrs: {
-      "for": "checkbox2"
-    }
-  }, [_c('input', {
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -100684,11 +100701,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }), _vm._v(" Estacionamiento\n                  ")])]), _vm._v(" "), _c('div', {
     staticClass: "checkbox"
-  }, [_c('label', {
-    attrs: {
-      "for": "checkbox3"
-    }
-  }, [_c('input', {
+  }, [_c('label', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -100720,7 +100733,111 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }
-  }), _vm._v(" Servicio a domicilio\n                  ")])])])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" Servicio a domicilio\n                  ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-2"
+  }, [_c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.publicidad.wifi),
+      expression: "publicidad.wifi"
+    }],
+    attrs: {
+      "type": "checkbox",
+      "value": "Aire Acondicionado"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.publicidad.wifi) ? _vm._i(_vm.publicidad.wifi, "Aire Acondicionado") > -1 : (_vm.publicidad.wifi)
+    },
+    on: {
+      "__c": function($event) {
+        var $$a = _vm.publicidad.wifi,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = "Aire Acondicionado",
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.publicidad.wifi = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.publicidad.wifi = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.publicidad.wifi = $$c
+        }
+      }
+    }
+  }), _vm._v(" Wi-Fi\n                  ")])]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.publicidad.bar),
+      expression: "publicidad.bar"
+    }],
+    attrs: {
+      "type": "checkbox",
+      "value": "Estacionamiento"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.publicidad.bar) ? _vm._i(_vm.publicidad.bar, "Estacionamiento") > -1 : (_vm.publicidad.bar)
+    },
+    on: {
+      "__c": function($event) {
+        var $$a = _vm.publicidad.bar,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = "Estacionamiento",
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.publicidad.bar = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.publicidad.bar = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.publicidad.bar = $$c
+        }
+      }
+    }
+  }), _vm._v(" Bar\n                  ")])]), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.publicidad.musica),
+      expression: "publicidad.musica"
+    }],
+    attrs: {
+      "type": "checkbox",
+      "value": "Servicio a domicilio"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.publicidad.musica) ? _vm._i(_vm.publicidad.musica, "Servicio a domicilio") > -1 : (_vm.publicidad.musica)
+    },
+    on: {
+      "__c": function($event) {
+        var $$a = _vm.publicidad.musica,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = "Servicio a domicilio",
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.publicidad.musica = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.publicidad.musica = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.publicidad.musica = $$c
+        }
+      }
+    }
+  }), _vm._v(" Música en vivo\n                  ")])])])]), _vm._v(" "), _c('div', {
     staticClass: "form-actions"
   }, [_c('button', {
     staticClass: "btn btn-primary",
