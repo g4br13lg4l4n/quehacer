@@ -70,3 +70,7 @@ Route::post('user/createPublicidadInterest', 'PublicidadInterestsController@stor
 Route::post('user/createSugerencia','SugerenciasController@store');
 Route::get('user/getSugerencias', 'SugerenciasController@index');
 Route::delete('user/deleteSugerencia/{id}', 'SugerenciasController@destroy');
+
+Route::post('user/createSlider', 'SlidersController@store');
+Route::get('user/getSliders', 'SlidersController@index');
+Route::delete('user/deleteSlider/{id}', 'SlidersController@destroy');

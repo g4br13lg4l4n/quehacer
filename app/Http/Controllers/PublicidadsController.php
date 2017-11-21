@@ -53,6 +53,7 @@ class PublicidadsController extends Controller
         $publicidad->mapaLat = $request->mapaLat;
         $publicidad->mapaLng = $request->mapaLng;
         $publicidad->costo = $request->precios;
+        $publicidad->oferta = $request->oferta;
         $publicidad->horario = $request->horarios;
         $publicidad->telefono = $request->telefono;
         $publicidad->correo = $request->correo;
@@ -96,9 +97,13 @@ class PublicidadsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->clima ? $clima = 1 : $clima = 0;
+
+        $request->aireAcondicionado ? $clima = 1 : $clima = 0;
         $request->estacionamiento ? $estacionamiento = 1 : $estacionamiento = 0;
-        $request->domicilio ? $servicioDomicilio = 1 : $servicioDomicilio = 0;
+        $request->servicioDomicilio ? $servicioDomicilio = 1 : $servicioDomicilio = 0;
+        $request->wifi ? $wifi = 1 : $wifi = 0;
+        $request->bar ? $bar = 1 : $bar = 0;
+        $request->musica ? $musica = 1 : $musica = 0;
 
         Publicidad::where('id', $id)
         ->update([
@@ -106,6 +111,7 @@ class PublicidadsController extends Controller
             'resena' => $request->resena,
             'ubicacion'=> $request->ubicacion,
             'costo' =>  $request->costo,
+            'oferta' => $request->oferta,
             'horario' => $request->horario,
             'telefono' => $request->telefono,
             'correo' => $request->correo,
@@ -113,6 +119,9 @@ class PublicidadsController extends Controller
             'clima' => $clima,
             'estacionamiento' => $estacionamiento,
             'domicilio' => $servicioDomicilio, 
+            'wifi' => $wifi,
+            'bar' => $bar,
+            'musica' => $musica,
             'categoria_id' => $request->categoria_id
         ]);
 

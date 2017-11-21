@@ -42,6 +42,18 @@
           </ul>
         </router-link>
 
+        <router-link tag="li" class="nav-item nav-dropdown" :to="{ path: '/components'}" disabled>
+          <div class="nav-link nav-dropdown-toggle" @click="handleClick"><i class="icon-puzzle"></i>Slider</div>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <router-link :to="{ name: 'All Slider' }" class="nav-link" exact><i class="icon-puzzle"></i>Todos</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'Add Slider' }" class="nav-link" exact><i class="icon-puzzle"></i>Agregar</router-link>
+            </li>
+          </ul>
+        </router-link>
+
         <li class="divider"></li>
         <li class="nav-item">
           <router-link :to="{ name: 'Charts' }" class="nav-link" exact><i class="icon-pie-chart"></i> Graficas </router-link>
