@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const Store = {}
 
-Store.login = function (user) {
+Store.login = (user) => {
 
 		const data = {
 				name: 'authClient',
@@ -26,7 +26,7 @@ Store.login = function (user) {
 *  Metodos para clientes 
 */
 
-Store.CreateClient = function (cliente) {
+Store.CreateClient = (cliente) => {
 
 	const data = {
 		name: 'authClient',
@@ -54,7 +54,7 @@ Store.CreateClient = function (cliente) {
 
 }
 
-Store.getClientes = function (){
+Store.getClientes = () => {
 	return new Promise ((resolve, reject) => {
 
 		axios.get(API.admin.getClientes)
@@ -68,7 +68,7 @@ Store.getClientes = function (){
 	})
 }
 
-Store.searchCliente = function (id){
+Store.searchCliente = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -85,7 +85,7 @@ Store.searchCliente = function (id){
 	})  
 }
 
-Store.editCliente = function (cliente){
+Store.editCliente = (cliente) => {
 
 	const id = cliente.id
 
@@ -100,7 +100,7 @@ Store.editCliente = function (cliente){
 	})
 }
 
-Store.deleteCliente = function(id) {
+Store.deleteCliente = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -121,7 +121,7 @@ Store.deleteCliente = function(id) {
 */
 
 
-Store.CreatePublicidad = function(publicidad){
+Store.CreatePublicidad = (publicidad) => {
 	return new Promise((resolve, reject) => {
 		axios.post(API.admin.addPublicidad, publicidad)
 		.then(res => {
@@ -133,7 +133,7 @@ Store.CreatePublicidad = function(publicidad){
 	})
 }
 
-Store.getPublicidads = function() {
+Store.getPublicidads = () => {
 	return new Promise((resolve, reject) => {
 		axios.get(API.admin.getPublicidads)
 		.then(res => {
@@ -145,7 +145,7 @@ Store.getPublicidads = function() {
 	})
 }
 
-Store.getPublicidadChart = function(id){
+Store.getPublicidadChart = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -162,7 +162,7 @@ Store.getPublicidadChart = function(id){
 	})
 }
 
-Store.searchPublicidad = function (id){
+Store.searchPublicidad = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -179,7 +179,7 @@ Store.searchPublicidad = function (id){
 	})  
 }
 
-Store.editPublicidad = function (publicidad) {
+Store.editPublicidad = (publicidad) => {
 	const id = publicidad.id
 
 	return new Promise( (resolve, reject) => {
@@ -193,7 +193,7 @@ Store.editPublicidad = function (publicidad) {
 	})
 }
 
-Store.deletePublicidad = function(id) {
+Store.deletePublicidad = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -216,7 +216,7 @@ Store.deletePublicidad = function(id) {
 
 
 
-Store.getCategorias = function () {
+Store.getCategorias = () => {
 	return new Promise ((resolve, reject) => {
 		axios.get(API.admin.getCategoria)
 		.then(res => {
@@ -228,7 +228,7 @@ Store.getCategorias = function () {
 	})
 }
 
-Store.CreateCategoria = function (categoria) {
+Store.CreateCategoria = (categoria) => {
 	return new Promise ((resolve, reject) => {
 		axios.post(API.admin.addCategoria, categoria)
 		.then(res => {
@@ -241,7 +241,7 @@ Store.CreateCategoria = function (categoria) {
 }
 
 
-Store.searchCategoria = function (id){
+Store.searchCategoria = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -257,7 +257,7 @@ Store.searchCategoria = function (id){
 	})  
 }
 
-Store.deleteCategoria = function(id) {
+Store.deleteCategoria = (id) => {
 	const data = {
 		name: 'authClient',
 		id: id
@@ -273,7 +273,7 @@ Store.deleteCategoria = function(id) {
 	}) 
 }
 
-Store.editCategoria = function (categoria) {
+Store.editCategoria = (categoria) => {
 	const id = categoria.id
 
 	return new Promise( (resolve, reject) => {
@@ -288,7 +288,7 @@ Store.editCategoria = function (categoria) {
 }
 
 
-Store.facebook = function () {
+Store.facebook = () => {
 	return new Promise((resolve, reject) => {
 		axios.get(API.loginUsers.facebook)
 		.then(res => {
@@ -303,7 +303,7 @@ Store.facebook = function () {
 /**
  * 	Sugerencias 
  */
-Store.getSugerencias = function () {
+Store.getSugerencias = () => {
 	return new Promise ((resolve, reject) =>{
 		axios.get(API.admin.getSugerencias)
 			.then(res => {
@@ -315,7 +315,7 @@ Store.getSugerencias = function () {
 	})
 }
 
-Store.deleteSugerencia = function (id) {
+Store.deleteSugerencia = (id) => {
 	return new Promise ((resolve, reject) => {
 			axios.delete(API.admin.deleteSugerencia + '/'+ id)
 				.then(res => {
@@ -326,6 +326,46 @@ Store.deleteSugerencia = function (id) {
 				})
 	})
 }
+
+
+/**
+ * Slider 
+ */
+
+Store.createSlider =  (data) => {
+	return new Promise ((resolve, reject) => {
+		axios.post(API.admin.createSlider, data)
+			.then(res => {
+				resolve(res)
+			})
+			.catch( error => {
+				reject(error)
+			})
+	})
+}
+
+Store.getSlider = () => {
+	return new Promise ((resolve, reject) => {
+		axios.get(API.admin.getSliders)
+			.then(res => {
+				resolve (res)
+			})
+			.catch(error => {
+				reject(error)
+			})
+	})
+}
+
+Store.deleteSlider = (id) => {
+	console.log(id)
+	return new Promise((resolve, reject ) => {
+	axios.delete(API.admin.deleteSlider+ '/'+id+'')	
+		.then( res => {
+			resolve(res)
+		})
+	})
+}
+
 
 
 export default Store

@@ -49,6 +49,11 @@
                 <input type="text" class="form-control"  id="REstablecimento" v-model="publicidad.rEstablecimento" placeholder="Reseña del establecimiento">
               </div>
 
+              <div class="form-group">
+                <label for="oferta">Oferta</label>
+                <input type="text" class="form-control"  id="oferta" v-model="publicidad.oferta" placeholder="Oferta">
+              </div>
+
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="Ubicacion">Ubicación</label>
@@ -149,8 +154,6 @@
 <script>
 export default {
   name: 'forms',
-  components: {
-  },
   data () {
     return {
       clientes: [],
@@ -161,6 +164,7 @@ export default {
         empresa: '',
         categoria: '',
         rEstablecimento: '',
+        oferta: '',
         ubicacion: '',
         mapaLat: '',
         mapaLng: '',
@@ -191,7 +195,7 @@ export default {
   },
 
   methods: {
-    uploadFiles(e){
+    uploadFiles(e) {
       let fileReader
       const files = e.target;
       const imgCant = e.target.files.length;
@@ -204,8 +208,7 @@ export default {
         fileReader.onload = ((e) => {
           this.publicidad.images.push(e.target.result) 
         })
-      }
-      
+      } 
     },
     CreatePublicidad(publicidad){
       document.getElementById('files').value = ''

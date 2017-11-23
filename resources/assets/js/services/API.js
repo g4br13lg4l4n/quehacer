@@ -18,7 +18,6 @@ const API = {
     editPublicidad:'/api/user/editPublicidad',
     deletePublicidad:'/api/user/deletePublicidad',
 
-
     addCategoria: '/api/user/createCategoria',
     getCategoria: '/api/user/getCategorias',
     searchCategoria: '/api/user/searchCategoria',
@@ -26,7 +25,11 @@ const API = {
     deleteCategoria: '/api/user/deleteCategoria',
 
     getSugerencias: 'api/user/getSugerencias',
-    deleteSugerencia: '/api/user/deleteSugerencia'
+    deleteSugerencia: '/api/user/deleteSugerencia',
+
+    createSlider: 'api/user/createSlider',
+    getSliders: 'api/user/getSliders',
+    deleteSlider: 'api/user/deleteSlider'
   }
 }
 export default API

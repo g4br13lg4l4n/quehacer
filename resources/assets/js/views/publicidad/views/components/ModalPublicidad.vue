@@ -45,11 +45,25 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="oferta">Oferta</label>
+                  <input type="text" class="form-control"  id="oferta" v-model="publicidad.oferta" placeholder="Oferta">
+                </div>
+
+                <div class="form-group">
                   <label for="Ubicacion">Ubicación</label>
                   <input type="text" class="form-control" id="Ubicacion" v-model="publicidad.ubicacion" placeholder="Ubicacion">
                 </div>
+                <div class="row"> 
+                  <div class="form-group col-sm-6">
+                    <label for="mapaLat">Latitud Mapa</label>
+                    <input type="text" class="form-control" id="mapaLat" v-model="publicidad.mapaLat" placeholder="Latitud Mapa">
+                  </div>
 
-
+                  <div class="form-group col-sm-6">
+                    <label for="mapaLng">Longitud Mapa</label>
+                    <input type="text" class="form-control" id="mapaLng" v-model="publicidad.mapaLng" placeholder="Longitud Mapa">
+                  </div>
+                </div>
                 <div class="row">
                   <div class="form-group col-sm-6">
                     <label for="Precios">Precios</label>
@@ -73,25 +87,45 @@
                 </div><!--/.row-->
 
                 <div class="form-group row">
-                  <label class="col-md-3 form-control-label">Servicios adicionales</label>
-                  <div class="col-md-9">
-                    <div class="checkbox">
-                      <label for="AA">
-                        <input type="checkbox" v-model="publicidad.clima" value="Aire Acondicionado"> Aire Acondicionado
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label for="checkbox2">
-                        <input type="checkbox" v-model="publicidad.estacionamiento" value="Estacionamiento"> Estacionamiento
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label for="checkbox3">
-                        <input type="checkbox" v-model="publicidad.domicilio" value="Servicio a domicilio"> Servicio a domicilio
-                      </label>
-                    </div>
+                <label class="col-md-12 form-control-label">Servicios adicionales: </label>
+
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.aireAcondicionado" value="Aire Acondicionado"> Aire Acondicionado
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.estacionamiento" value="Estacionamiento"> Estacionamiento
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.servicioDomicilio" value="Servicio a domicilio"> Servicio a domicilio
+                    </label>
                   </div>
                 </div>
+
+                <div class="col-md-6">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.wifi" value="Aire Acondicionado"> Wi-Fi
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.bar" value="Estacionamiento"> Bar
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" v-model="publicidad.musica" value="Servicio a domicilio"> Música en vivo
+                    </label>
+                  </div>
+                </div>
+
+              </div>
                 
 
                 <div class="form-actions">

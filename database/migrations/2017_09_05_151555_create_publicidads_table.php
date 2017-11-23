@@ -21,6 +21,7 @@ class CreatePublicidadsTable extends Migration
             $table->string('mapaLng');
             $table->string('name');
             $table->string('resena');
+            $table->string('oferta');
             $table->string('ubicacion');
             $table->string('costo');
             $table->string('horario');

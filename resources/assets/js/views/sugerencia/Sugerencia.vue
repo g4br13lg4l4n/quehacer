@@ -1,5 +1,5 @@
 <template>
-    <div class="animated fadeIn">
+  <div class="animated fadeIn">
     <div class="row">
       <div class="col-lg-12">
         <div class="card">

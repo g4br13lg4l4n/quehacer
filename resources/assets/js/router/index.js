@@ -8,7 +8,6 @@ import Full from '../containers/Full';
 import Dashboard from '../views/Dashboard';
 import Charts from '../views/graficas/Charts';
 
-
 // Views - Pages
 import Page404 from '../views/pages/Page404';
 import Login from '../views/pages/Login';
@@ -20,8 +19,6 @@ import AllClientes from '../views/clientes/views/AllClientes'
 import Forms from '../views/clientes/views/components/Forms';
 import Tables from '../views/clientes/views/components/Tables';
 
-
-
 // Publicidad
 import Publicidad from '../views/publicidad/Publicidad'
 import AllPublicidad from '../views/publicidad/views/AllPublicidades'
@@ -31,6 +28,11 @@ import AddPublicidad from '../views/publicidad/views/AddPublicidad'
 import Categoria from '../views/categoria/Categoria'
 import AllCategoria from '../views/categoria/views/AllCategoria'
 import AddCategoria from '../views/categoria/views/AddCategoria'
+
+// Slider
+import Slider from '../views/slider/Slider'
+import AllSlider from '../views/slider/views/AllSlider'
+import AddSlider from '../views/slider/views/AddSlider'
 
 import Sugerecia from '../views/sugerencia/Sugerencia'
 
@@ -112,6 +114,23 @@ export default new Router({
               path: 'add-Categoria',
               name: 'Add Categoria',
               component: AddCategoria 
+            }
+          ]
+        },
+        {
+          path: 'slider',
+          name: 'Slider',
+          component: Slider,
+          children:[
+            {
+              path: 'all-Slider',
+              name: 'All Slider',
+              component: AllSlider
+            },
+            {
+              path: 'add-Slider',
+              name: 'Add Slider',
+              component: AddSlider
             }
           ]
         },
