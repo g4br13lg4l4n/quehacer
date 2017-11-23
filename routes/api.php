@@ -9,12 +9,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('login/facebook', 'SocialProfilesController@facebook');
-    Route::get('login/facebook/callback', 'SocialProfilesController@callback');
-});
-
-
 
 Route::post('login', 'UsersController@login');
 //Route::post('register', 'UsersController@register');
