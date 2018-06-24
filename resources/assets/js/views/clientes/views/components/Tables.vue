@@ -23,7 +23,7 @@
               <tbody>
 
           
-                  <tr v-for="cliente in clientes">
+                  <tr for="cliente in clientes">
                     <td>{{ cliente.empresa }}</td>
                     <td>{{ cliente.rfc }}</td>
                     <td>{{ cliente.correo }}</td>

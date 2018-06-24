@@ -56,7 +56,7 @@ Route::get('user/getUserApps', 'UserAplicationsController@index');
 Route::get('user/searchUserApps/{id}', 'UserAplicationsController@show');
 Route::post('user/createUserApp', 'UserAplicationsController@store');
 Route::get('user/searchUserAppsForFacebook/{id}','UserAplicationsController@searchFacebook');
-
+Router::get('user/findEmail/{email}', 'UserAplicationsController@findEmail');
 
 Route::post('user/createPublicidadInterest', 'PublicidadInterestsController@store');
 

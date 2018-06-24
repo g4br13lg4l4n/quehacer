@@ -50,6 +50,11 @@ class UserAplicationsController extends Controller
         return response()->json($userApp, 200);
     }
 
+    public function findEmail($email) {
+        $userApp = UserAplication::where('email', $email)->first();
+        return response()->json($userApp, 200);
+    }
+
     public function searchFacebook($id) {
         $pubInterestFacebook = UserAplication::where('idUserFacebook', $id)->first();
         return response()->json($pubInterestFacebook, 200);
